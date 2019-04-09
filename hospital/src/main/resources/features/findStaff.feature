@@ -1,4 +1,4 @@
-# Eunjin Yoo
+# Eunjin Yoo 
 Feature: Find staff
 	Description: The clerk finds a staff from the database
 	Actor: clerk

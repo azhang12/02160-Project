@@ -2,7 +2,7 @@
 Feature: Register staff
 	Description: The clerk registers a person as a staff
 	Actor: clerk
-
+	
 Background: The staff database has a set of staff
 	Given these staffs are contained in the staff database
 		|	Eunjin	|	Yoo		|	19900101	|	Avej 330	|	00000001	|	Korea		|	doctor	|

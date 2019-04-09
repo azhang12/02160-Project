@@ -1,4 +1,4 @@
-# Eunjin Yoo
+# Eunjin Yoo 
 Feature: Updatd staff
 	Description: The clerk updates information of a staff
 	Actor: clerk

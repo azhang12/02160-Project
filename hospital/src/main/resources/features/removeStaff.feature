@@ -1,4 +1,4 @@
-# Eunjin Yoo
+# Eunjin Yoo 
 Feature: Remove staff
 	Description: The clerk removes a staff from the database
 	Actor: clerk
