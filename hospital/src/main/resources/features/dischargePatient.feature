@@ -21,12 +21,12 @@ Feature: Clerk discharges Patient
 	
 	Actor: Clerk
 
-
+//We should follow same format each attributes(i.e save 'Birth-date' as 'dd-mm-yy' or alive as (int)1, so on)
 
   @tag1
   Scenario: Succesfull discharges
     Given The patient: |	Jane	|	Doe	| 19960101 | electrovej 330 | 00000001 | Australian | alive |
-    And The clerk XXX	//what is XXX
+    And The clerk XXX	//what does XXX mean
 		And the patient is admitted to any department 
     When A patient wants to leave the hospital
     Then the patient is dicharged
