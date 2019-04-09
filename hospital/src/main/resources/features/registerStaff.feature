@@ -5,10 +5,10 @@ Feature: Register staff
 	
 Background: The staff database has a set of staff
 	Given these staffs are contained in the staff database
-		|	Eunjin	|	Yoo		|	19900101	|	Avej 330	|	00000001	|	Korea		|	doctor	|
-		|	Kilian	|	Speiser	|	19900101	|	Bvej 330	|	00000002	|	Germany		|	nurse	|
-		|	Kilian	|	Smith	|	19881212	|	Cvej 330	|	00000003	|	Denmark		|	ITC		|
-		|	Taylor	|	Gregory	|	19970101	|	Cvej 330	|	00000003	|	Australia	|	clerk	|
+		|1	|	Eunjin	|	Yoo		|	19900101	|	Avej 330	|	00000001	|	Korea		|	doctor	|
+		|2	|	Kilian	|	Speiser	|	19900101	|	Bvej 330	|	00000002	|	Germany		|	nurse	|
+		|3	|	Kilian	|	Smith	|	19881212	|	Cvej 330	|	00000003	|	Denmark		|	ITC		|
+		|4	|	Taylor	|	Gregory	|	19970101	|	Cvej 330	|	00000003	|	Australia	|	clerk	|
 
 # Main scenario
 Scenario: The clerk registers a new staff 
@@ -17,6 +17,7 @@ Scenario: The clerk registers a new staff
 	When The clerk registers the staff
 	Then the registration succeeds
 	And the staff is registered
+	And staffNumber of the staff is 5
 	
 	
 # Alternative scenarios
