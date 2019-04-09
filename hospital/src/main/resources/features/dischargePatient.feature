@@ -26,11 +26,11 @@ Feature: Clerk discharges Patient
   @tag1
   Scenario: Succesfull discharges
     Given The patient: |	Jane	|	Doe	| 19960101 | electrovej 330 | 00000001 | Australian | alive |
-    And The clerk XXX
-		And the patient is admitted to any department
+    And The clerk XXX	//what is XXX
+		And the patient is admitted to any department 
     When A patient wants to leave the hospital
     Then the patient is dicharged
-    And the status changes to discharged
+    And the status changes to discharged 	//Should we add 'status' to patient info?
     And the Patient and Department Database is updated
     And the GUI shows a successfully allocated Patient
     
