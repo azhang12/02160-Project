@@ -8,7 +8,7 @@
 #		|1	|	Eunjin	|	Yoo		|	19900101	|	Avej 330	|	00000001	|	Korea		|	doctor	|
 #		|2	|	Kilian	|	Speiser	|	19900101	|	Bvej 330	|	00000002	|	Germany		|	nurse	|
 #		|3	|	Kilian	|	Smith	|	19881212	|	Cvej 330	|	00000003	|	Denmark		|	ITC		|
-#		|4	|	Taylor	|	Gregory	|	19970101	|	Cvej 330	|	00000003	|	Australia	|	clerk	|
+#		|4	|	Taylor	|	Gregory	|	19970101	|	Cvej 330	|	00000004	|	Australia	|	clerk	|
 #
 ## Main scenario
 #Scenario: The clerk removes a staff 
