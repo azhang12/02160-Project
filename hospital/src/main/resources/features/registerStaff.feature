@@ -21,15 +21,6 @@ Scenario: The clerk registers a new staff
 	
 	
 # Alternative scenarios
-Scenario: The clerk registers a staff that already exists 
-	Given the clerk is logged in
-	And a staff with |	Eunjin	|	Yoo	|	19900101	|	Avej 330	|	00000001	|	Korea	|	doctor	|
-	When The clerk registers the staff
-	Then the registration fails
-	And the user get error message "Staff already exists"
-	And staff is not registered
-
-
 Scenario: The clerk registers a staff with a phone number that already exists 
 	Given the clerk is logged in
 	And a staff with |	Brittany	|	Lee	|	19701111	|	Xvej 330	|	00000001	|	France	|	ITC	|
