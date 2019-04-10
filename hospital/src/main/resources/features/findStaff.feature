@@ -5,10 +5,10 @@ Feature: Find staff
 
 Background: The staff database has a set of staff
 	Given these staffs are contained in the staff database
-		|1	|	Eunjin	|	Yoo		|	19900101	|	Avej 330	|	00000001	|	Korea		|	doctor	|
-		|2	|	Kilian	|	Speiser	|	19900101	|	Bvej 330	|	00000002	|	Germany		|	nurse	|
-		|3	|	Kilian	|	Smith	|	19881212	|	Cvej 330	|	00000003	|	Denmark		|	ITC		|
-		|4	|	Taylor	|	Gregory	|	19970101	|	Cvej 330	|	00000004	|	Australia	|	clerk	|
+		|1	|	Eunjin	|	Yoo		|	doctor	|	yoo@hospital.com		|
+		|2	|	Kilian	|	Speiser	|	nurse	|	speiser@hospital.com	|
+		|3	|	Kilian	|	Smith	|	ITC		|	smith@hospital.com		|
+		|4	|	Taylor	|	Gregory	|	clerk	|	gregory@hospital.com	|
 
 # Main scenario
 Scenario: The staff finds a staff with first name
@@ -29,9 +29,9 @@ Scenario: The staff finds a staff with keyword
 	Then staff1 and staff2 and staff3 are found
 
 
-Scenario: The staff finds a staff with phone number
+Scenario: The staff finds a staff with e-mail address
 	Given the staff is logged in
-	When the staff search for staff with "00000001"
+	When the staff search for staff with "yoo@hospital.com"
 	Then staff1 is found
 	
 
