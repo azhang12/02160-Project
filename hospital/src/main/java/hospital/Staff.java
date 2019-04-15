@@ -11,12 +11,12 @@ public class Staff extends Person {
 	private int staffNumber;
 	private Access access;
 	//Constructor Implementation
-	public Staff(String FirstName, String LastName, JobRole role, String mail,  Access level, Department dep) {
+	public Staff(String FirstName, String LastName, JobRole role, String mail,int staffNo,  Access level, Department dep) {
 		this.firstName = FirstName;
 		this.lastName = LastName;
 		this.jobRole= role;
 		this.eMail = mail;
-		this.staffNumber = Hospital.getStaff.Length()+1;
+		this.staffNumber = staffNo;
 		this.access = level;
 		this.department = dep;
 	}

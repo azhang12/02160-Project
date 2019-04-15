@@ -2,6 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 package hospital;
 
+<<<<<<< HEAD
 public class Hospital {
 	//array lists
 	private List<Staff> staffList = new ArrayList<Staff>();
@@ -71,6 +72,23 @@ public class Hospital {
 	public List getDepartment() {
 		return departmentList;
 	}
+=======
+
+import com.opencsv.CSVReader;
+
+public class Hospital implements IReader{
+
+	
+
+	
+		
+		
+	}
+
+	
+	
+	
+>>>>>>> 02e575346f64c73f0c337aacc24e350b29549cfe
 	
 	@Override
 	public String toString() {
