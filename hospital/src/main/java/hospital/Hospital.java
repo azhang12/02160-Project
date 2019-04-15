@@ -1,7 +1,20 @@
 package hospital;
 
-public class Hospital {
 
+import com.opencsv.CSVReader;
+
+public class Hospital implements IReader{
+
+	
+
+	
+		
+		
+	}
+
+	
+	
+	
 	
 	
 }
