@@ -2,16 +2,14 @@ import java.util.List;
 import java.util.ArrayList;
 package hospital;
 
-public class Hospital {
+public class Hospital extends System {
 	//array lists
 	private List<Staff> staffList = new ArrayList<Staff>();
 	private List<Patient> patientList = new ArrayList<Patient>();
 	private List<Department> departmentList = new ArrayList<Department>();
 	
 	//the number of staff, patients, and departments
-	private int cntStaff = this.staffList.size();
-	private int cntPatients = this.patientList.size();
-	private int cntDepartments = this.departmentList.size();
+	private int cntStaff, cntPatients, cntDepartments;
 	
 	//constructor
 	Hospital() {}
@@ -50,9 +48,9 @@ public class Hospital {
 			}
 		}
 	}
-	public void movePatient(Patient patient, Department newDepartement) {
-//		 = newDepartment;
-	}
+	public void movePatient(Patient patient, Bed newBed) {
+		patient.Bed = newBed;
+	} //??
 		
 	public void addDepartment(Department newDepartment) {
 		this.departmentList.add(newDepartment);
@@ -70,6 +68,19 @@ public class Hospital {
 	}
 	public List getDepartment() {
 		return departmentList;
+	}
+	
+	public int getSize(List list) {
+		return list.size();
+	}
+	public int getCntStaff(){
+		return getSize(staffList);
+	}
+	public int getCntPatients() {
+		return getSize(patientList);
+	}
+	public int getCntDepartments() {
+		return getSize(departmentList);
 	}
 	
 	@Override
