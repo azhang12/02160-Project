@@ -13,19 +13,19 @@ public class Bed extends DepartmentPatient {
 	}
 	
 	//functions
-	void setPatient(Patient newPatient) { 
+	public void setPatient(Patient newPatient) { 
 		this.patient = newPatient; 
 	}
-	Patient getPatient() { 
+	public Patient getPatient() { 
 		return this.patient; 
 	}
-	void setid(int id) { 
+	private void setId(int id) { 
 		this.id = id; 
 	}
-	int getid(int id) { 
+	public int getId(int id) { 
 		return this.id; 
 	}
-	boolean isOccupied() {
+	public boolean isOccupied() {
 		if(this.patient != null) { 
 			return true;
 		}else return false;
