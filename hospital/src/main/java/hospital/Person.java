@@ -9,11 +9,10 @@ public class Person {
 	private String lastName;
 	private Department department;
 	
-	public Person(String _firstName, String _lastName, Department _department, String _nationality) {
+	public Person(String _firstName, String _lastName, Department _department) {
 		firstName = _firstName;
 		lastName = _lastName;
 		department = _department;
-		nationality = _nationality;
 	}
 	
 
