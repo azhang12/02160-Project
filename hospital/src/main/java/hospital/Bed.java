@@ -1,6 +1,8 @@
-package hospital
+package hospital;
 
-public class Bed extends DepartmentPatient {
+
+
+public class Bed  {
 	//variables
 	private Patient patient;
 	private int id;
@@ -25,6 +27,7 @@ public class Bed extends DepartmentPatient {
 	public int getId(int id) { 
 		return this.id; 
 	}
+	
 	public boolean isOccupied() {
 		if(this.patient != null) { 
 			return true;
