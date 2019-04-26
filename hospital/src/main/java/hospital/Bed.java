@@ -23,7 +23,7 @@ public class Bed  {
 	private void setId(int id) { 
 		this.id = id; 
 	}
-	public int getId(int id) { 
+	public int getId() { 
 		return this.id; 
 	}
 	

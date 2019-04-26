@@ -10,9 +10,10 @@ public class Department {
 	
 	private ArrayList<Staff> staff = new ArrayList<Staff>();
 	
-	private ArrayList<Patient> admittedPatients = newArrayList<Patient>();
+	private ArrayList<Patient> admittedPatients = new ArrayList<Patient>();
 	
 	// Constructor
+	Department(){}
 	Department(String Name){this.name = Name;}
 	
 	public boolean admitPatient(Patient newPatient) {

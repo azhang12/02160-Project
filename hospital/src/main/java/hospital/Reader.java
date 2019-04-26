@@ -65,8 +65,37 @@ public class Reader implements IReader{
 		//ALL THE PROPERTIES OF PATIENTS ARE MISSING
 		for (List<String> i :listOfLists)
 		{
-			Department currentDep = Finder.findDepartment(i.get(2), departmentList);
-			patients.add(new Patient());
+			String fName = i.get(0);
+			String lName = i.get(1);
+			String dep = i.get(2);
+			String birth = i.get(3);
+			String address = i.get(4);
+			String phone = i.get(5);
+			boolean alive = true;
+			if(i.get(6)!="yes") {alive=false;}
+			int patientNumber = Integer.parseInt(i.get(7));
+			String nation = i.get(8);
+			int bedNumber = Integer.parseInt(i.get(9));
+			int queueNumber = Integer.parseInt(i.get(10));
+			
+			
+			Department currentDep = Finder.findDepartment(dep, departmentList);
+			Patient pat = (new Patient(fName,lName,currentDep,birth,address,phone,alive,patientNumber,nation,null,0));
+			
+			//Identify the bed or queue number
+			if (currentDep!=null) {
+				if(bedNumber!=0&&queueNumber==0) {
+					pat.setBed(Finder.findBed(bedNumber, ((InpatientDepartment) currentDep).getBed()));
+					
+				}
+				else if (bedNumber==0&&queueNumber!=0) {
+					pat.setQueueNumber(queueNumber);
+				}
+				
+				
+			}
+			patients.add(pat);
+				
 		}
 		return patients;
 	}

@@ -8,6 +8,7 @@ public class Finder {
 	public static JobRole findJobRole(String abbr){
 	    return Arrays.stream(JobRole.values()).filter(value -> value.toString().equals(abbr)).findFirst().orElse(null);
 	}
+	
 	public static Department findDepartment(String depName, List<Department> departmentList) {
 		for (Department department : departmentList) {
 			if(depName == department.getName()) {
@@ -24,6 +25,17 @@ public class Finder {
 			{
 				return pat;
 				
+			}
+			
+		}
+		return null;
+	}
+	
+	public static Bed findBed(int bedNumber, List<Bed> bedList) {
+		for (Bed bed : bedList) {
+			if(bed.getId()==bedNumber)
+			{
+				return bed;
 			}
 			
 		}

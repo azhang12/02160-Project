@@ -1,2 +1,2 @@
-﻿FirstName;LastName;Department;Birthday;Address;phoneNumber;Alive;patientNumber;Nationality;bedNumber;queueNumber
-Mike;Vick;;19911211;Copenhagen;12223124;yes;1;Germany;12;0
+﻿FirstName,LastName,Department,Birthday,Address,phoneNumber,Alive,patientNumber,Nationality,bedNumber,queueNumber
+Mike,Vick,,19911211,Copenhagen,12223124,1,1,Germany,12,0
