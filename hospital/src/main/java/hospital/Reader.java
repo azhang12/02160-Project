@@ -37,8 +37,8 @@ public class Reader implements IReader{
 		for (List<String> i : listOfLists)
 		{
 			
-			Department currentDep = this.findDepartment(i.get(2), departmentList);
-			JobRole job = this.findJobRole(i.get(3));
+			Department currentDep = Finder.findDepartment(i.get(2), departmentList);
+			JobRole job = Finder.findJobRole(i.get(3));
 			
 			staff.add(new Staff(i.get(0), i.get(1), job, i.get(4), Integer.parseInt(i.get(5)),  new Access(), currentDep));
 			
@@ -65,29 +65,11 @@ public class Reader implements IReader{
 		//ALL THE PROPERTIES OF PATIENTS ARE MISSING
 		for (List<String> i :listOfLists)
 		{
-			Department currentDep = this.findDepartment(i.get(2), departmentList);
+			Department currentDep = Finder.findDepartment(i.get(2), departmentList);
 			patients.add(new Patient());
 		}
 		return patients;
 	}
-	
-	
-	
-	private JobRole findJobRole(String abbr){
-	    return Arrays.stream(JobRole.values()).filter(value -> value.toString().equals(abbr)).findFirst().orElse(null);
-	}
-	private Department findDepartment(String depName, List<Department> departmentList) {
-		for (Department department : departmentList) {
-			if(depName == department.getName()) {
-				return department;
-			}
-			
-		}
-		return null;
-	}
-	
-	
-	
 	
 	
 

@@ -1,7 +1,6 @@
 package hospital;
 
 
-
 public class Bed  {
 	//variables
 	private Patient patient;
