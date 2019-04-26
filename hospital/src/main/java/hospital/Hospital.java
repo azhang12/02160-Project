@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.ArrayList;
 package hospital;
 
-public class Hospital extends System {
+public class Hospital{
 	//array lists
 	private List<Staff> staffList = new ArrayList<Staff>();
 	private List<Patient> patientList = new ArrayList<Patient>();
