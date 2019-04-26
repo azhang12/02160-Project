@@ -11,6 +11,7 @@ public class Staff extends Person {
 	private int staffNumber;
 	private Access access;
 	//Constructor Implementation
+	
 	public Staff(String FirstName, String LastName, JobRole role, String mail,int staffNo,  Access level, Department dep) {
 		
 		this.firstName = FirstName;

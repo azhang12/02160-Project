@@ -12,8 +12,6 @@ public class Patient extends Person {
 	private int queueNumber;
 
 	// Constructors
-	// constructor if the clerk wants to have a patient number automatically assigned
-	// need to remove the patient number in the final implementation of this. this is just kept here for now for the other test cases
 	public Patient(String FirstName, String LastName, Department dep, String dob, String address, String phone, boolean living, int PatientNo, String national, Bed BedID, int queue) {
 		this.firstName = FirstName;
 		this.lastName = LastName;
@@ -23,8 +21,6 @@ public class Patient extends Person {
 		this.phoneNumber = phone;
 		this.alive = living;
 		this.patientNumber = PatientNo;
-		// the above should be swapped to a scenario where we need to add to the previous highest patient number
-		this.nationality = national;
 		this.bed = BedID;
 		this.queueNumber = queue;
 	}
@@ -56,9 +52,6 @@ public class Patient extends Person {
 	}
 	public int getPatientNumber(){
 		return this.patientNumber;
-	}
-	public void setPatientNumber(int newPatientNumber){
-		this.patientNumber = newPatientNumber;
 	}
 	public String getNationality(){
 		return this.nationality;
