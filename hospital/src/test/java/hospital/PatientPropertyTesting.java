@@ -5,9 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class PatientPropertyTesting {
-  Department dep = new Department("Department07");
+  Department dep1 = new Department("Department07");
+  Bed bed1 = new Bed();
+  Bed bed2 = new Bed();
+
   // note that birthday is stored as DD/MM/YYYY
-  Patient instance = new Patient("Bill", "Smith", dep, "22/04/1998", "Elektrovej, Kongens Lyngby 2800, Denmark", "+45927564", true, 1, "Danish", 5, 7);
+  Patient instance = new Patient("Bill", "Smith", dep1, "22/04/1998", "Elektrovej, Kongens Lyngby 2800, Denmark", "+45927564", true, 1, "Danish", bed1, 7);
 
   @Test
   public void getBirthdayTest(){
@@ -29,7 +32,7 @@ public class PatientPropertyTesting {
   }
   @Test
   public void getPhoneNumberTest(){
-    assertTrue(instance.getPhoneNumber() = "+45927564");
+    assertTrue(instance.getPhoneNumber() == "+45927564");
   }
   @Test
   public void setPhoneNumberTest(){
@@ -51,7 +54,7 @@ public class PatientPropertyTesting {
   }
   @Test
   public void getNationalityTest(){
-    assertTrue(instance.getNationality() = "Danish");
+    assertTrue(instance.getNationality() == "Danish");
   }
   @Test
   public void setNationalityTest(){
@@ -60,12 +63,12 @@ public class PatientPropertyTesting {
   }
   @Test
   public void getBedTest(){
-    assertTrue(instance.getBed() == 5);
+    assertTrue(instance.getBed() == bed1);
   }
   @Test
   public void setBedTest(){
-    instance.setBed(8);
-    assertTrue(instance.getBed() == 8);
+    instance.setBed(bed2);
+    assertTrue(instance.getBed() == bed2);
   }
   @Test
   public void getQueueNumberTest(){
