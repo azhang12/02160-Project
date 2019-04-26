@@ -31,49 +31,50 @@ public class Patient extends Person {
 	public String getBirthday() {
 		return this.birthday;
 	}
-	public void setBirthday() {
+	public void setBirthday(String newBirthday) {
 		this.birthday = newBirthday;
 	}
 	public String getAddress(){
 		return this.homeAddress;
 	}
-	public void setAddress() {
+	public void setAddress(String newAddress) {
 		this.homeAddress = newAddress;
 	}
 	public String getPhoneNumber(){
 		return this.phoneNumber;
 	}
-	public void setPhoneNumber(){
+	public void setPhoneNumber(String newPhoneNumber){
 		this.phoneNumber = newPhoneNumber;
 	}
 	public Boolean IsAlive(){
 		return this.alive;
 	}
-	public void setAlive(){
+	public void setAlive(boolean newAlive){
 		this.alive = newAlive;
 	}
 	public int getPatientNumber(){
 		return this.patientNumber;
 	}
-	public void setPatientNumber(){
+	
+	private void setPatientNumber(int newPatientNumber){
 		this.patientNumber = newPatientNumber;
 	}
 	public String getNationality(){
 		return this.nationality;
 	}
-	public void setNationality(){
+	public void setNationality(String newNationality){
 		this.nationality = newNationality;
 	}
 	public Bed getBed(){
 		return this.bed;
 	}
-	public void setBed(){
+	public void setBed(Bed newBed){
 		this.bed = newBed;
 	}
 	public int getQueueNumber(){
 		return this.queueNumber;
 	}
-	public void setQueueNumber(){
+	public void setQueueNumber(int newQueueNumber){
 		this.queueNumber = newQueueNumber;
 	}
 }

@@ -65,6 +65,7 @@ public class Reader implements IReader{
 		//ALL THE PROPERTIES OF PATIENTS ARE MISSING
 		for (List<String> i :listOfLists)
 		{
+			Department currentDep = this.findDepartment(i.get(2), departmentList);
 			patients.add(new Patient());
 		}
 		return patients;
@@ -84,6 +85,8 @@ public class Reader implements IReader{
 		}
 		return null;
 	}
+	
+	
 	
 	
 	
