@@ -44,7 +44,7 @@ public class Patient extends Person {
 	public void setPhoneNumber(String newPhoneNumber){
 		this.phoneNumber = newPhoneNumber;
 	}
-	public Boolean IsAlive(){
+	public Boolean getAlive(){
 		return this.alive;
 	}
 	public void setAlive(boolean newAlive){
