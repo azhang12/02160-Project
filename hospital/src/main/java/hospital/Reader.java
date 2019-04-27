@@ -40,8 +40,10 @@ public class Reader implements IReader{
 			Department currentDep = Finder.findDepartment(i.get(2), departmentList);
 			JobRole job = Finder.findJobRole(i.get(3));
 			
-			staff.add(new Staff(i.get(0), i.get(1), job, i.get(4), Integer.parseInt(i.get(5)),  new Access(), currentDep));
 			
+			Staff newStaff = (new Staff(i.get(0), i.get(1), job, i.get(4), Integer.parseInt(i.get(5)),  new Access(), currentDep));
+			staff.add(newStaff);
+			currentDep.addStaff(newStaff);
 		}
 		
 		
@@ -85,8 +87,9 @@ public class Reader implements IReader{
 			//Identify the bed or queue number
 			if (currentDep!=null) {
 				if(bedNumber!=0&&queueNumber==0) {
-					pat.setBed(Finder.findBed(bedNumber, ((InpatientDepartment) currentDep).getBed()));
 					
+					Bed b = Finder.findBed(bedNumber, ((InpatientDepartment) currentDep).getBed());
+					pat.setBed(b);
 				}
 				else if (bedNumber==0&&queueNumber!=0) {
 					pat.setQueueNumber(queueNumber);

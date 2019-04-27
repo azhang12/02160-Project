@@ -1,4 +1,4 @@
-
+package hospital;
 
 import java.util.List;
 
@@ -24,6 +24,18 @@ public class Hospital {
 		
 	}
 	
+	public Hospital (List<Department>dep, List<Staff> s, List<Patient>p) {
+		this.staffList = s;
+		this.departmentList=dep;
+		this.patientList=p;
+		
+		//Add Patients to Departments
+		
+		
+	}
+	
+	
+	/*
 	//modifying lists of Staff, Patients, and Departments
 	public void addStaff(Staff newStaff) {
 		this.staffList.add(newStaff);
@@ -58,10 +70,11 @@ public class Hospital {
 			}
 		}
 	}
+	
 	public void movePatient(Patient patient, Bed newBed) {
 		patient.Bed = newBed;
 	} //??
-		
+		*/
 	public void addDepartment(Department newDepartment) {
 		this.departmentList.add(newDepartment);
 	}
@@ -93,10 +106,12 @@ public class Hospital {
 		return getSize(departmentList);
 	}
 	
+	/*
 	@Override
 	public String toString() {
 		return cntStaff + " staff, " + cntPatients + "patients, " 
 	+ cntDepartments + "departments in this hospital." 
 	}
+	*/
 	
 }

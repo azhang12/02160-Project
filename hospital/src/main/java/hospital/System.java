@@ -1,5 +1,6 @@
 package hospital;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class System {
@@ -65,6 +66,16 @@ public class System {
 	}
 	
 	*/
+	
+	public static Hospital loadData(String DepartmentFileName, String StaffFileName, String PatientsFileName) {
+		Reader r = new Reader();
+		ArrayList<Department> departments = r.readDepartment(DepartmentFileName);
+		ArrayList<Staff> staff = r.readStaff(departments, StaffFileName);
+		ArrayList<Patient> patients = r.readPatients(departments, PatientsFileName);
+		return new Hospital (departments, staff,patients);
+		
+	}
+	
 	
 	
 

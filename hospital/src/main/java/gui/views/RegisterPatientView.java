@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import gui.controller.LoginController;
 import gui.controller.RegisterController;
 import gui.utils.GridBagLayoutUtils;
 
@@ -29,6 +28,9 @@ private static final long serialVersionUID = 8981053836072595592L;
 	
 	public RegisterPatientView(RegisterController controller) {
 		this.controller=controller;
+		this.txtEntries= new ArrayList<JTextField>();
+		this.txtNames= new ArrayList<String>();
+		
 		initGUI();
 	}
 	
@@ -38,7 +40,6 @@ private static final long serialVersionUID = 8981053836072595592L;
 		setTitle("Login");
 		setLayout(new GridBagLayout());
 		
-		List<String> txtNames = new ArrayList<String>();
 		txtNames.add("First Name");
 		txtNames.add("Last Name");
 		txtNames.add("Date of Birth");
@@ -52,13 +53,14 @@ private static final long serialVersionUID = 8981053836072595592L;
 			add(txtEntries.get(txtEntries.size()-1), GridBagLayoutUtils.constraint(1, i, 5));
 			
 		}
-		
+		/*
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				controller.validateInput(txtEntries);
 			}
 		});
+		*/
 		add(btnSave, GridBagLayoutUtils.constraint(1, txtEntries.size(), 5));
 		
 		pack();

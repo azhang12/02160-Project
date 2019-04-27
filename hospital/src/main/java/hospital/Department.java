@@ -4,13 +4,13 @@ import java.util.List;
 
 public class Department {
 	
-	private String name;
+	protected String name;
 	
 	public String getName() {return this.name;}
 	
-	private ArrayList<Staff> staff = new ArrayList<Staff>();
+	protected ArrayList<Staff> staff = new ArrayList<Staff>();
 	
-	private ArrayList<Patient> admittedPatients = new ArrayList<Patient>();
+	protected ArrayList<Patient> admittedPatients = new ArrayList<Patient>();
 	
 	// Constructor
 	Department(){}
@@ -21,11 +21,11 @@ public class Department {
 	}
 	
 	public boolean dischargePatient(Patient patient) {
-		return this.admittedPatients.remove(newPatient);
+		return this.admittedPatients.remove(patient);
 	}
 	
-	public boolean addStaff(Staff newStaff) {
-		return this.staff.add(newStaff);
+	public void addStaff(Staff newStaff) {
+		 this.staff.add(newStaff);
 	}
 	
 	public boolean removeStaff(Staff staff) {

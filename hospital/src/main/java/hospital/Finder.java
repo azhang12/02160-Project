@@ -11,7 +11,7 @@ public class Finder {
 	
 	public static Department findDepartment(String depName, List<Department> departmentList) {
 		for (Department department : departmentList) {
-			if(depName == department.getName()) {
+			if(depName.equals(department.getName())) {
 				return department;
 			}
 			

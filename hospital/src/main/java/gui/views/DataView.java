@@ -43,47 +43,70 @@ public class DataView extends JFrame{
 		setPreferredSize(new Dimension(800, 600));
 		
 		//BUTTONS
-		JButton btnNew = new JButton("Addd Item");
-		btnNew.addActionListener(new ActionListener() {
+		JButton btnShowPatients= new JButton("Patients");
+		JButton btnShowDepartments= new JButton("Departments");
+		JButton btnShowStaff= new JButton("Staff");
+		JButton btnAdd = new JButton("Add");
+		JButton btnDelete = new JButton("Remove");
+		
+		//Add Listeners to Buttons
+		btnShowPatients.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.addItem();
+				controller.showPatients();
 			}
 		});
-		
-		JButton btnDelete = new JButton("Remove selected item");
-		btnDelete.setEnabled(false);
+		btnShowDepartments.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.showStaff();
+			}
+		});
+		btnShowStaff.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.showStaff();
+			}
+		});
+		btnAdd.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.AddPerson();
+			}
+		});
 		btnDelete.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.deleteItem(tblData.getSelectedRow());
+				controller.DeletePerson();
 			}
 		});
 		
-		// toolbar
+		
+		
+		// toolbar 1
 				lblSession = new JLabel();
 				lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
 				
-				JToolBar toolbar = new JToolBar();
-				toolbar.add(btnNew);
-				toolbar.add(btnDelete);
-				toolbar.add(Box.createHorizontalGlue());
-				toolbar.add(lblSession);
-				add(toolbar, BorderLayout.NORTH);
+				JToolBar toolbar1 = new JToolBar();
+				toolbar1.add(btnShowDepartments);
+				toolbar1.add(btnShowStaff);
+				toolbar1.add(btnShowPatients);
+				toolbar1.add(Box.createHorizontalGlue());
+				toolbar1.add(lblSession);
+				add(toolbar1, BorderLayout.NORTH);
 				
-		// table
-		tblData = new JTable();
-		tblData.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		tblData.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				btnDelete.setEnabled((tblData.getSelectedRow() >= 0));
-			}
-		});
-		add(new JScrollPane(tblData), BorderLayout.CENTER);
+		//toolbar 2
+				lblSession = new JLabel();
+				lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
+				
+				JToolBar toolbar2 = new JToolBar();
+				toolbar2.add(btnAdd);
+				toolbar2.add(btnDelete);
+				toolbar2.add(Box.createHorizontalGlue());
+				toolbar2.add(lblSession);
+				add(toolbar2, BorderLayout.SOUTH);
+				
 		
-		pack();
-		setLocationRelativeTo(null);		
 		
 	}
 	

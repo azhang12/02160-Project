@@ -7,18 +7,21 @@ import gui.model.Session;
 import gui.views.DataView;
 
 public class DataController {
+	
 	private Data dataModel;
 	private Session sessionModel;
 	private DataView view;
+	private ApplicationController application;
 	
 	
-	public DataController ( Data data, Session session) {
+	public DataController (ApplicationController app, Data data, Session session) {
 		this.dataModel = data;
 		this.sessionModel = session;
 	}
 	
-	public void addItem() {
-        ///TO-DO
+	public void register() {
+		RegisterController regController = new RegisterController(sessionModel);
+		regController.display();
 	}
 
 	public void deleteItem(int selectedRow) {
