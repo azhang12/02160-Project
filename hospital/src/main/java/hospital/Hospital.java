@@ -1,17 +1,51 @@
+package hospital;
+
 import java.util.List;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Iterator;
 package hospital;
 
 public class Hospital{
+=======
+
+
+public class Hospital {
+>>>>>>> ed79782da117aa89f5b88cd3fc9135cbf630442f
 	//array lists
 	private List<Staff> staffList = new ArrayList<Staff>();
 	private List<Patient> patientList = new ArrayList<Patient>();
 	private List<Department> departmentList = new ArrayList<Department>();
 	
-	//constructor
-	Hospital() {}
+<<<<<<< HEAD
+=======
+	//the number of staff, patients, and departments
 	
+	
+>>>>>>> ed79782da117aa89f5b88cd3fc9135cbf630442f
+	//constructor
+	public Hospital() {
+		this.staffList = new ArrayList<Staff>();
+		this.patientList = new ArrayList<Patient>();
+		this.departmentList = new ArrayList<Department>();
+		
+	}
+	
+	public Hospital (List<Department>dep, List<Staff> s, List<Patient>p) {
+		this.staffList = s;
+		this.departmentList=dep;
+		this.patientList=p;
+		
+		//Add Patients to Departments
+		
+		
+	}
+	
+	
+	/*
 	//modifying lists of Staff, Patients, and Departments
 	public void addStaff(Staff newStaff) {
 		this.staffList.add(newStaff);
@@ -46,10 +80,17 @@ public class Hospital{
 			}
 		}
 	}
+	
 	public void movePatient(Patient patient, Bed newBed) {
+<<<<<<< HEAD
 		patient.setBed(newBed);
 	}
 		
+=======
+		patient.Bed = newBed;
+	} //??
+		*/
+>>>>>>> ed79782da117aa89f5b88cd3fc9135cbf630442f
 	public void addDepartment(Department newDepartment) {
 		this.departmentList.add(newDepartment);
 	}
@@ -66,5 +107,30 @@ public class Hospital{
 	public List getDepartment() {
 		return departmentList;
 	}
+<<<<<<< HEAD
 		
+=======
+	
+	public int getSize(List list) {
+		return list.size();
+	}
+	public int getCntStaff(){
+		return getSize(staffList);
+	}
+	public int getCntPatients() {
+		return getSize(patientList);
+	}
+	public int getCntDepartments() {
+		return getSize(departmentList);
+	}
+	
+	/*
+	@Override
+	public String toString() {
+		return cntStaff + " staff, " + cntPatients + "patients, " 
+	+ cntDepartments + "departments in this hospital." 
+	}
+	*/
+	
+>>>>>>> ed79782da117aa89f5b88cd3fc9135cbf630442f
 }

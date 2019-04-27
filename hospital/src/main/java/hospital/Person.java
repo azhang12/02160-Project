@@ -28,7 +28,7 @@ public class Person {
 	public String getLastName() {
 		return lastName;
 	}
-	public void setlastName(String n) {
+	public void setLastName(String n) {
 		lastName = n;
 	}
 	
