@@ -1,6 +1,6 @@
 package hospital
 
-public class Bed extends DepartmentPatient {
+public class Bed extends Department {
 	//variables
 	private Patient patient;
 	private int id;
@@ -22,7 +22,7 @@ public class Bed extends DepartmentPatient {
 	private void setId(int id) { 
 		this.id = id; 
 	}
-	public int getId(int id) { 
+	public int getId() { 
 		return this.id; 
 	}
 	public boolean isOccupied() {

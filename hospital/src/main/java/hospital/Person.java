@@ -5,10 +5,11 @@ import java.util.*;
 
 public class Person {
 	
-	private String firstName;
-	private String lastName;
-	private Department department;
+	protected String firstName;
+	protected String lastName;
+	protected Department department;
 	
+	public Person() {}
 	public Person(String _firstName, String _lastName, Department _department) {
 		firstName = _firstName;
 		lastName = _lastName;

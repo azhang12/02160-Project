@@ -5,53 +5,93 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import com.opencsv.CSVReader;
-class Staff{};
+
 public class Reader implements IReader{
 
-	
+	Reader(){}
 	@Override
 	public List<List<String>> read(String filename) {
 		List<List<String>> listOfLists = new ArrayList<List<String>>();
-		List<String> list1 = new ArrayList<String>();
-		list1.add("Delhi");
-		list1.add("Mumbai");
 		
-		try (CSVReader csvReader = new CSVReader(new FileReader("book.csv"));) {
+		
+		try (CSVReader csvReader = new CSVReader(new FileReader(filename));) {
 		    String[] values = null;
 		    while ((values = csvReader.readNext()) != null) {
 		        listOfLists.add(Arrays.asList(values));
 		    }
+		    //RemoveCaptionsLine
+		    listOfLists.remove(0);
 		    return listOfLists;
 		}
 		    
-		catch( IOException ex) {
-			return null;
-			
-		}
+		catch( IOException ex) {return null;}
 		
 	}
-	public List<Staff> readStaff(String fileName)
+	
+	public ArrayList<Staff> readStaff(List<Department> departmentList, String fileName)
 	{
-		List<Staff> staff = new ArrayList<Staff>();
+		ArrayList<Staff> staff = new ArrayList<Staff>();
 		List<List<String>> listOfLists = this.read(fileName);
 		
 		for (List<String> i : listOfLists)
 		{
-			//Identify jobRole
-			//Identify Department
 			
-			staff.add(new Staff(i.get(0), i.get(1), new jobRole(), i.get(4),Integer.parseInt(i.get(5)),  new Access(), new Department()));
+			Department currentDep = this.findDepartment(i.get(2), departmentList);
+			JobRole job = this.findJobRole(i.get(3));
 			
-			
+			staff.add(new Staff(i.get(0), i.get(1), job, i.get(4), Integer.parseInt(i.get(5)),  new Access(), currentDep));
 			
 		}
 		
 		
 		return staff;
-		
 	}
+	
+	public ArrayList <Department> readDepartment(String fileName){
+		ArrayList<Department> departments = new ArrayList<Department>();
+		List<List<String>> listOfLists = this.read(fileName);
+		for (List<String> i : listOfLists){departments.add(new Department(i.get(0)));}
+		
+		return departments;
+	}
+	
+	public ArrayList<Patient> readPatients (List<Department> departmentList, String fileName){
+		ArrayList<Patient>  patients = new ArrayList<Patient>();
+		List<List<String>> listOfLists = this.read(fileName);
+		
+		
+		
+		//ALL THE PROPERTIES OF PATIENTS ARE MISSING
+		for (List<String> i :listOfLists)
+		{
+			patients.add(new Patient());
+		}
+		return patients;
+	}
+	
+	
+	
+	private JobRole findJobRole(String abbr){
+	    return Arrays.stream(JobRole.values()).filter(value -> value.toString().equals(abbr)).findFirst().orElse(null);
+	}
+	private Department findDepartment(String depName, List<Department> departmentList) {
+		for (Department department : departmentList) {
+			if(depName == department.getName()) {
+				return department;
+			}
+			
+		}
+		return null;
+	}
+	
+	
 	
 
 }
+
+
+
+class Access{}
+
+

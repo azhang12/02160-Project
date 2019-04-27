@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
 package hospital;
 
 public class Hospital{
@@ -7,9 +8,6 @@ public class Hospital{
 	private List<Staff> staffList = new ArrayList<Staff>();
 	private List<Patient> patientList = new ArrayList<Patient>();
 	private List<Department> departmentList = new ArrayList<Department>();
-	
-	//the number of staff, patients, and departments
-	private int cntStaff, cntPatients, cntDepartments;
 	
 	//constructor
 	Hospital() {}
@@ -34,8 +32,8 @@ public class Hospital{
 	
 	public void addPatient(Patient newPatient) {
 		this.patientList.add(newPatient);
-	}
-	public void removePatient(String patientNumber) {
+	}	
+	public void removePatient(Patient rmPatient) {
 		this.patientList.remove(rmPatient);
 	}
 	public void removePatient(String rmPatientNo) {
@@ -49,8 +47,8 @@ public class Hospital{
 		}
 	}
 	public void movePatient(Patient patient, Bed newBed) {
-		patient.Bed = newBed;
-	} //??
+		patient.setBed(newBed);
+	}
 		
 	public void addDepartment(Department newDepartment) {
 		this.departmentList.add(newDepartment);
@@ -58,7 +56,6 @@ public class Hospital{
 	public void removeDepartment(Department rmDepartment) {
 		this.departmentList.remove(rmDepartment);
 	}
-	
 	//getters
 	public List getStaff() {
 		return staffList;
@@ -69,24 +66,5 @@ public class Hospital{
 	public List getDepartment() {
 		return departmentList;
 	}
-	
-	public int getSize(List list) {
-		return list.size();
-	}
-	public int getCntStaff(){
-		return getSize(staffList);
-	}
-	public int getCntPatients() {
-		return getSize(patientList);
-	}
-	public int getCntDepartments() {
-		return getSize(departmentList);
-	}
-	
-	@Override
-	public String toString() {
-		return cntStaff + " staff, " + cntPatients + "patients, " 
-	+ cntDepartments + "departments in this hospital." 
-	}
-	
+		
 }
