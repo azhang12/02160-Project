@@ -1,6 +1,11 @@
+
+
 import java.util.List;
+
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import java.util.ArrayList;
-package hospital;
+
 
 public class Hospital {
 	//array lists
@@ -9,10 +14,15 @@ public class Hospital {
 	private List<Department> departmentList = new ArrayList<Department>();
 	
 	//the number of staff, patients, and departments
-	private int cntStaff, cntPatients, cntDepartments;
+	
 	
 	//constructor
-	Hospital() {}
+	public Hospital() {
+		this.staffList = new ArrayList<Staff>();
+		this.patientList = new ArrayList<Patient>();
+		this.departmentList = new ArrayList<Department>();
+		
+	}
 	
 	//modifying lists of Staff, Patients, and Departments
 	public void addStaff(Staff newStaff) {

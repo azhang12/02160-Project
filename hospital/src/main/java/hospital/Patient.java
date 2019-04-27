@@ -23,6 +23,7 @@ public class Patient extends Person {
 		this.patientNumber = PatientNo;
 		this.bed = BedID;
 		this.queueNumber = queue;
+		this.nationality=national;
 	}
 
 	// Getters and setters
