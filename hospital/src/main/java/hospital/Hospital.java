@@ -5,27 +5,17 @@ import java.util.List;
 import javax.swing.text.html.HTMLDocument.Iterator;
 
 import java.util.ArrayList;
-<<<<<<< HEAD
-import java.util.Iterator;
-package hospital;
 
-public class Hospital{
-=======
 
 
 public class Hospital {
->>>>>>> ed79782da117aa89f5b88cd3fc9135cbf630442f
+
 	//array lists
 	private List<Staff> staffList = new ArrayList<Staff>();
 	private List<Patient> patientList = new ArrayList<Patient>();
 	private List<Department> departmentList = new ArrayList<Department>();
 	
-<<<<<<< HEAD
-=======
-	//the number of staff, patients, and departments
-	
-	
->>>>>>> ed79782da117aa89f5b88cd3fc9135cbf630442f
+
 	//constructor
 	public Hospital() {
 		this.staffList = new ArrayList<Staff>();
@@ -90,7 +80,7 @@ public class Hospital {
 		patient.Bed = newBed;
 	} //??
 		*/
->>>>>>> ed79782da117aa89f5b88cd3fc9135cbf630442f
+
 	public void addDepartment(Department newDepartment) {
 		this.departmentList.add(newDepartment);
 	}
@@ -107,10 +97,7 @@ public class Hospital {
 	public List getDepartment() {
 		return departmentList;
 	}
-<<<<<<< HEAD
-		
-=======
-	
+
 	public int getSize(List list) {
 		return list.size();
 	}
@@ -132,5 +119,5 @@ public class Hospital {
 	}
 	*/
 	
->>>>>>> ed79782da117aa89f5b88cd3fc9135cbf630442f
+
 }

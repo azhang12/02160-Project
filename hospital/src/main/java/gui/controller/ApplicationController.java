@@ -37,7 +37,7 @@ public class ApplicationController {
 	
 	public static void main(String[] args) {
 		ApplicationController app = new ApplicationController();
-		System.loadData(String departmentsFile, String StaffFile, String PatientFile);
+		//System.loadData(String departmentsFile, String StaffFile, String PatientFile);
 		app.login();
 	}
 
