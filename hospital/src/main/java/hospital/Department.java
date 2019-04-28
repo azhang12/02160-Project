@@ -40,6 +40,10 @@ public class Department {
 		return admittedPatients;
 	}
 	
+	public String toString() {
+		return this.name;
+	}
+	
 	
 	
 	

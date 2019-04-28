@@ -1,12 +1,19 @@
 package gui.controller;
 
+import java.util.List;
+
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 import gui.model.Data;
+import gui.model.DataDepartment;
 import gui.model.Session;
 import gui.views.DataView;
+import hospital.*;
 
 public class DataController {
+	
 	
 	private Data dataModel;
 	private Session sessionModel;
@@ -36,6 +43,13 @@ public class DataController {
 
 	public void display() {
 		view.setVisible(true);
+	}
+	
+	
+	public void show(JTable tbl, String s)
+	{
+		
+		
 	}
 
 }

@@ -33,6 +33,14 @@ public class InpatientDepartment extends Department{
 		oldBed.setPatient(null);
 	}
 	
+	public int occupiedBeds() {
+		int n=0;
+		for (Bed b : beds) {
+			if(b.isOccupied()) {n++;}
+			
+		}
+		return n;
+	}
 	
 	
 }

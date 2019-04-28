@@ -53,19 +53,19 @@ public class DataView extends JFrame{
 		btnShowPatients.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.showPatients();
+				controller.show(tblData,"Patients");
 			}
 		});
 		btnShowDepartments.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.showStaff();
+				controller.show(tblData,"Departments");
 			}
 		});
 		btnShowStaff.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.showStaff();
+				controller.show(tblData,"Staff");
 			}
 		});
 		btnAdd.addActionListener(new ActionListener() {
@@ -105,6 +105,23 @@ public class DataView extends JFrame{
 				toolbar2.add(Box.createHorizontalGlue());
 				toolbar2.add(lblSession);
 				add(toolbar2, BorderLayout.SOUTH);
+				
+		//Add Table
+				tblData = new JTable();
+				tblData.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				tblData.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+					@Override
+					public void valueChanged(ListSelectionEvent e) {
+						btnDelete.setEnabled((tblData.getSelectedRow() >= 0));
+					}
+				});
+				add(new JScrollPane(tblData), BorderLayout.CENTER);
+				
+				pack();
+				setLocationRelativeTo(null);
+				
+				
+				
 				
 		
 		

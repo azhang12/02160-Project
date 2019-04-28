@@ -5,7 +5,7 @@ import gui.model.Data;
 import gui.model.Session;
 import gui.views.DataView;
 import gui.views.RegisterPatientView;
-
+import hospital.System;
 public class ApplicationController {
 	
 	private LoginController loginController;
@@ -29,6 +29,7 @@ public class ApplicationController {
 	}
 	
 	public void login() {
+		
 		loginController = new LoginController(this);
 		loginController.display();
 	}
@@ -36,9 +37,16 @@ public class ApplicationController {
 	
 	
 	public static void main(String[] args) {
+		
 		ApplicationController app = new ApplicationController();
-		//System.loadData(String departmentsFile, String StaffFile, String PatientFile);
-		app.login();
+		Data d = new Data(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"));
+		Session s = new Session();
+		DataController c = new DataController(app,d,s);
+		
+		DataView view = new DataView(c);
+		view.setVisible(true);
+		
+		
 	}
 
 }

@@ -1,11 +1,9 @@
-package hospital
+package hospital;
 
-<<<<<<< HEAD
-public class Bed extends Department {
-=======
+
 
 public class Bed  {
->>>>>>> ed79782da117aa89f5b88cd3fc9135cbf630442f
+
 	//variables
 	private Patient patient;
 	private int id;
