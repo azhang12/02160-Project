@@ -50,6 +50,7 @@ public class LoginView extends JFrame implements IError {
 		setLocationRelativeTo(null);
 		
 		
+		
 	}
 
 	public void showError() {

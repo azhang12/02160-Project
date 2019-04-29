@@ -13,33 +13,29 @@ public class ApplicationController {
 	
 	
 	public void manageData(Session session) {
-		dataController = new StaffDataController(this, new Data(), session);
-		StaffDataView invView = new StaffDataView(dataController);
-		dataController.setView(invView);
-		dataController.display();
+		StaffData d = new StaffData(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"));
+		Session s = new Session();
+		StaffDataController c = new StaffDataController(this,d,s);
+		
+		StaffDataView view = new StaffDataView(c);
+		c.setView(view);
+		view.setVisible(true);
 	}
 	
 	
 	
-	public void login() {
+	public void login(StaffData d) {
 		
-		loginController = new LoginController(this);
+		loginController = new LoginController(this,d);
 		loginController.display();
 	}
 	
 	
 	
 	public static void main(String[] args) {
-		
-		ApplicationController app = new ApplicationController();
 		StaffData d = new StaffData(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"));
-		Session s = new Session();
-		StaffDataController c = new StaffDataController(app,d,s);
-		
-		StaffDataView view = new StaffDataView(c);
-		c.setView(view);
-		view.setVisible(true);
-		
+		ApplicationController app = new ApplicationController();
+		app.login(d);
 		
 	}
 

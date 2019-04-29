@@ -23,6 +23,7 @@ import gui.controller.AddStaffController;
 import gui.controller.FilterStaffController;
 import gui.model.Session;
 import gui.utils.GridBagLayoutUtils;
+import hospital.Staff;
 
 public class FilterStaffView extends JFrame implements IError {
 	
@@ -42,7 +43,7 @@ private static final long serialVersionUID = 8981053836072595592L;
 	}
 	
 	private void initGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setResizable(false);
 		setTitle("Filter");
 		setLayout(new GridBagLayout());
@@ -88,6 +89,8 @@ private static final long serialVersionUID = 8981053836072595592L;
 		JOptionPane.showMessageDialog(this, "No Matches", "Not saved", JOptionPane.ERROR_MESSAGE);
 		
 	}
+	
+	
 
 
 }

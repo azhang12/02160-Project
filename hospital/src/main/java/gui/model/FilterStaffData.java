@@ -16,7 +16,6 @@ public class FilterStaffData extends AbstractTableModel {
 	private static final long serialVersionUID = -8100080945080186023L;
 	private List<Staff> staff;
 	
-	
 	public FilterStaffData(Hospital hospital) {
 		this.staff= new ArrayList<Staff>();
 		List<Staff> s = hospital.getStaff();
@@ -25,9 +24,6 @@ public class FilterStaffData extends AbstractTableModel {
 		}
 		
 	}
-	
-	
-	
 	
 	public List<Staff> getData()
 	{ return this.staff;}
@@ -112,13 +108,52 @@ public class FilterStaffData extends AbstractTableModel {
 
 
 
-	public void FilterStaff(List<JTextField> txtEntries) {
+	public  void FilterStaff(List<JTextField> txtEntries) {
 		
+		int s= staff.size();
+		for (int i = s-1; i>-1;i--) {
+			//filter by StaffNumber
+			if(!txtEntries.get(0).getText().isEmpty()) {
+				if (Integer.parseInt(txtEntries.get(0).getText())!=staff.get(i).getStaffNumber()){
+					staff.remove(i);
+				}
+			}
+			
+			//Filter by FirstName
+			if(!txtEntries.get(1).getText().isEmpty()) {
+				if (!txtEntries.get(1).getText().equalsIgnoreCase(staff.get(i).getFirstName())){
+					staff.remove(i);
+				}
+			}
+			
+			if(!txtEntries.get(2).getText().isEmpty()) {
+				if (!txtEntries.get(2).getText().equalsIgnoreCase(staff.get(i).getLastName())){
+					staff.remove(i);
+				}
+			}
+			
+			if(!txtEntries.get(5).getText().isEmpty()) {
+				if (!txtEntries.get(5).getText().equalsIgnoreCase(staff.get(i).getEmail())){
+					staff.remove(i);
+				}
+			}
+			if(!txtEntries.get(3).getText().isEmpty()) {
+				if (!txtEntries.get(3).getText().equalsIgnoreCase(staff.get(i).getDepartment().getName())){
+					staff.remove(i);
+				}
+			}
+			if(!txtEntries.get(4).getText().isEmpty()) {
+				if (!txtEntries.get(4).getText().equalsIgnoreCase(staff.get(i).getJobRole().toString())){
+					staff.remove(i);
+				}
+			}
+			
+			
+		
+		}
+		fireTableDataChanged();
 		
 	}
-	
-	
-	
 	
 
 }

@@ -36,6 +36,7 @@ public class StaffDataView extends JFrame{
 		initGUI();
 	}
 	
+	
 	private void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Staff Data Manager");
