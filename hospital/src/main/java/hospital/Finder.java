@@ -54,19 +54,24 @@ public class Finder {
 	
 	public static String findEmail(List<Staff> staff, String firstName, String lastName) {
 		
+		// removing spaces from first name and last name for email addresses
+		String fn = firstName.replace(" ", "");
+		String ln = lastName.replace(" ", "");
+		
 		// looping through backwards should allow the system to find the email address with the highest number
 		for (int i = staff.size()-1; i>=0; i--) {
+			
 			String em = staff.get(i).getEmail(); // get the staff member's email address
 			String emID = em.split("@")[0]; // isolate the part of the email before the "@"
-			if (Pattern.matches(firstName + "." + lastName, emID)) { 
-				return (firstName + "." + lastName + "2@hospital.dk"); // if only 1 exists
+			if (Pattern.matches(fn + "." + ln, emID)) { 
+				return (fn + "." + ln + "2@hospital.dk"); // if only 1 exists
 			}
-			if (Pattern.matches(firstName + "." + lastName + "[0-9]*", emID)) { // if more than 1 exists
-				int oldNum = Integer.parseInt(emID.replace(firstName + "." + lastName, ""));
-				return (firstName + "." + lastName + (oldNum + 1) + "@hospital.dk");
+			if (Pattern.matches(fn + "." + ln + "[0-9]*", emID)) { // if more than 1 exists
+				int oldNum = Integer.parseInt(emID.replace(fn + "." + ln, ""));
+				return (fn + "." + ln + (oldNum + 1) + "@hospital.dk");
 			}
 		}
-		return (firstName + "." + lastName + "@hospital.dk"); // this is only returned if it was already an original email address
+		return (fn + "." + ln + "@hospital.dk"); // this is only returned if it was already an original email address
 
 	}
 		
