@@ -2,6 +2,7 @@ package hospital;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class System {
 	
@@ -60,7 +61,8 @@ public class System {
 		Department  dep = Finder.findDepartment(depName, data.getDepartment());
 		Staff highest = (Staff) data.getStaff().get(data.getStaff().size()-1);
 		int num = highest.getStaffNumber()+1;
-		String mail = FirstName+"."+LastName+"@hospital.dk";
+
+		String mail = Finder.findEmail(data.getStaff(), FirstName, LastName);
 		JobRole role = Finder.findJobRole(jobRole);
 		
 		if(dep!=null&&role!=null) {

@@ -2,6 +2,7 @@ package hospital;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.*;
 
 public class Finder {
 
@@ -50,4 +51,23 @@ public class Finder {
 		}
 		return -1;
 	}
+	
+	public static String findEmail(List<Staff> staff, String firstName, String lastName) {
+		
+		// looping through backwards should allow the system to find the email address with the highest number
+		for (int i = staff.size()-1; i>=0; i--) {
+			String em = staff.get(i).getEmail(); // get the staff member's email address
+			String emID = em.split("@")[0]; // isolate the part of the email before the "@"
+			if (Pattern.matches(firstName + "." + lastName, emID)) { 
+				return (firstName + "." + lastName + "2@hospital.dk"); // if only 1 exists
+			}
+			if (Pattern.matches(firstName + "." + lastName + "[0-9]*", emID)) { // if more than 1 exists
+				int oldNum = Integer.parseInt(emID.replace(firstName + "." + lastName, ""));
+				return (firstName + "." + lastName + (oldNum + 1) + "@hospital.dk");
+			}
+		}
+		return (firstName + "." + lastName + "@hospital.dk"); // this is only returned if it was already an original email address
+
+	}
+		
 }
