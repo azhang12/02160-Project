@@ -33,7 +33,7 @@ private static final long serialVersionUID = 8981053836072595592L;
 	}
 	
 	private void initGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setResizable(false);
 		setTitle("Login");
 		setLayout(new GridBagLayout());

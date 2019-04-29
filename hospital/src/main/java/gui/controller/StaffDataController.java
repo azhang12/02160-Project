@@ -8,15 +8,12 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
-import gui.model.DataDepartment;
 import gui.model.FilterStaffData;
 import gui.model.Session;
 import gui.model.StaffData;
 import gui.views.AddStaffView;
 import gui.views.FilterStaffView;
 import gui.views.StaffDataView;
-import hospital.*;
-import hospital.System;
 
 public class StaffDataController {
 	

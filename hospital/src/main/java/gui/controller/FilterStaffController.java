@@ -1,14 +1,19 @@
 package gui.controller;
 
+import java.awt.BorderLayout;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import gui.model.FilterStaffData;
 import gui.model.Session;
 
 import gui.views.FilterStaffView;
+import hospital.Staff;
 
 public class FilterStaffController {
 	
@@ -34,8 +39,11 @@ public class FilterStaffController {
 	}
 	public void FilterStaffClicked(List<JTextField> txtEntries) {
 		
+		
 		if(validateInput(txtEntries)) {
+			showResults();
 			data.FilterStaff( txtEntries);
+			view.setVisible(false);
 		}
 		else {
 			view.showError();
@@ -53,6 +61,25 @@ public class FilterStaffController {
 		return false;
 		
 	}
+	
+	public void showResults() {
+		JFrame results = new JFrame();
+		results.setResizable(false);
+		results.setTitle("Filter");
+		results.setLayout(new BorderLayout());
+		
+		JTable tblData = new JTable();
+		tblData.setModel(data);
+		
+		results.add(new JScrollPane(tblData), BorderLayout.CENTER);
+		
+		
+		results.pack();
+		results.setLocationRelativeTo(null);
+		results.setVisible(true);
+		
+	}
+	
 	
 	
 	
