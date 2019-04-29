@@ -18,6 +18,8 @@ public class System {
 		
 	}
 	
+	
+	
 	public static void admitPatient(Hospital data, int PatientNumber , String DepartmentName) {
 		
 		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
@@ -53,19 +55,24 @@ public class System {
 		}
 		else return false;
 	}
-	/*
-	IMPLEMENT THE FUNCTION COMPLETELY
+	
 	public static boolean registerStaff(Hospital data,String FirstName, String LastName, String jobRole, String depName ) {
 		Department  dep = Finder.findDepartment(depName, data.getDepartment());
-		Staff highest = (Staff) data.getStaff().get(data.getStaff().size()-1).;
+		Staff highest = (Staff) data.getStaff().get(data.getStaff().size()-1);
 		int num = highest.getStaffNumber()+1;
 		String mail = FirstName+"."+LastName+"@hospital.dk";
+		JobRole role = Finder.findJobRole(jobRole);
 		
-		Staff s = new Staff(FirstName, LastName, JobRole role, String mail,num,  new Access(), dep);
-		data.addStaff(s);
+		if(dep!=null&&role!=null) {
+			Staff s = new Staff(FirstName, LastName, role, mail,num,  new Access(), dep);
+			data.addStaff(s);
+			return true;
+		}
+		else return false;
+		
 	}
 	
-	*/
+	
 	
 	public static Hospital loadData(String DepartmentFileName, String StaffFileName, String PatientsFileName) {
 		Reader r = new Reader();

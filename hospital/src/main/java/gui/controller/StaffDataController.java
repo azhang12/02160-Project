@@ -4,38 +4,43 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-import gui.model.Data;
-import gui.model.DataDepartment;
-import gui.model.Session;
-import gui.views.DataView;
-import hospital.*;
 
-public class DataController {
+import gui.model.DataDepartment;
+import gui.model.FilterStaffData;
+import gui.model.Session;
+import gui.model.StaffData;
+import gui.views.AddStaffView;
+import gui.views.FilterStaffView;
+import gui.views.StaffDataView;
+import hospital.*;
+import hospital.System;
+
+public class StaffDataController {
 	
 	
-	private Data dataModel;
+	private StaffData dataModel;
 	private Session sessionModel;
-	private DataView view;
+	private StaffDataView view;
 	private ApplicationController application;
 	
 	
-	public DataController (ApplicationController app, Data data, Session session) {
+	public StaffDataController (ApplicationController app, StaffData data, Session session) {
 		this.dataModel = data;
 		this.sessionModel = session;
 	}
 	
-	public void register() {
-		RegisterController regController = new RegisterController(sessionModel);
-		regController.display();
-	}
+	
+	
+	
 
 	public void deleteItem(int selectedRow) {
 		///TO-DO
 	}
 
-	public void setView(DataView view) {
+	public void setView(StaffDataView view) {
 		this.view = view;
 		this.view.setTableModel(dataModel);
 		this.view.setSession(sessionModel);
@@ -46,10 +51,60 @@ public class DataController {
 	}
 	
 	
-	public void show(JTable tbl, String s)
-	{
+
+
+	public void AddPersonClicked() {
 		
+		AddStaffController c = new AddStaffController(sessionModel,this);
+		AddStaffView view = new AddStaffView(c);	
+		c.setView(view);
+		view.setVisible(true);
+		
+	
 		
 	}
+
+
+
+	public void addPerson(List<JTextField> txtEntries) {
+		
+			dataModel.addStaff(txtEntries);
+			
+	}
+
+
+	public void DeletePersonClicked(int selectedRow) {
+		if (selectedRow >= 0) {
+			int staffNo = (int)dataModel.getValueAt(selectedRow, 0);
+			dataModel.removeStaff(staffNo);
+		}
+		
+	}
+
+
+
+	public void FilterStaff(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	public void FilterClicked() {
+		FilterStaffController c = new FilterStaffController(sessionModel,this,new FilterStaffData(dataModel.getData()));
+		FilterStaffView view = new FilterStaffView(c);	
+		c.setView(view);
+		view.setVisible(true);
+		
+	}
+
+
+
+	
+
+
+
+
+	
 
 }

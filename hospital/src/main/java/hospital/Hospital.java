@@ -35,11 +35,12 @@ public class Hospital {
 	}
 	
 	
-	/*
+	
 	//modifying lists of Staff, Patients, and Departments
 	public void addStaff(Staff newStaff) {
 		this.staffList.add(newStaff);
 	}
+	/*
 	public void removeStaff(Staff rmStaff) {
 		this.staffList.remove(rmStaff);
 	}

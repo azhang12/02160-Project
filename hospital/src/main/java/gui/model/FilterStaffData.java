@@ -1,49 +1,38 @@
 package gui.model;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
+
 import hospital.Finder;
 import hospital.Hospital;
 import hospital.Staff;
-import hospital.System;
 
-public class StaffData extends AbstractTableModel {
+public class FilterStaffData extends AbstractTableModel {
 	private static final long serialVersionUID = -8100080945080186023L;
-	private Hospital hospital;
+	private List<Staff> staff;
 	
 	
-	public StaffData() {
-		
-		hospital = new Hospital();
-		
-	}
-	
-	public StaffData(Hospital h) {
-		this.hospital=h;
-	}
-	
-	
-	public Hospital getData()
-	{ return this.hospital;}
-	
-	public void addStaff(List<JTextField> txtEntries) {
-		
-		
-		String firstName = (txtEntries.get(0).getText());
-		String lastName = (txtEntries.get(1).getText());
-		String departmentName = (txtEntries.get(2).getText());
-		String jobRole = (txtEntries.get(3).getText());
-		
-		
-		
-		if (System.registerStaff(hospital, firstName, lastName, jobRole, departmentName)) {
-			
+	public FilterStaffData(Hospital hospital) {
+		this.staff= new ArrayList<Staff>();
+		List<Staff> s = hospital.getStaff();
+		for (Staff i : s) {
+			staff.add(i.copy());
 		}
-				
-		fireTableDataChanged(); // notify the views that data changed
+		
 	}
+	
+	
+	
+	
+	public List<Staff> getData()
+	{ return this.staff;}
+	
+	
 
 	@Override
 	public int getColumnCount() {
@@ -52,20 +41,15 @@ public class StaffData extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		List<Staff> s = hospital.getStaff();
-		for (Staff ss : s)
-		{	
-			//this.addRow(new Object[] {"Hi","Hello"});
-			
-		}
-		return hospital.getStaff().size();
+		
+		return staff.size();
 	}
 	
 	
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		Staff s = (Staff)hospital.getStaff().get(rowIndex);
+		Staff s = (Staff)staff.get(rowIndex);
 		
 		if (columnIndex == 0) {
 			return s.getStaffNumber();
@@ -116,11 +100,19 @@ public class StaffData extends AbstractTableModel {
 
 	public void removeStaff(int staffNo) {
 
-		int i = Finder.findStaff(hospital.getStaff(), staffNo);
+		int i = Finder.findStaff(staff, staffNo);
 		if(i>-1) {
-			hospital.getStaff().remove(i);
+			staff.remove(i);
 			fireTableDataChanged();
 		}
+		
+		
+	}
+
+
+
+
+	public void FilterStaff(List<JTextField> txtEntries) {
 		
 		
 	}

@@ -6,7 +6,7 @@ import java.util.List;
 public class Finder {
 
 	public static JobRole findJobRole(String abbr){
-	    return Arrays.stream(JobRole.values()).filter(value -> value.toString().equals(abbr)).findFirst().orElse(null);
+	    return Arrays.stream(JobRole.values()).filter(value -> value.toString().equalsIgnoreCase(abbr)).findFirst().orElse(null);
 	}
 	
 	public static Department findDepartment(String depName, List<Department> departmentList) {
@@ -40,5 +40,14 @@ public class Finder {
 			
 		}
 		return null;
+	}
+	
+	public static int findStaff(List<Staff> staff, int staffNo) {
+		for (int i=0; i<staff.size();++i) {
+			if(staff.get(i).getStaffNumber()==staffNo) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }

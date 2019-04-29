@@ -1,32 +1,25 @@
 package gui.controller;
 
 
-import gui.model.Data;
+import gui.model.StaffData;
 import gui.model.Session;
-import gui.views.DataView;
+import gui.views.StaffDataView;
 import gui.views.RegisterPatientView;
 import hospital.System;
 public class ApplicationController {
 	
 	private LoginController loginController;
-	private DataController dataController;
-	private RegisterController regController;
+	private StaffDataController dataController;
 	
 	
 	public void manageData(Session session) {
-		dataController = new DataController(this, new Data(), session);
-		DataView invView = new DataView(dataController);
+		dataController = new StaffDataController(this, new Data(), session);
+		StaffDataView invView = new StaffDataView(dataController);
 		dataController.setView(invView);
 		dataController.display();
 	}
 	
-	public void register(Session session) {
-		regController = new RegisterController(session);
-		RegisterPatientView view = new RegisterPatientView(regController);
-		regController.display();
-		
-		
-	}
+	
 	
 	public void login() {
 		
@@ -39,11 +32,12 @@ public class ApplicationController {
 	public static void main(String[] args) {
 		
 		ApplicationController app = new ApplicationController();
-		Data d = new Data(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"));
+		StaffData d = new StaffData(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"));
 		Session s = new Session();
-		DataController c = new DataController(app,d,s);
+		StaffDataController c = new StaffDataController(app,d,s);
 		
-		DataView view = new DataView(c);
+		StaffDataView view = new StaffDataView(c);
+		c.setView(view);
 		view.setVisible(true);
 		
 		
