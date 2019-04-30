@@ -22,7 +22,7 @@ public class FilterStaffController {
 	private FilterStaffView view;
 	private FilterStaffData data;
 
-	public FilterStaffController(Session s,StaffDataController c,FilterStaffData d){
+	public FilterStaffController(Session s,DataController c,FilterStaffData d){
 		this.sessionModel=s;
 		this.data=d;
 		

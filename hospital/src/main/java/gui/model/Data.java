@@ -13,7 +13,7 @@ import hospital.Patient;
 import hospital.Staff;
 import hospital.System;
 
-public class StaffData extends AbstractTableModel {
+public class Data extends AbstractTableModel {
 	private static final long serialVersionUID = -8100080945080186023L;
 	private Hospital hospital;
 	private String whatData;
@@ -21,14 +21,14 @@ public class StaffData extends AbstractTableModel {
 	private List<List<String>>  DisplayedData = new ArrayList<List<String>>();
 	
 	
-	public StaffData() {
+	public Data() {
 		
 		hospital = new Hospital();
 		this.whatData="Staff";
 		
 	}
 	
-	public StaffData(Hospital h, String d) {
+	public Data(Hospital h, String d) {
 		this.hospital=h;
 		this.whatData = d;
 		readValue( whatData);

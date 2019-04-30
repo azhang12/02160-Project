@@ -2,29 +2,27 @@ package gui.controller;
 
 import java.util.List;
 
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
+
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 
 import gui.model.FilterStaffData;
 import gui.model.Session;
-import gui.model.StaffData;
+import gui.model.Data;
 import gui.views.AddStaffView;
 import gui.views.FilterStaffView;
-import gui.views.StaffDataView;
+import gui.views.DataView;
 
-public class StaffDataController {
+public class DataController {
 	
 	
-	private StaffData dataModel;
+	private Data dataModel;
 	private Session sessionModel;
-	private StaffDataView view;
+	private DataView view;
 	private ApplicationController application;
 	
 	
-	public StaffDataController (ApplicationController app, StaffData data, Session session) {
+	public DataController (ApplicationController app, Data data, Session session) {
 		this.dataModel = data;
 		this.sessionModel = session;
 	}
@@ -37,7 +35,7 @@ public class StaffDataController {
 		///TO-DO
 	}
 
-	public void setView(StaffDataView view) {
+	public void setView(DataView view) {
 		this.view = view;
 		this.view.setTableModel(dataModel);
 		this.view.setSession(sessionModel);
@@ -104,7 +102,7 @@ public class StaffDataController {
 
 
 	public void ShowData(String s) {
-		this.dataModel= new StaffData(dataModel.getData(),s);
+		this.dataModel= new Data(dataModel.getData(),s);
 		this.view.setTableModel(dataModel);
 		updateView();
 		

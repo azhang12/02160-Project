@@ -3,7 +3,7 @@ package gui.controller;
 import java.util.List;
 
 import gui.model.Session;
-import gui.model.StaffData;
+import gui.model.Data;
 import gui.model.User;
 import gui.views.LoginView;
 import hospital.Staff;
@@ -13,9 +13,9 @@ public class LoginController {
 	private ApplicationController application;
 	private Session session;
 	private LoginView view;
-	private StaffData data;
+	private Data data;
 	
-	public LoginController(ApplicationController application, StaffData d) {
+	public LoginController(ApplicationController application, Data d) {
 		this.application = application;
 		this.session = new Session();
 		this.view = new LoginView(this);

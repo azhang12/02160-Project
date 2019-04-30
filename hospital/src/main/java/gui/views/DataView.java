@@ -22,17 +22,17 @@ import gui.controller.StaffDataController;
 import gui.model.Session;
 
 
-public class StaffDataView extends JFrame{
+public class DataView extends JFrame{
 	
 	
 	private static final long serialVersionUID = 989075282041187452L;
-	private StaffDataController controller;
+	private DataController controller;
 	private JTable tblData;
 	private JLabel lblSession;
 	private String whatData;
 	
 	
-	public StaffDataView(StaffDataController controller) {
+	public DataView(DataController controller) {
 		this.controller = controller;
 		initGUI();
 	}
