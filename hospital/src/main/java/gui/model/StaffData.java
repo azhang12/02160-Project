@@ -149,17 +149,36 @@ public class StaffData extends AbstractTableModel {
 		this.ColumnNames.add("Bed. No.");
 		this.ColumnNames.add("Queue No.");
 		
+		
+		//DOES NOT WORK IF THE INFO IS NULL
 		for (int i=0; i<patients.size();++i) {
 			List<String> d = new ArrayList<String>();
 			d.add(Integer.toString(patients.get(i).getPatientNumber()));
 			d.add(patients.get(i).getFirstName());
 			d.add(patients.get(i).getLastName());
-			d.add(patients.get(i).getDepartment().getName());
+			if(patients.get(i).getDepartment()!=null) {
+				d.add(patients.get(i).getDepartment().getName());
+			}
+			else {d.add("");}
 			d.add(patients.get(i).getBirthday());
+			d.add(patients.get(i).getAddress());
+			d.add(patients.get(i).getPhoneNumber());
+			d.add(patients.get(i).getAlive().toString());
+			d.add(patients.get(i).getNationality());
+			if(patients.get(i).getBed()!=null) {
+				d.add(Integer.toString(patients.get(i).getBed().getId()));
+			}
+			else {d.add("");}
+			if(patients.get(i).getQueueNumber()!=0) {
+				d.add(Integer.toString(patients.get(i).getQueueNumber()));
+			}
+			else {d.add("");}
+		
+			
 			///ADD Further Info
 			
 			DisplayedData.add(d);
-		}
+			}
 		
 	}
 
