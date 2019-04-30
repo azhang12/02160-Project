@@ -17,7 +17,7 @@ public class LoginControllerTest {
 	ApplicationController app = new ApplicationController();
 	Hospital hosp = System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv");
 	
-	StaffData data = new StaffData(hosp);
+	StaffData data = new StaffData(hosp,"Staff");
 	LoginController controller = new LoginController(app,data);
 	
 	@Test

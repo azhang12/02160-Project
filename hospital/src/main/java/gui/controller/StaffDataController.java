@@ -76,7 +76,7 @@ public class StaffDataController {
 
 	public void DeletePersonClicked(int selectedRow) {
 		if (selectedRow >= 0) {
-			int staffNo = (int)dataModel.getValueAt(selectedRow, 0);
+			int staffNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
 			dataModel.removeStaff(staffNo);
 		}
 		
@@ -103,27 +103,14 @@ public class StaffDataController {
 
 
 
-	public void ShowStaff() {
-		dataModel.readValue("Staff");
+	public void ShowData(String s) {
+		this.dataModel= new StaffData(dataModel.getData(),s);
 		this.view.setTableModel(dataModel);
+		updateView();
 		
 	}
 
 
-
-
-
-	public void ShowDepartment() {
-		dataModel.readValue("Departments");
-		this.view.setTableModel(dataModel);
-		
-	}
-	
-	public void ShowPatients() {
-		dataModel.readValue("Patients");
-		this.view.setTableModel(dataModel);
-		
-	}
 
 
 

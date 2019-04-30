@@ -1,5 +1,6 @@
 package gui.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTextField;
@@ -8,26 +9,28 @@ import javax.swing.table.AbstractTableModel;
 import hospital.Department;
 import hospital.Finder;
 import hospital.Hospital;
+import hospital.Patient;
 import hospital.Staff;
 import hospital.System;
 
 public class StaffData extends AbstractTableModel {
 	private static final long serialVersionUID = -8100080945080186023L;
 	private Hospital hospital;
-	private String[][] DisplayedData;
-	private String[] ColumnNames;
-	private String whatData= "Staff";
-	
+	private String whatData;
+	private List<String>  ColumnNames= new ArrayList<String>();
+	private List<List<String>>  DisplayedData = new ArrayList<List<String>>();
 	
 	
 	public StaffData() {
 		
 		hospital = new Hospital();
+		this.whatData="Staff";
 		
 	}
 	
-	public StaffData(Hospital h) {
+	public StaffData(Hospital h, String d) {
 		this.hospital=h;
+		this.whatData = d;
 		readValue( whatData);
 	}
 	
@@ -54,25 +57,25 @@ public class StaffData extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return ColumnNames.length;
+		return ColumnNames.size();
 	}
 
 	@Override
 	public int getRowCount() {
 		
-		return DisplayedData.length;
+		return DisplayedData.size();
 	}
 	
 	
 
 	@Override
-	public Object getValueAt(int rowIndex, int columnIndex) {
-		String[] current = DisplayedData[rowIndex];
+	public String getValueAt(int rowIndex, int columnIndex) {
+		List<String> current = DisplayedData.get(rowIndex);
 		
-			for(int j=0; j<current.length;++j) {
+			for(int j=0; j<current.size();++j) {
 				if(columnIndex==j)
 				
-				return current[j];
+				return current.get(j);
 			}
 		
 		
@@ -82,10 +85,10 @@ public class StaffData extends AbstractTableModel {
 	
 	@Override
 	public String getColumnName(int column) {
-		for (int i=0; i<DisplayedData[0].length; ++i)
+		for (int i=0; i<ColumnNames.size(); ++i)
 		{
 			if (column == i) {
-				return this.DisplayedData[0][i];
+				return this.ColumnNames.get(i);
 			} 
 		}
 		
@@ -98,6 +101,7 @@ public class StaffData extends AbstractTableModel {
 		int i = Finder.findStaff(hospital.getStaff(), staffNo);
 		if(i>-1) {
 			hospital.getStaff().remove(i);
+			readValue(whatData);
 			fireTableDataChanged();
 		}
 		
@@ -105,6 +109,7 @@ public class StaffData extends AbstractTableModel {
 	}
 	
 	public void readValue(String what) {
+		
 		this.whatData=what;
 		if(what=="Staff") {setTableToStaff(hospital);}
 		else if (what=="Patients") {setTableToPatients(hospital);}
@@ -112,30 +117,73 @@ public class StaffData extends AbstractTableModel {
 	}
 	
 	private void setTableToDepartments(Hospital data) {
+		DisplayedData.clear();
+		ColumnNames.clear();
 		List<Department> dep = hospital.getDepartment();
-		this.DisplayedData= new String[dep.size()+1][1];
 		//ColumnNames
-		this.DisplayedData[0]= new String [] {"Department"};
+		this.ColumnNames.add("Departments");
 		
 		for (int i=0; i<dep.size();++i) {
-			this.DisplayedData[i+1]= new String [] {dep.get(i).getName()}; 
+			List<String> newList = new ArrayList<String>();
+			newList.add(dep.get(i).getName());
+			this.DisplayedData.add(newList);
 		}
 		
 	}
 
 	private void setTableToPatients(Hospital data) {
-		// TODO Auto-generated method stub
+		//FirstName,LastName,Department,Birthday,Address,phoneNumber,Alive,patientNumber,Nationality,bedNumber,queueNumber
+		DisplayedData.clear();
+		ColumnNames.clear();
+		List<Patient> patients = data.getPatient();
+		//ColumnNames
+		this.ColumnNames.add("ID");
+		this.ColumnNames.add("First Name");
+		this.ColumnNames.add("Last Name");
+		this.ColumnNames.add("Department");
+		this.ColumnNames.add("Birthday");
+		this.ColumnNames.add("Address");
+		this.ColumnNames.add("PhoneNumber");
+		this.ColumnNames.add("Alive");
+		this.ColumnNames.add("Nationality");
+		this.ColumnNames.add("Bed. No.");
+		this.ColumnNames.add("Queue No.");
+		
+		for (int i=0; i<patients.size();++i) {
+			List<String> d = new ArrayList<String>();
+			d.add(Integer.toString(patients.get(i).getPatientNumber()));
+			d.add(patients.get(i).getFirstName());
+			d.add(patients.get(i).getLastName());
+			d.add(patients.get(i).getDepartment().getName());
+			d.add(patients.get(i).getBirthday());
+			///ADD Further Info
+			
+			DisplayedData.add(d);
+		}
 		
 	}
 
 	public void setTableToStaff(Hospital data) {
+		DisplayedData.clear();
+		ColumnNames.clear();
 		List<Staff> staff = data.getStaff();
-		this.DisplayedData= new String[staff.size()][6];
 		//ColumnNames
-		this.ColumnNames= new String [] {"ID","First Name", "Last Name", "Email", "Department", "JobRole"};
+		this.ColumnNames.add("ID");
+		this.ColumnNames.add("First Name");
+		this.ColumnNames.add("Last Name");
+		this.ColumnNames.add("Email");
+		this.ColumnNames.add("Department");
+		this.ColumnNames.add("JobRole");
 		
 		for (int i=0; i<staff.size();++i) {
-			this.DisplayedData[i]= new String [] {Integer.toString(staff.get(i).getStaffNumber()),staff.get(i).getFirstName(), staff.get(i).getLastName(), staff.get(i).getEmail(), staff.get(i).getDepartment().getName(), staff.get(i).getJobRole().toString()}; 
+			List<String> d = new ArrayList<String>();
+			d.add(Integer.toString(staff.get(i).getStaffNumber()));
+			d.add(staff.get(i).getFirstName());
+			d.add(staff.get(i).getLastName());
+			d.add(staff.get(i).getEmail());
+			d.add(staff.get(i).getDepartment().getName());
+			d.add(staff.get(i).getJobRole().toString());
+			DisplayedData.add(d);
 		}
 		
 	}

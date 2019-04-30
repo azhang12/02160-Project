@@ -31,6 +31,7 @@ public class StaffDataView extends JFrame{
 	private JLabel lblSession;
 	private String whatData;
 	
+	
 	public StaffDataView(StaffDataController controller) {
 		this.controller = controller;
 		initGUI();
@@ -38,6 +39,7 @@ public class StaffDataView extends JFrame{
 	
 	
 	private void initGUI() {
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Staff Data Manager");
 		setPreferredSize(new Dimension(800, 600));
@@ -75,21 +77,21 @@ public class StaffDataView extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.ShowStaff();
+				controller.ShowData("Staff");
 			}
 		});
 		btnPat.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.ShowPatients();
+				controller.ShowData("Patients");
 			}
 		});
 		btnDep.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.ShowDepartment();
+				controller.ShowData("Departments");
 			}
 		});
 		//Toolbar1
@@ -130,9 +132,10 @@ public class StaffDataView extends JFrame{
 				
 	}
 	
+	
+	
 	public void setTableModel(TableModel model) {
 		tblData.setModel(model);
-		
 	}
 
 	public void setSession(Session sessionModel) {

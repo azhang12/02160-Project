@@ -13,9 +13,8 @@ public class ApplicationController {
 	
 	
 	public void manageData(Session session) {
-		StaffData d = new StaffData(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"));
+		StaffData d = new StaffData(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"),"Staff");
 		StaffDataController c = new StaffDataController(this,d,session);
-		
 		StaffDataView view = new StaffDataView(c);
 		c.setView(view);
 		view.setVisible(true);
@@ -32,7 +31,7 @@ public class ApplicationController {
 	
 	
 	public static void main(String[] args) {
-		StaffData d = new StaffData(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"));
+		StaffData d = new StaffData(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"),"Staff");
 		ApplicationController app = new ApplicationController();
 		app.login(d);
 		
