@@ -35,6 +35,8 @@ public class LoginController {
 				for(Staff s : staff) {
 					if(s.getStaffNumber()==id) {
 						session.setUser(user);
+						session.setRole(s.getJobRole().toString());
+						session.setDepartment(s.getDepartment().getName());
 						view.setVisible(false);
 						application.manageData(session);
 						return true;

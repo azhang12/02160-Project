@@ -79,6 +79,7 @@ public class StaffDataView extends JFrame{
 				toolbar2.add(lblSession);
 				add(toolbar2, BorderLayout.NORTH);
 				
+				
 		//Add Table
 				tblData = new JTable();
 				tblData.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -102,7 +103,7 @@ public class StaffDataView extends JFrame{
 	}
 
 	public void setSession(Session sessionModel) {
-		
+		lblSession.setText(sessionModel.getDepartment() +":   " + sessionModel.getRole() + "   ("+ sessionModel.getUserId()+")");
 	}
 
 	public void showError() {

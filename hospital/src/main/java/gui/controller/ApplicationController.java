@@ -14,8 +14,7 @@ public class ApplicationController {
 	
 	public void manageData(Session session) {
 		StaffData d = new StaffData(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"));
-		Session s = new Session();
-		StaffDataController c = new StaffDataController(this,d,s);
+		StaffDataController c = new StaffDataController(this,d,session);
 		
 		StaffDataView view = new StaffDataView(c);
 		c.setView(view);
