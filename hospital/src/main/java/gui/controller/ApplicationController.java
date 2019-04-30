@@ -15,7 +15,7 @@ public class ApplicationController {
 		Data d = new Data(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"),"Staff");
 		DataController c = new DataController(this,d,session);
 		DataView view = new DataView(c);
-		c.setView(view);
+		c.setView(view,"Staff");
 		view.setVisible(true);
 	}
 	

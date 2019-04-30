@@ -9,6 +9,8 @@ import javax.swing.table.AbstractTableModel;
 import hospital.Department;
 import hospital.Finder;
 import hospital.Hospital;
+import hospital.InpatientDepartment;
+import hospital.OutpatientDepartment;
 import hospital.Patient;
 import hospital.Staff;
 import hospital.System;
@@ -122,14 +124,55 @@ public class Data extends AbstractTableModel {
 		List<Department> dep = hospital.getDepartment();
 		//ColumnNames
 		this.ColumnNames.add("Departments");
+		this.ColumnNames.add("No. of Beds");
+		this.ColumnNames.add("Beds available");
+		this.ColumnNames.add("Beds occupied");
+		this.ColumnNames.add("Patients waiting");
 		
 		for (int i=0; i<dep.size();++i) {
 			List<String> newList = new ArrayList<String>();
 			newList.add(dep.get(i).getName());
+			if(dep.get(i).getClass()==new InpatientDepartment("",0).getClass()) {
+				InpatientDepartment current = (InpatientDepartment)dep.get(i);
+				if(current.getBed()!=null) {
+					newList.add(Integer.toString(current.getBed().size()));
+					
+				}
+				else {newList.add("0");
+				
+				}
+				
+				newList.add("0");
+				newList.add("0");
+				
+			}
+			
+			else if(dep.get(i).getClass()==new OutpatientDepartment().getClass()) {
+				OutpatientDepartment current = (OutpatientDepartment)dep.get(i);
+				newList.add("0");
+				newList.add("0");
+				newList.add("0");
+				if(current.getQueue()!=null) {
+					newList.add(Integer.toString(current.getQueue().size()));
+				}
+				else {newList.add("0");
+				
+				}
+			}
+			else {
+				newList.add("0");
+				newList.add("0");
+				newList.add("0");
+				newList.add("0");
+				
+			}
+			
+			
 			this.DisplayedData.add(newList);
 		}
-		
 	}
+		
+	
 
 	private void setTableToPatients(Hospital data) {
 		//FirstName,LastName,Department,Birthday,Address,phoneNumber,Alive,patientNumber,Nationality,bedNumber,queueNumber
@@ -206,6 +249,8 @@ public class Data extends AbstractTableModel {
 		}
 		
 	}
+	
+	
 	
 	
 	

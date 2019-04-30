@@ -35,9 +35,9 @@ public class DataController {
 		///TO-DO
 	}
 
-	public void setView(DataView view) {
+	public void setView(DataView view, String data) {
 		this.view = view;
-		this.view.setTableModel(dataModel);
+		this.view.setTableModel(dataModel,data);
 		this.view.setSession(sessionModel);
 	}
 
@@ -48,12 +48,22 @@ public class DataController {
 	
 
 
-	public void AddPersonClicked() {
+	public void AddPersonClicked(String s) {
 		
-		AddStaffController c = new AddStaffController(sessionModel,this);
-		AddStaffView view = new AddStaffView(c);
-		c.setView(view);
-		view.setVisible(true);
+		if(s.equals("Department")) {
+			
+		}
+		
+		else if(s.equals("Patient")) {
+			
+		}
+		
+		else if(s.equals("Staff")) {
+			AddStaffController c = new AddStaffController(sessionModel,this);
+			AddStaffView view = new AddStaffView(c);
+			c.setView(view);
+			view.setVisible(true);
+		}
 		
 	
 		
@@ -103,8 +113,17 @@ public class DataController {
 
 	public void ShowData(String s) {
 		this.dataModel= new Data(dataModel.getData(),s);
-		this.view.setTableModel(dataModel);
-		updateView();
+		this.view.setTableModel(dataModel,s);
+		
+		
+	}
+
+
+
+
+
+	public void EditClicked() {
+		// TODO Auto-generated method stub
 		
 	}
 

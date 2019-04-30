@@ -26,15 +26,15 @@ public class AddStaffController {
 		view.setVisible(true);
 	}
 	
-	//User cliecked the Add-Button
+	//User clicked the Add-Button
 	public void addStaffClicked(List<JTextField> txtEntries) {
 		if(validateInput(txtEntries)) {
 			controller.addPerson( txtEntries);
 		}
 		else {
-			view.showError();
-		}
-		controller.updateView();};
+			view.showError();}
+	}
+		
 	
 		//Are all Values Correct?
 	private boolean validateInput(List<JTextField> txtEntries) {
