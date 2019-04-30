@@ -35,6 +35,7 @@ public class AddStaffController {
 		else {
 			view.showError();
 		}
+		controller.updateView();
 		
 		
 	

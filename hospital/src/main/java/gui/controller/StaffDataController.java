@@ -53,12 +53,16 @@ public class StaffDataController {
 	public void AddPersonClicked() {
 		
 		AddStaffController c = new AddStaffController(sessionModel,this);
-		AddStaffView view = new AddStaffView(c);	
+		AddStaffView view = new AddStaffView(c);
 		c.setView(view);
 		view.setVisible(true);
 		
 	
 		
+	}
+	
+	public void updateView() {
+		this.view.setTableModel(dataModel);
 	}
 
 
@@ -92,6 +96,32 @@ public class StaffDataController {
 		FilterStaffView view = new FilterStaffView(c);	
 		c.setView(view);
 		view.setVisible(true);
+		
+	}
+
+
+
+
+
+	public void ShowStaff() {
+		dataModel.readValue("Staff");
+		this.view.setTableModel(dataModel);
+		
+	}
+
+
+
+
+
+	public void ShowDepartment() {
+		dataModel.readValue("Departments");
+		this.view.setTableModel(dataModel);
+		
+	}
+	
+	public void ShowPatients() {
+		dataModel.readValue("Patients");
+		this.view.setTableModel(dataModel);
 		
 	}
 

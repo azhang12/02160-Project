@@ -47,11 +47,15 @@ public class StaffDataView extends JFrame{
 		JButton btnAdd = new JButton("Add");
 		JButton btnDelete = new JButton("Remove");
 		JButton btnFind = new JButton("Filter");
+		JButton btnStaff = new JButton("Staff");
+		JButton btnPat = new JButton("Patients");
+		JButton btnDep = new JButton("Departments");
 		btnAdd.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				controller.AddPersonClicked();
+				
 			}
 		});
 		btnDelete.addActionListener(new ActionListener() {
@@ -67,6 +71,35 @@ public class StaffDataView extends JFrame{
 				controller.FilterClicked();
 			}
 		});
+		btnStaff.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				controller.ShowStaff();
+			}
+		});
+		btnPat.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				controller.ShowPatients();
+			}
+		});
+		btnDep.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				controller.ShowDepartment();
+			}
+		});
+		//Toolbar1
+		JToolBar toolbar = new JToolBar();
+		toolbar.add(btnStaff);
+		toolbar.add(btnPat);
+		toolbar.add(btnDep);
+		add(toolbar, BorderLayout.SOUTH);
+		
+		
 		//toolbar
 				lblSession = new JLabel();
 				lblSession.setHorizontalAlignment(SwingConstants.RIGHT);

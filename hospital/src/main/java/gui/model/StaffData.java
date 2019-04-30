@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
+
+import hospital.Department;
 import hospital.Finder;
 import hospital.Hospital;
 import hospital.Staff;
@@ -12,6 +14,10 @@ import hospital.System;
 public class StaffData extends AbstractTableModel {
 	private static final long serialVersionUID = -8100080945080186023L;
 	private Hospital hospital;
+	private String[][] DisplayedData;
+	private String[] ColumnNames;
+	private String whatData= "Staff";
+	
 	
 	
 	public StaffData() {
@@ -22,6 +28,7 @@ public class StaffData extends AbstractTableModel {
 	
 	public StaffData(Hospital h) {
 		this.hospital=h;
+		readValue( whatData);
 	}
 	
 	
@@ -41,75 +48,47 @@ public class StaffData extends AbstractTableModel {
 		if (System.registerStaff(hospital, firstName, lastName, jobRole, departmentName)) {
 			
 		}
-				
+		readValue(whatData);
 		fireTableDataChanged(); // notify the views that data changed
 	}
 
 	@Override
 	public int getColumnCount() {
-		return 6; // this is fixed to all Properties we show
+		return ColumnNames.length;
 	}
 
 	@Override
 	public int getRowCount() {
-		List<Staff> s = hospital.getStaff();
-		for (Staff ss : s)
-		{	
-			//this.addRow(new Object[] {"Hi","Hello"});
-			
-		}
-		return hospital.getStaff().size();
+		
+		return DisplayedData.length;
 	}
 	
 	
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		Staff s = (Staff)hospital.getStaff().get(rowIndex);
+		String[] current = DisplayedData[rowIndex];
 		
-		if (columnIndex == 0) {
-			return s.getStaffNumber();
-		} 
-		else if (columnIndex == 1) {
-			return s.getFirstName();
-		}
-		else if (columnIndex == 2) {
-			return s.getLastName();
-		}
-		else if (columnIndex == 3) {
-			return s.getEmail();
-		}
-		else if (columnIndex == 4) {
-			return s.getDepartment();
-		}
-		else if (columnIndex == 5) {
-			return s.getJobRole();
-		}
+			for(int j=0; j<current.length;++j) {
+				if(columnIndex==j)
+				
+				return current[j];
+			}
+		
 		
 		return null;
+		
 	}
 	
 	@Override
 	public String getColumnName(int column) {
-		if (column == 0) {
-			return "Id";
-		} 
-		else if (column == 1) {
-			return "First Name";
-		}
-		else if (column == 2) {
-			return "Last Name";
-		}
-		else if (column == 3) {
-			return "Email";
+		for (int i=0; i<DisplayedData[0].length; ++i)
+		{
+			if (column == i) {
+				return this.DisplayedData[0][i];
+			} 
 		}
 		
-		else if (column == 4) {
-			return "Department";
-		}
-		else if (column == 5) {
-			return "Jobrole";
-		}
 		
 		return null;
 	}
@@ -122,6 +101,42 @@ public class StaffData extends AbstractTableModel {
 			fireTableDataChanged();
 		}
 		
+		
+	}
+	
+	public void readValue(String what) {
+		this.whatData=what;
+		if(what=="Staff") {setTableToStaff(hospital);}
+		else if (what=="Patients") {setTableToPatients(hospital);}
+		else if (what=="Departments") {setTableToDepartments(hospital);}
+	}
+	
+	private void setTableToDepartments(Hospital data) {
+		List<Department> dep = hospital.getDepartment();
+		this.DisplayedData= new String[dep.size()+1][1];
+		//ColumnNames
+		this.DisplayedData[0]= new String [] {"Department"};
+		
+		for (int i=0; i<dep.size();++i) {
+			this.DisplayedData[i+1]= new String [] {dep.get(i).getName()}; 
+		}
+		
+	}
+
+	private void setTableToPatients(Hospital data) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setTableToStaff(Hospital data) {
+		List<Staff> staff = data.getStaff();
+		this.DisplayedData= new String[staff.size()][6];
+		//ColumnNames
+		this.ColumnNames= new String [] {"ID","First Name", "Last Name", "Email", "Department", "JobRole"};
+		
+		for (int i=0; i<staff.size();++i) {
+			this.DisplayedData[i]= new String [] {Integer.toString(staff.get(i).getStaffNumber()),staff.get(i).getFirstName(), staff.get(i).getLastName(), staff.get(i).getEmail(), staff.get(i).getDepartment().getName(), staff.get(i).getJobRole().toString()}; 
+		}
 		
 	}
 	
