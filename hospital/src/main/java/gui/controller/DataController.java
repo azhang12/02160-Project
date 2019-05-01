@@ -208,6 +208,27 @@ public class DataController {
 		
 	}
 
+	public void AdmitPatientClicked(int selectedRow) {
+		// TODO Auto-generated method stub
+		if(selectedRow>=0) {
+			String newDepartment = JOptionPane.showInputDialog("Please insert the Department:");
+			int patNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
+	        if(Finder.findDepartment(newDepartment, dataModel.getData().getDepartment())!=null){
+	        	
+	        	dataModel.admitPatient(patNo,newDepartment);
+	        }
+	        else {
+	        	view.showError("Not such Department found");
+	        }
+	        
+		}
+		else {
+			view.showError("Please select Patient");
+		}
+		
+		
+	}
+
 	
 
 	

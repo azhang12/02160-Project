@@ -170,6 +170,13 @@ public class DataView extends JFrame{
 			}
 		});
 		
+		btnAdmitPatient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.AdmitPatientClicked(tblData.getSelectedRow());
+			}
+		});
+		
 		//BUTTON LISTENERS FOR ALL DEPARTMENT OPERATIONS
 		
 		btnAddDepartment.addActionListener(new ActionListener() {
@@ -221,6 +228,7 @@ public class DataView extends JFrame{
 					public void valueChanged(ListSelectionEvent e) {
 						btnDeleteStaff.setEnabled((tblData.getSelectedRow() >= 0));
 						btnEditStaff.setEnabled((tblData.getSelectedRow() >= 0));
+						btnAdmitPatient.setEnabled((tblData.getSelectedRow() >= 0));
 					}
 				});
 				add(new JScrollPane(tblData), BorderLayout.CENTER);
@@ -345,6 +353,10 @@ public class DataView extends JFrame{
 		}
 	
 	
+	}
+	
+	public void showAdmitPatient() {
+		
 	}
 	
 	
