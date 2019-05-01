@@ -12,6 +12,9 @@ public class Patient extends Person {
 	private int queueNumber;
 
 	// Constructors
+	public Patient() {
+	}
+	
 	public Patient(String FirstName, String LastName, Department dep, String dob, String address, String phone, boolean living, int PatientNo, String national, Bed BedID, int queue) {
 		this.firstName = FirstName;
 		this.lastName = LastName;
