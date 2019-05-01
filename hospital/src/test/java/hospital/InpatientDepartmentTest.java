@@ -15,7 +15,7 @@ public class InpatientDepartmentTest {
 	public void checkAlreadyAssigned() {
 		testPatient.setDepartment(testDepartment1);
 		
-		assertTrue(test.getDepartment() == testDepartment1);
+		assertTrue(testPatient.getDepartment() == testDepartment1);
 		
 	}
 	// admit patient if patient is not assigned to a department
