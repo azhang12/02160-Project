@@ -7,6 +7,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
  
 public class PDFgenerator{
@@ -35,15 +36,28 @@ public class PDFgenerator{
 	       
 	       
 // MAKE LIST
-	       document.add(new Paragraph("Department", titleFont));
-	       
-	       //Add ordered list
-	       List orderedList = new List(List.ORDERED);
-	       orderedList.add(new ListItem("Item 1"));
-	       orderedList.add(new ListItem("Item 2"));
-	       orderedList.add(new ListItem("Item 3"));
-	       document.add(orderedList);
-	    
+	       // List title(department names)
+	       ArrayList<Department> departments = new ArrayList<Department>();
+	       departments = Hospital.getDepartment();
+
+	       Iterator<Department> deptNameIterator = departments.iterator();
+	       while(deptNameIterator.hasNext()) {
+	    	   String deptName = deptNameIterator.next().getName();
+	    	   document.add(new Paragraph(deptName, titleFont));
+	    	   
+	    	   // List contents(patient information)
+	    	   List orderedList = new List(List.ORDERED);
+	    	   ArrayList<Patient> patients = new ArrayList<Patient>();
+	    	   Iterator<Patient> patientIterator = patients.iterator();
+	    	   while(patientIterator.hasNext()) {
+	    		   int patientNumber = patientIterator.next().getPatientNumber();
+	    		   String patientFirstName = patientIterator.next().getFirstName();
+	    		   String patientLastName = patientIterator.next().getLastName();
+	    		   boolean patientStatus = patientIterator.next().getAlive();
+	    		   orderedList.add(new ListItem(patientNumber+" | "+patientFirstName+" "+patientLastName+" | "+patientStatus));
+	    	   }
+		       document.add(orderedList);
+	       }
 
 	       
 	       
