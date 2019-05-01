@@ -25,7 +25,7 @@ public abstract class Access {
 		this.patient_data = true;
 	}
 
-	protected boolean getPatientDataAccess() {
+	public boolean getPatientDataAccess() {
 		return patient_data;
 	}
 
@@ -34,7 +34,7 @@ public abstract class Access {
 		this.patient_admission_data = true;
 	}
 
-	protected boolean getPatientAdmissionDataAccess() {
+	public boolean getPatientAdmissionDataAccess() {
 		return patient_admission_data;
 	}
 
@@ -43,7 +43,7 @@ public abstract class Access {
 		this.staff_data = true;
 	}
 
-	protected boolean getStaffDataAccess() {
+	public boolean getStaffDataAccess() {
 		return staff_data;
 	}
 
@@ -52,7 +52,7 @@ public abstract class Access {
 		this.patient_registration = true;
 	}
 
-	protected boolean getPatientRegistationDataAccess() {
+	public boolean getPatientRegistationDataAccess() {
 		return patient_registration;
 	}
 	

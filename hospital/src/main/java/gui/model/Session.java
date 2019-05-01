@@ -1,38 +1,36 @@
 package gui.model;
 
+import hospital.Access;
+import hospital.Staff;
+
 public final class Session {
 
 	
 	//Role as String?
-	private User user;
-	private String role;
-	private String department;
+	private Staff user;
 	
 	public Session() {
-		role = "Admin";
+		
 	}
 
-	public void setUser(User user) {
+	public void setUser(Staff user) {
 		this.user = user;
 	}
 	
 	public int getUserId() {
-		return this.user.getUserId();
+		return this.user.getStaffNumber();
 	}
 	
-	public String getRole() {
-		return role;
-	}
-	public void setRole(String Role) {
-		this.role=Role;
+	public Staff getUser() {
+		return user;
 	}
 	
 	public String getDepartment() {
-		return this.department;
+		return this.user.getDepartment().getName();
 		
 	}
 	
-	public void setDepartment(String dep) {
-		this.department=dep;
+	public Access getAccess() {
+		return this.user.getAccessLevel();
 	}
 }

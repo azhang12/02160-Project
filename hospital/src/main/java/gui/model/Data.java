@@ -245,7 +245,25 @@ public class Data extends AbstractTableModel {
 		}
 
 	public void addPatient(List<JTextField> txtEntries) {
-		// TODO Auto-generated method stub
+		
+		
+		String firstName = (txtEntries.get(0).getText());
+		String lastName = (txtEntries.get(1).getText());
+		String dob = (txtEntries.get(2).getText());
+		String address = (txtEntries.get(3).getText());
+		String phone = (txtEntries.get(4).getText());
+		String alive = (txtEntries.get(5).getText());
+		String nation= (txtEntries.get(6).getText());
+		
+		boolean aliveBool =true;
+		if(alive.equals("no")) {aliveBool=false;}
+		
+		if (System.registerPatient(hospital, firstName, lastName,dob,address,phone,aliveBool,nation)) {
+			
+		}
+		readValue(whatData);
+		fireTableDataChanged(); // notify the views that data changed
+			
 		
 	}
 
@@ -286,6 +304,12 @@ public class Data extends AbstractTableModel {
 			readValue(whatData);
 			fireTableDataChanged();
 		}
+		
+		
+	}
+
+	public void removeDepartment(String depName) {
+		// TODO Auto-generated method stub
 		
 		
 	}
