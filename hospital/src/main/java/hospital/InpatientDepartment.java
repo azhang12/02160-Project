@@ -7,6 +7,7 @@ public class InpatientDepartment extends Department{
 
 	private List<Bed> beds = new ArrayList<Bed>();
 	
+	public InpatientDepartment() {}
 	public InpatientDepartment(String name, int noOfBeds) {
 		super(name);
 		this.beds = new ArrayList<Bed>();

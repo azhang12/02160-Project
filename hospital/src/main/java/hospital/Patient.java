@@ -15,11 +15,7 @@ public class Patient extends Person {
 	public Patient() {
 	}
 	
-	// when patient is not yet admitted to a department
-	
-	
-	
-	// when all fields are provided
+	// Constructor used to manually set fields -- useful for testing getters and setters (?)
 	public Patient(String FirstName, String LastName, Department dep, String dob, String address, String phone, boolean living, int PatientNo, String national, Bed BedID, int queue) {
 		this.firstName = FirstName;
 		this.lastName = LastName;
