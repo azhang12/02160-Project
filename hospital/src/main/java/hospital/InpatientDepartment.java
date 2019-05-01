@@ -13,7 +13,6 @@ public class InpatientDepartment extends Department{
 		for(int i=0; i<noOfBeds;++i) {
 			this.addBed();
 		}
-		
 	}
 	
 	public List<Bed> getBed() {
