@@ -82,7 +82,7 @@ public class Exporter {
 				if(((Patient) d).getDepartment()!=null) {
 					s.add(((Patient) d).getDepartment().getName());
 				}
-				else {s.add("");
+				else {s.add("");}
 						
 						
 				s.add(((Patient)d).getBirthday());
@@ -109,10 +109,19 @@ public class Exporter {
 					s.add("0");
 					s.add(Integer.toString(qNo));
 				}
+				else {
+					s.add("0");
+					s.add("0");
+				}
+				
 				
 				listOfLists.add(s);
 			}
+			
 		}
+				
+				
+		
 		else {
 			
 		}
