@@ -10,7 +10,7 @@ public class Department {
 	
 	private ArrayList<Staff> staff = new ArrayList<Staff>();
 	
-	private ArrayList<Patient> admittedPatients = newArrayList<Patient>();
+	private ArrayList<Patient> admittedPatients = new ArrayList<Patient>();
 	
 	// Constructor
 	Department(String Name){this.name = Name;}
@@ -20,7 +20,7 @@ public class Department {
 	}
 	
 	public boolean dischargePatient(Patient patient) {
-		return this.admittedPatients.remove(newPatient);
+		return this.admittedPatients.remove(patient);
 	}
 	
 	public boolean addStaff(Staff newStaff) {

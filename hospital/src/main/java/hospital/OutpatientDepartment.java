@@ -4,6 +4,10 @@ import java.util.Queue;
 
 public class OutpatientDepartment extends Department {
 	
+	OutpatientDepartment(String Name) {
+		super(Name);
+	}
+
 	Queue<Patient> outPatientQueue = new Queue<Patient>();
 	
 	public boolean addToQueue(Patient newPatient) {

@@ -1,7 +1,13 @@
 package hospital;
 
+import java.util.ArrayList;
+
 public class InpatientDepartment extends Department{
 
+	InpatientDepartment(String Name) {
+		super(Name);
+	}
+	
 	private ArrayList<Bed> beds = new ArrayList<Bed>();
 	
 	public ArrayList<Bed> getBed() {
