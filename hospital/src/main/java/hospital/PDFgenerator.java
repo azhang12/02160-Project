@@ -35,7 +35,7 @@ public class PDFgenerator{
 	       document.addCreationDate();
 	       document.addCreator("kaget");
 	       document.addTitle("ParticipationList");
-	       document.addSubject("A list of all patients admitted to a certain department at the moment");
+	       document.addSubject("A list of all departments, patients and there current status");
 	       
 	       
 	       
@@ -55,7 +55,12 @@ public class PDFgenerator{
 	    		   String pFirstName = patient.getFirstName();
 	    		   String pLastName = patient.getLastName();
 	    		   int pNum = patient.getPatientNumber();
-	    		   boolean pStatus = patient.getAlive();
+	    		   String pStatus;
+	    		   if (patient.getAlive()==true){
+	    			   pStatus = "Alive";
+	    		   } else {
+	    			   pStatus = "Dead";
+	    		   }
 	    		   
 	    		   orderedList.add(new ListItem(pNum+" | "+pFirstName+" "+pLastName+" | "+pStatus));
 	    	   
