@@ -12,7 +12,6 @@ public class Patient extends Person {
 	private int queueNumber;
 
 	// Constructors
-	public Patient() {}
 	public Patient(String FirstName, String LastName, Department dep, String dob, String address, String phone, boolean living, int PatientNo, String national, Bed BedID, int queue) {
 		this.firstName = FirstName;
 		this.lastName = LastName;
@@ -22,9 +21,9 @@ public class Patient extends Person {
 		this.phoneNumber = phone;
 		this.alive = living;
 		this.patientNumber = PatientNo;
-		this.nationality = national;
 		this.bed = BedID;
 		this.queueNumber = queue;
+		this.nationality=national;
 	}
 
 	// Getters and setters
@@ -46,7 +45,7 @@ public class Patient extends Person {
 	public void setPhoneNumber(String newPhoneNumber){
 		this.phoneNumber = newPhoneNumber;
 	}
-	public Boolean IsAlive(){
+	public Boolean getAlive(){
 		return this.alive;
 	}
 	public void setAlive(boolean newAlive){
@@ -54,10 +53,6 @@ public class Patient extends Person {
 	}
 	public int getPatientNumber(){
 		return this.patientNumber;
-	}
-	
-	private void setPatientNumber(int newPatientNumber){
-		this.patientNumber = newPatientNumber;
 	}
 	public String getNationality(){
 		return this.nationality;

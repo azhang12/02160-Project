@@ -12,6 +12,8 @@ public class Staff extends Person {
 	private Access access;
 	//Constructor Implementation
 	
+	
+	
 	public Staff(String FirstName, String LastName, JobRole role, String mail,int staffNo,  Access level, Department dep) {
 		
 		this.firstName = FirstName;
@@ -51,6 +53,11 @@ public class Staff extends Person {
 	}
 	public Access getAccessLevel() {
 		return this.access;
+	}
+	
+	public Staff copy() {
+		return new Staff(this.getFirstName(),this.getLastName(),this.getJobRole(),this.getEmail(),this.getStaffNumber(),this.getAccessLevel(),this.getDepartment());
+		
 	}
 	
 	

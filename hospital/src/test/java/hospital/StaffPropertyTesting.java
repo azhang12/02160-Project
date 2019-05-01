@@ -3,9 +3,7 @@ package hospital;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-class Access{
-	Access (){};
-}
+
 public class StaffPropertyTesting {
 	JobRole job = JobRole.DOCTOR;
 	Department dep = new Department("Department01");
@@ -87,6 +85,7 @@ public class StaffPropertyTesting {
 		test2.setDepartment(new Department ("Department06"));
 		assertEquals(test2.getDepartment().getName(),"Department06");
 	}
+	
 	
 	
 	
