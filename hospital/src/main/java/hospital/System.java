@@ -16,7 +16,6 @@ public class System {
 		
 		Patient pat = new Patient(FirstName, LastName, dep, dob, address, phone, living, num, national, null,0);
 		data.addPatient(pat);
-		
 	}
 	
 	

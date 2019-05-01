@@ -39,8 +39,6 @@ public class Reader implements IReader{
 			
 			Department currentDep = Finder.findDepartment(i.get(2), departmentList);
 			JobRole job = Finder.findJobRole(i.get(3));
-			
-			
 			Staff newStaff = (new Staff(i.get(0), i.get(1), job, i.get(4), Integer.parseInt(i.get(5)),  new Access(), currentDep));
 			staff.add(newStaff);
 			currentDep.addStaff(newStaff);
@@ -53,7 +51,16 @@ public class Reader implements IReader{
 	public ArrayList <Department> readDepartment(String fileName){
 		ArrayList<Department> departments = new ArrayList<Department>();
 		List<List<String>> listOfLists = this.read(fileName);
-		for (List<String> i : listOfLists){departments.add(new Department(i.get(0)));}
+		for (List<String> i : listOfLists){
+			if(i.get(1).equals("yes")) {
+				InpatientDepartment newDep = new InpatientDepartment(i.get(0),Integer.parseInt(i.get(2)));
+				departments.add(newDep);
+			}
+			else {
+				OutpatientDepartment newDep = new OutpatientDepartment(i.get(0));
+				departments.add(newDep);
+			}
+			}
 		
 		return departments;
 	}
@@ -83,19 +90,18 @@ public class Reader implements IReader{
 			
 			Department currentDep = Finder.findDepartment(dep, departmentList);
 			Patient pat = (new Patient(fName,lName,currentDep,birth,address,phone,alive,patientNumber,nation,null,0));
-			
+			currentDep.admitPatient(pat);
 			//Identify the bed or queue number
 			if (currentDep!=null) {
 				if(bedNumber!=0&&queueNumber==0) {
-					
 					Bed b = Finder.findBed(bedNumber, ((InpatientDepartment) currentDep).getBed());
+					b.setPatient(pat);
 					pat.setBed(b);
+					
 				}
 				else if (bedNumber==0&&queueNumber!=0) {
 					pat.setQueueNumber(queueNumber);
 				}
-				
-				
 			}
 			patients.add(pat);
 				
@@ -108,7 +114,5 @@ public class Reader implements IReader{
 }
 
 
-
-class Access{}
 
 
