@@ -5,20 +5,20 @@ import java.util.List;
 import javax.swing.JTextField;
 
 import gui.model.Session;
-import gui.views.AddStaffView;
-public class AddStaffController {
+import gui.views.EditStaffView;
+public class EditStaffController {
 	
 	
 	private Session sessionModel;
-	private AddStaffView view;
+	private EditStaffView view;
 	private DataController controller;
 
-	public AddStaffController(Session s,DataController c){
+	public EditStaffController(Session s,DataController c){
 		this.sessionModel=s;
 		this.controller=c;
 	}
 	
-	public void setView(AddStaffView view) {
+	public void setView(EditStaffView view) {
 		this.view = view;
 	}
 
@@ -29,7 +29,6 @@ public class AddStaffController {
 	//User clicked the Add-Button
 	public void addStaffClicked(List<JTextField> txtEntries) {
 		if(validateInput(txtEntries)) {
-			controller.add( txtEntries,"Staff");
 		}
 		else {
 			view.showError();}

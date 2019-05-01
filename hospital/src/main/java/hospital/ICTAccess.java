@@ -6,5 +6,10 @@ public class ICTAccess extends Access {
 		super();
 		enableAllAccess();
 	}
+	
+	@Override
+	public String toString() {
+		return "ICT";
+	}
 
 }

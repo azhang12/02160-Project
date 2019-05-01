@@ -8,4 +8,9 @@ public class ClericalAccess extends Access {
 		enablePatientRegistationDataAccess();
 	}
 	
+	@Override
+	public String toString() {
+		return "Clerk";
+	}
+	
 }

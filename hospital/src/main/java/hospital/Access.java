@@ -1,6 +1,6 @@
 package hospital;
 
-public class Access {
+public abstract class Access {
 
 	public Access() {
 	};
@@ -55,5 +55,8 @@ public class Access {
 	protected boolean getPatientRegistationDataAccess() {
 		return patient_registration;
 	}
+	
+	@Override
+	public abstract String toString();
 
 }

@@ -3,6 +3,8 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -52,7 +54,6 @@ public class DataView extends JFrame{
 	private JButton btnChangeDepartment = new JButton ("Change Department");
 	private JButton btnChangeBed= new JButton ("Change Bed");
 	
-	private JButton btnSaveChanges= new JButton ("Save Changes");
 	
 	
 	
@@ -64,16 +65,19 @@ public class DataView extends JFrame{
 	
 	private void initGUI() {
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setTitle("Staff Data Manager");
 		setPreferredSize(new Dimension(800, 600));
 		
-		btnSaveChanges.addActionListener(new ActionListener(){
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.exportData();
-			}
-		});
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	    this.addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent event) {
+	            controller.closeWindow();
+	        }
+	    });
+		
+		
 		
 		btnStaff.addActionListener(new ActionListener() {
 			@Override
@@ -121,7 +125,7 @@ public class DataView extends JFrame{
 		btnEditStaff.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.EditStaffClicked();
+				controller.EditClicked("Staff");
 			}
 		});
 		
@@ -150,7 +154,7 @@ public class DataView extends JFrame{
 		btnEditPatient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.EditClicked();
+				controller.EditClicked("Patient");
 			}
 		});
 		
@@ -179,15 +183,13 @@ public class DataView extends JFrame{
 		
 		
 		
-		
-		
 		//Toolbar1
 		toolBarData= new JToolBar();
-		toolBarData.add(btnSaveChanges);
 		toolBarData.add(btnStaff);
 		toolBarData.add(btnPat);
 		toolBarData.add(btnDep);
-		add(toolBarData, BorderLayout.SOUTH);
+		//add(toolBarData,toolBarOperations.getLocation());
+		add(toolBarData,BorderLayout.SOUTH);
 		
 		
 		//ToolBar2

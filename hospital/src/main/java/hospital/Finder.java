@@ -74,5 +74,22 @@ public class Finder {
 		return (fn + "." + ln + "@hospital.dk"); // this is only returned if it was already an original email address
 
 	}
+	
+	public static Access findAccess(JobRole role) {
+		if(role==JobRole.CLERK) {
+			return new ClericalAccess();
+		}
+		
+		else if(role==JobRole.DOCTOR) {
+			return new StaffAccess();
+		}
+		else if(role==JobRole.NURSE) {
+			return new StaffAccess();
+		}
+		else if(role==JobRole.IT) {
+			return new ICTAccess();
+		}
+		return null;
+	}
 		
 }

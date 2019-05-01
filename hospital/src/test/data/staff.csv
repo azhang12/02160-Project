@@ -1,3 +1,3 @@
 ﻿FirstName,LastName,Department,jobRole,eMail,staffNumber,accessLevel
-Adam,Thielen,Department03,NURSE,adam.thielen@hospital.dk,1,nurse
-Amy,Maguire,Department04,DOCTOR,a.maguire@hospital.dk,2,doctor
+Adam,Thielen,Department03,NURSE,adam.thielen@hospital.dk,1,Staff
+Amy,Maguire,Department04,DOCTOR,a.maguire@hospital.dk,2,Staff

@@ -1,14 +1,10 @@
 package hospital;
 
-<<<<<<< HEAD
+
 import java.util.ArrayList;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
-
-=======
 import java.util.List;
->>>>>>> branch 'master' of https://github.com/azhang12/02160-Project.git
-import java.util.ArrayList;
 
 public class Hospital {
 
@@ -25,12 +21,10 @@ public class Hospital {
 		this.departmentList = new ArrayList<Department>();
 		
 	}
-<<<<<<< HEAD
+
 	
 	public Hospital (ArrayList<Department>dep, ArrayList<Staff> s, ArrayList<Patient>p) {
-=======
-	public Hospital (List<Department> dep, List<Staff> s, List<Patient> p) {
->>>>>>> branch 'master' of https://github.com/azhang12/02160-Project.git
+
 		this.staffList = s;
 		this.departmentList = dep;
 		this.patientList = p;
@@ -75,7 +69,7 @@ public class Hospital {
 	public void removeDepartment(Department rmDepartment) {
 		this.departmentList.remove(rmDepartment);
 	}
-<<<<<<< HEAD
+
 	//getters
 	public static ArrayList<Staff> getStaff() {
 		return staffList;
@@ -99,7 +93,5 @@ public class Hospital {
 	public int getCntDepartments() {
 		return getSize(departmentList);
 	}
-=======
->>>>>>> branch 'master' of https://github.com/azhang12/02160-Project.git
-	
+
 }

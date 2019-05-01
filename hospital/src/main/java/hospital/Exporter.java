@@ -20,6 +20,7 @@ public class Exporter {
 			cNames.add("No. of Beds");
 			listOfLists.add(cNames);
 			
+			
 			for (Object d : inputList) {
 				List<String> s = new ArrayList<String>();
 				s.add(((Department) d).getName());

@@ -39,7 +39,8 @@ public class Reader implements IReader{
 			
 			Department currentDep = Finder.findDepartment(i.get(2), departmentList);
 			JobRole job = Finder.findJobRole(i.get(3));
-			Staff newStaff = (new Staff(i.get(0), i.get(1), job, i.get(4), Integer.parseInt(i.get(5)),  new Access(), currentDep));
+			Access access = Finder.findAccess(job);
+			Staff newStaff = (new Staff(i.get(0), i.get(1), job, i.get(4), Integer.parseInt(i.get(5)),  access, currentDep));
 			staff.add(newStaff);
 			currentDep.addStaff(newStaff);
 		}
@@ -47,6 +48,7 @@ public class Reader implements IReader{
 		
 		return staff;
 	}
+	
 	
 	public ArrayList <Department> readDepartment(String fileName){
 		ArrayList<Department> departments = new ArrayList<Department>();

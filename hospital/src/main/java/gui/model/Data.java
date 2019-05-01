@@ -40,22 +40,7 @@ public class Data extends AbstractTableModel {
 	public Hospital getData()
 	{ return this.hospital;}
 	
-	public void addStaff(List<JTextField> txtEntries) {
-		
-		
-		String firstName = (txtEntries.get(0).getText());
-		String lastName = (txtEntries.get(1).getText());
-		String departmentName = (txtEntries.get(2).getText());
-		String jobRole = (txtEntries.get(3).getText());
-		
-		
-		
-		if (System.registerStaff(hospital, firstName, lastName, jobRole, departmentName)) {
-			
-		}
-		readValue(whatData);
-		fireTableDataChanged(); // notify the views that data changed
-	}
+	
 
 	@Override
 	public int getColumnCount() {
@@ -253,6 +238,29 @@ public class Data extends AbstractTableModel {
 			d.add(staff.get(i).getJobRole().toString());
 			DisplayedData.add(d);
 		}
+		
+	}
+	public void addStaff(List<JTextField> txtEntries) {
+			
+			
+			String firstName = (txtEntries.get(0).getText());
+			String lastName = (txtEntries.get(1).getText());
+			String departmentName = (txtEntries.get(2).getText());
+			String jobRole = (txtEntries.get(3).getText());
+			if (System.registerStaff(hospital, firstName, lastName, jobRole, departmentName)) {
+				
+			}
+			readValue(whatData);
+			fireTableDataChanged(); // notify the views that data changed
+		}
+
+	public void addPatient(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addDepartment(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
 		
 	}
 	

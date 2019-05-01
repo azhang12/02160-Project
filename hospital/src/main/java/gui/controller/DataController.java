@@ -2,7 +2,7 @@ package gui.controller;
 
 import java.util.List;
 
-
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import hospital.System;
@@ -63,9 +63,21 @@ public class DataController {
 	
 	
 
-	public void addPerson(List<JTextField> txtEntries) {
+	public void add(List<JTextField> txtEntries,String whatData) {
 		
+		if(whatData.equals("Staff")) {
 			dataModel.addStaff(txtEntries);
+		}
+		else if (whatData.equals("Patient")) {
+			dataModel.addPatient(txtEntries);
+		}
+		else if (whatData.equals("Department")) {
+			dataModel.addDepartment(txtEntries);
+		}
+		else {
+			view.showError();
+		}
+			
 			
 	}
 
@@ -102,18 +114,51 @@ public class DataController {
 		
 	}
 	
-	public void EditStaffClicked() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	public void EditClicked() {
-		// TODO Auto-generated method stub
+	public void EditClicked(String s) {
+		
+		if(s.equals("Department")) {
+					
+		}
+				
+		else if(s.equals("Patient")) {
+			
+		}
+		
+		else if(s.equals("Staff")) {
+			EditStaffController c = new EditStaffController(sessionModel,this);
+			EditStaffView view = new EditStaffView(c);
+			c.setView(view);
+			view.setVisible(true);
+		}
 		
 	}
 
 	public void exportData() {
 		System.exportData(dataModel.getData());
+		
+	}
+
+	
+
+	public void closeWindow() {
+		int input = JOptionPane.showConfirmDialog(null, "Do you want to save the changes?","Save...",JOptionPane.YES_NO_CANCEL_OPTION);
+		
+		if(input==0) {
+			//Save&Close
+			exportData();
+			view.dispose();
+		}
+		else if(input==1) {
+			//Do not save & Close
+			view.dispose();
+		}
+		else if(input ==2) {
+			//Do not save& do not close
+			
+		
+	}
+
 		
 	}
 

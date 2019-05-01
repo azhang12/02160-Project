@@ -8,6 +8,9 @@ public class StaffAccess extends Access {
 		enablePatientAdmissionDataAccess();
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Staff";
+	}
 
 }
