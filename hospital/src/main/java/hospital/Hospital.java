@@ -74,20 +74,5 @@ public class Hospital {
 		return departmentList;
 	}
 
-	public int getSize(ArrayList ArrayList) {
-		return ArrayList.size();
-	}
-
-	public int getCntStaff() {
-		return getSize(staffList);
-	}
-
-	public int getCntPatients() {
-		return getSize(patientList);
-	}
-
-	public int getCntDepartments() {
-		return getSize(departmentList);
-	}
 
 }
