@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 
 import gui.controller.EditStaffController;
 import gui.utils.GridBagLayoutUtils;
+import hospital.Finder;
+import hospital.Staff;
 
 public class EditStaffView extends JFrame implements IError {
 	
@@ -21,18 +23,16 @@ private static final long serialVersionUID = 8981053836072595592L;
 	
 	private JButton btnSave;
 	private List <JTextField> txtEntries;
-	private List <String> staffInfoOld;
 	private List<String> txtNames;
+	Staff staff;
 	private EditStaffController controller;
 	
-	public EditStaffView(EditStaffController controller, List<String> info) {
+	public EditStaffView(EditStaffController controller, Staff staffToChange) {
+		
 		this.controller=controller;
 		this.txtEntries= new ArrayList<JTextField>();
 		this.txtNames= new ArrayList<String>();
-		for (String s : info) {
-			this.staffInfoOld.add(s);
-		}
-		
+		this.staff=staffToChange;
 		initGUI();
 	}
 	
@@ -47,6 +47,11 @@ private static final long serialVersionUID = 8981053836072595592L;
 		txtNames.add("Last Name");
 		txtNames.add("Department Name");
 		txtNames.add("Jobrole");
+		List<String> staffInfoOld = new ArrayList<String>();
+		staffInfoOld.add(staff.getFirstName());
+		staffInfoOld.add(staff.getLastName());
+		staffInfoOld.add(staff.getDepartment().getName());
+		staffInfoOld.add(staff.getJobRole().toString());
 		
 		
 		
@@ -67,17 +72,22 @@ private static final long serialVersionUID = 8981053836072595592L;
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.addStaffClicked(txtEntries);
+				controller.editStaffClicked(staff,txtEntries);
 			}
 		});
 		pack();
 		setLocationRelativeTo(null);
 	}
 
-	public void showError() {
-		JOptionPane.showMessageDialog(this, "You are missing some Information", "Not saved", JOptionPane.ERROR_MESSAGE);
+	public void showError(String errorText) {
+		JOptionPane.showMessageDialog(this, errorText, "Not saved", JOptionPane.ERROR_MESSAGE);
 		
 	}
 
+	@Override
+	public void showError() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -83,17 +83,7 @@ public class Data extends AbstractTableModel {
 		return null;
 	}
 
-	public void removeStaff(int staffNo) {
-
-		int i = Finder.findStaff(hospital.getStaff(), staffNo);
-		if(i>-1) {
-			hospital.getStaff().remove(i);
-			readValue(whatData);
-			fireTableDataChanged();
-		}
-		
-		
-	}
+	
 	
 	public void readValue(String what) {
 		
@@ -261,6 +251,42 @@ public class Data extends AbstractTableModel {
 
 	public void addDepartment(List<JTextField> txtEntries) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void editStaff(Staff staff, List<String> newValues) {
+		
+		if (System.editStaff(hospital,staff, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3))) {
+			
+		}
+		readValue(whatData);
+		fireTableDataChanged(); // notify the views that data changed
+		
+		
+	}
+	public void editPatient(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void editDepartment(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removePatient(int patNo) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+	public void removeStaff(int staffNo) {
+
+		int i = Finder.findStaffInt(hospital.getStaff(), staffNo);
+		if(i>-1) {
+			hospital.getStaff().remove(i);
+			readValue(whatData);
+			fireTableDataChanged();
+		}
+		
 		
 	}
 	

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import hospital.Finder;
+import hospital.Staff;
 import hospital.System;
 import gui.model.FilterStaffData;
 import gui.model.Session;
@@ -84,10 +86,24 @@ public class DataController {
 	}
 
 
-	public void DeletePersonClicked(int selectedRow) {
+	public void DeletePersonClicked(String s, int selectedRow) {
+		
 		if (selectedRow >= 0) {
-			int staffNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
-			dataModel.removeStaff(staffNo);
+			if(s.equals("Staff")) {
+				int staffNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
+				dataModel.removeStaff(staffNo);
+			}
+			else if(s.equals("Patient")){
+				int patNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
+				dataModel.removePatient(patNo);
+				
+			}
+					
+			
+			
+		}
+		else {
+			view.showError("Please make selection!");
 		}
 		
 	}
@@ -118,26 +134,26 @@ public class DataController {
 	
 
 	public void EditClicked(String s,int selectedRow) {
-		
-		if(s.equals("Department")) {
+		if (selectedRow >= 0) {
+			if(s.equals("Department")) {
+						
+			}
 					
-		}
+			else if(s.equals("Patient")) {
 				
-		else if(s.equals("Patient")) {
+			}
 			
+			else if(s.equals("Staff")) {
+				Staff staff = Finder.findStaff(dataModel.getData().getStaff(), Integer.parseInt(dataModel.getValueAt(selectedRow, 0)));
+				
+				EditStaffController c = new EditStaffController(sessionModel,this);
+				EditStaffView view = new EditStaffView(c,staff);
+				c.setView(view);
+				view.setVisible(true);
+			}
 		}
-		
-		else if(s.equals("Staff")) {
-			List<String> info = new ArrayList<String>();
-			info.add(dataModel.getValueAt(selectedRow, 1)); //First Nae
-			info.add(dataModel.getValueAt(selectedRow, 2));//Last Name
-			info.add(dataModel.getValueAt(selectedRow, 4));//Department
-			info.add(dataModel.getValueAt(selectedRow, 5));//JobRole
-			
-			EditStaffController c = new EditStaffController(sessionModel,this);
-			EditStaffView view = new EditStaffView(c,info);
-			c.setView(view);
-			view.setVisible(true);
+		else {
+			view.showError("Please choose " +s + "!");
 		}
 		
 	}
@@ -169,6 +185,20 @@ public class DataController {
 
 		
 	}
+
+	public void editStaffInfo(Staff staff, List<String> newValues) {
+		
+		dataModel.editStaff(staff, newValues);	
+	}
+
+	public void PrintPdf() {
+		if(System.printPDF(dataModel.getData())) {
+			view.showSucces("Files successfully printed");
+		}
+		
+	}
+
+	
 
 	
 

@@ -1,11 +1,13 @@
 package gui.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTextField;
 
 import gui.model.Session;
 import gui.views.EditStaffView;
+import hospital.Staff;
 public class EditStaffController {
 	
 	
@@ -26,21 +28,41 @@ public class EditStaffController {
 		view.setVisible(true);
 	}
 	
-	//User clicked the Add-Button
-	public void addStaffClicked(List<JTextField> txtEntries) {
+	//User clicked the Save changes
+	public void editStaffClicked(Staff staff, List<JTextField> txtEntries) {
+		List<String> newValues = new ArrayList<String>();
 		if(validateInput(txtEntries)) {
+			if(txtEntries.get(0).getText().isEmpty()) {
+				newValues.add(staff.getFirstName());
+			}
+			else {
+				newValues.add(txtEntries.get(0).getText());
+			}
+			if(txtEntries.get(1).getText().isEmpty()) {newValues.add(staff.getLastName());}
+			else {
+				newValues.add(txtEntries.get(1).getText());
+			}
+			if(txtEntries.get(2).getText().isEmpty()) {newValues.add(staff.getDepartment().getName());}
+			else {
+				newValues.add(txtEntries.get(2).getText());
+			}
+			if(txtEntries.get(3).getText().isEmpty()) {newValues.add(staff.getJobRole().toString());}
+			else {
+				newValues.add(txtEntries.get(3).getText());
+			}
+			controller.editStaffInfo(staff,newValues);
 		}
 		else {
-			view.showError();}
+			view.showError("Please add Information to change");}
 	}
 		
 	
-		//Are all Values Correct?
+		//Value input?
 	private boolean validateInput(List<JTextField> txtEntries) {
 		for (JTextField f : txtEntries) {
-			if(f.getText().isEmpty()) {return false;}
+			if(!f.getText().isEmpty()) {return true;}
 		}
-		return true;
+		return false;
 		
 	}
 	

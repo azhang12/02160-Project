@@ -43,13 +43,23 @@ public class Finder {
 		return null;
 	}
 	
-	public static int findStaff(List<Staff> staff, int staffNo) {
+	public static int findStaffInt(List<Staff> staff, int staffNo) {
 		for (int i=0; i<staff.size();++i) {
 			if(staff.get(i).getStaffNumber()==staffNo) {
 				return i;
 			}
 		}
 		return -1;
+	}
+	
+	
+	public static Staff findStaff(List<Staff> staff, int staffNo) {
+		for (int i=0; i<staff.size();++i) {
+			if(staff.get(i).getStaffNumber()==staffNo) {
+				return staff.get(i);
+			}
+		}
+		return null;
 	}
 	
 	public static String findEmail(List<Staff> staff, String firstName, String lastName) {
