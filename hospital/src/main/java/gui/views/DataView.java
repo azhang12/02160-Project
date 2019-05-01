@@ -45,6 +45,12 @@ public class DataView extends JFrame{
 	private JButton btnEditPatient = new JButton("Edit");
 	private JButton btnEditStaff = new JButton("Edit");
 	
+	private JButton btnAdmitPatient = new JButton("Admit");
+	private JButton btnDischargePatient = new JButton("Discharge");
+	private JButton btnCallPatient = new JButton ("Call");
+	private JButton btnChangeDepartment = new JButton ("Change Department");
+	private JButton btnChangeBed= new JButton ("Change Bed");
+	
 	
 	
 	public DataView(DataController controller) {
@@ -170,12 +176,13 @@ public class DataView extends JFrame{
 		toolBarData.add(btnDep);
 		add(toolBarData, BorderLayout.SOUTH);
 		
+		
 		//ToolBar2
 		
 		lblSession = new JLabel();
 		lblSession.setHorizontalAlignment(SwingConstants.RIGHT);
 		toolBarOperations= new JToolBar();
-		
+		add(toolBarOperations, BorderLayout.NORTH);
 				
 				
 		//Add Table
@@ -227,7 +234,8 @@ public class DataView extends JFrame{
 			toolBarOperations.add(btnEditStaff);
 			toolBarOperations.add(Box.createHorizontalGlue());
 			toolBarOperations.add(lblSession);
-			add(toolBarOperations, BorderLayout.NORTH);	
+			//add(toolBarOperations, BorderLayout.NORTH);	
+			toolBarOperations.repaint();
 		}
 		else if(input.equals("Patients")) {
 			//toolbar Patients
@@ -239,10 +247,18 @@ public class DataView extends JFrame{
 			toolBarOperations.add(btnDeletePatient);
 			toolBarOperations.add(btnFindPatients);
 			toolBarOperations.add(btnEditPatient);
+			toolBarOperations.add(btnAdmitPatient );
+			toolBarOperations.add(btnDischargePatient);
+			toolBarOperations.add(btnCallPatient);
+			toolBarOperations.add(btnChangeDepartment);
+			toolBarOperations.add(btnChangeBed);
 			toolBarOperations.add(Box.createHorizontalGlue());
 			toolBarOperations.add(lblSession);
-			add(toolBarOperations, BorderLayout.NORTH);
+			//add(toolBarOperations, BorderLayout.NORTH);
+			toolBarOperations.repaint();
 		}
+		
+		
 		
 		else {
 			
@@ -255,7 +271,8 @@ public class DataView extends JFrame{
 				toolBarOperations.add(btnFindDepartments);
 				toolBarOperations.add(Box.createHorizontalGlue());
 				toolBarOperations.add(lblSession);
-				add(toolBarOperations, BorderLayout.NORTH);
+				//add(toolBarOperations, BorderLayout.NORTH);
+				toolBarOperations.repaint();
 			
 		}
 	

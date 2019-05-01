@@ -27,10 +27,6 @@ public class DataController {
 		this.sessionModel = session;
 	}
 	
-	
-	
-	
-
 	public void deleteItem(int selectedRow) {
 		///TO-DO
 	}
@@ -45,9 +41,6 @@ public class DataController {
 		view.setVisible(true);
 	}
 	
-	
-
-
 	public void AddPersonClicked(String s) {
 		
 		if(s.equals("Department")) {
@@ -65,15 +58,9 @@ public class DataController {
 			view.setVisible(true);
 		}
 		
-	
-		
 	}
 	
-	public void updateView() {
-		this.view.setTableModel(dataModel);
-	}
-
-
+	
 
 	public void addPerson(List<JTextField> txtEntries) {
 		
@@ -107,10 +94,6 @@ public class DataController {
 		
 	}
 
-
-
-
-
 	public void ShowData(String s) {
 		this.dataModel= new Data(dataModel.getData(),s);
 		this.view.setTableModel(dataModel,s);
@@ -118,23 +101,10 @@ public class DataController {
 		
 	}
 
-
-
-
-
 	public void EditClicked() {
 		// TODO Auto-generated method stub
 		
 	}
-
-
-
-
-
-	
-
-
-
 
 	
 

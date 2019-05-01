@@ -1,13 +1,15 @@
 package hospital;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue; 
 
 public class OutpatientDepartment extends Department {
 	
 
-	OutpatientDepartment(String Name) {
-		super(Name);
+	public OutpatientDepartment(String name) {
+		super(name);
+		
 	}
 
 	Queue<Patient> outPatientQueue = new LinkedList<Patient>();
