@@ -16,7 +16,6 @@ public class System {
 		
 		Patient pat = new Patient(FirstName, LastName, dep, dob, address, phone, living, num, national, null,0);
 		data.addPatient(pat);
-		
 	}
 	
 	
@@ -49,7 +48,7 @@ public class System {
 	public static boolean movePatient(Hospital data, int PatientNumber, int newBed) {
 		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
 		
-		if(pat.getDepartment().getClass()==new InpatientDepartment().getClass()) {
+		if(pat.getDepartment().getClass()== new InpatientDepartment().getClass()) {
 			InpatientDepartment ndep = (InpatientDepartment) pat.getDepartment();
 			pat.setBed(Finder.findBed(newBed, ndep.getBed()));
 			return true;

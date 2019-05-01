@@ -135,19 +135,31 @@ public class Data extends AbstractTableModel {
 			if(dep.get(i).getClass()==new InpatientDepartment("",0).getClass()) {
 				InpatientDepartment current = (InpatientDepartment)dep.get(i);
 				if(current.getBed()!=null) {
-					newList.add(Integer.toString(current.getBed().size()));
-					
+					int bedsTotal= current.getBed().size();
+					newList.add(Integer.toString(bedsTotal));
+					//Beds available
+					int bedsOcc = current.occupiedBeds();
+					int bedsAvailable = bedsTotal-bedsOcc;
+					newList.add(Integer.toString(bedsAvailable));
+					newList.add(Integer.toString(bedsOcc));
+					newList.add("0");
 				}
-				else {newList.add("0");
-				
+				else {
+					newList.add("0");
+					newList.add("0");
+					newList.add("0");
+					OutpatientDepartment current1 = (OutpatientDepartment)dep.get(i);
+					if (current1.getQueue()!=null) {
+						newList.add(Integer.toString(current1.getQueue().size()));
+					}
+					else {newList.add("0");}
 				}
 				
-				newList.add("0");
-				newList.add("0");
+				
 				
 			}
 			
-			else if(dep.get(i).getClass()==new OutpatientDepartment().getClass()) {
+			else if(dep.get(i).getClass()==new OutpatientDepartment("").getClass()) {
 				OutpatientDepartment current = (OutpatientDepartment)dep.get(i);
 				newList.add("0");
 				newList.add("0");
@@ -159,13 +171,7 @@ public class Data extends AbstractTableModel {
 				
 				}
 			}
-			else {
-				newList.add("0");
-				newList.add("0");
-				newList.add("0");
-				newList.add("0");
-				
-			}
+			
 			
 			
 			this.DisplayedData.add(newList);
