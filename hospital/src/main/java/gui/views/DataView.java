@@ -45,6 +45,7 @@ public class DataView extends JFrame{
 	private JButton btnEditPatient = new JButton("Edit");
 	private JButton btnEditStaff = new JButton("Edit");
 	
+	
 	private JButton btnAdmitPatient = new JButton("Admit");
 	private JButton btnDischargePatient = new JButton("Discharge");
 	private JButton btnCallPatient = new JButton ("Call");

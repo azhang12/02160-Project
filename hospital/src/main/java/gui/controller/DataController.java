@@ -56,6 +56,7 @@ public class DataController {
 			AddStaffView view = new AddStaffView(c);
 			c.setView(view);
 			view.setVisible(true);
+			
 		}
 		
 	}
