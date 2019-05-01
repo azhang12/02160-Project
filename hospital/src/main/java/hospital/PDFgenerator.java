@@ -1,5 +1,6 @@
-// This class creates new PDF file named "ParticipationList.pdf" under the project folder.
-// Refresh the whole project to find the file in package explorer.
+/* This class creates new PDF file named "ParticipationList.pdf"
+under the very top-level folder(the 'hospital' project folder in this case).
+Refresh the whole project to see the file in package explorer.*/
 
 package hospital;
 
