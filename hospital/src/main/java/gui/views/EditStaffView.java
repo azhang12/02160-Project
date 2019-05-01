@@ -21,21 +21,26 @@ private static final long serialVersionUID = 8981053836072595592L;
 	
 	private JButton btnSave;
 	private List <JTextField> txtEntries;
+	private List <String> staffInfoOld;
 	private List<String> txtNames;
 	private EditStaffController controller;
 	
-	public EditStaffView(EditStaffController controller) {
+	public EditStaffView(EditStaffController controller, List<String> info) {
 		this.controller=controller;
 		this.txtEntries= new ArrayList<JTextField>();
 		this.txtNames= new ArrayList<String>();
+		for (String s : info) {
+			this.staffInfoOld.add(s);
+		}
 		
 		initGUI();
 	}
 	
 	private void initGUI() {
 		
+		
 		setResizable(false);
-		setTitle("Login");
+		setTitle("Edit Staff");
 		setLayout(new GridBagLayout());
 		
 		txtNames.add("First Name");
@@ -43,10 +48,14 @@ private static final long serialVersionUID = 8981053836072595592L;
 		txtNames.add("Department Name");
 		txtNames.add("Jobrole");
 		
+		
+		
 		for ( int i=0; i<txtNames.size();++i) {
 			this.txtEntries.add(new JTextField(20));
 			add(new JLabel(txtNames.get(i)+":"), GridBagLayoutUtils.constraint(0, i, 5));
-			add(txtEntries.get(txtEntries.size()-1), GridBagLayoutUtils.constraint(1, i, 5));
+			add(new JLabel (staffInfoOld.get(i)), GridBagLayoutUtils.constraint(1, i, 5));
+			add(txtEntries.get(txtEntries.size()-1), GridBagLayoutUtils.constraint(2, i, 5));
+			
 			
 		}
 		

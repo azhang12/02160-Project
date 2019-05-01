@@ -1,5 +1,6 @@
 package gui.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -12,6 +13,7 @@ import gui.model.Data;
 import gui.views.AddStaffView;
 import gui.views.FilterStaffView;
 import gui.views.DataView;
+import gui.views.EditStaffView;
 
 public class DataController {
 	
@@ -115,7 +117,7 @@ public class DataController {
 	}
 	
 
-	public void EditClicked(String s) {
+	public void EditClicked(String s,int selectedRow) {
 		
 		if(s.equals("Department")) {
 					
@@ -126,8 +128,14 @@ public class DataController {
 		}
 		
 		else if(s.equals("Staff")) {
+			List<String> info = new ArrayList<String>();
+			info.add(dataModel.getValueAt(selectedRow, 1)); //First Nae
+			info.add(dataModel.getValueAt(selectedRow, 2));//Last Name
+			info.add(dataModel.getValueAt(selectedRow, 4));//Department
+			info.add(dataModel.getValueAt(selectedRow, 5));//JobRole
+			
 			EditStaffController c = new EditStaffController(sessionModel,this);
-			EditStaffView view = new EditStaffView(c);
+			EditStaffView view = new EditStaffView(c,info);
 			c.setView(view);
 			view.setVisible(true);
 		}

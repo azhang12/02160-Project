@@ -1,18 +1,10 @@
 package hospital;
-
-<<<<<<< HEAD
-
-import java.util.ArrayList;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
-import java.util.List;
-=======
+// comment
 import java.util.ArrayList;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
 
 import java.util.ArrayList;
->>>>>>> 33802a1fdef2ad6085e7b6d2391c2192ed463d84
 
 public class Hospital {
 
@@ -29,12 +21,8 @@ public class Hospital {
 
 	}
 
-<<<<<<< HEAD
 	
-	public Hospital (ArrayList<Department>dep, ArrayList<Staff> s, ArrayList<Patient>p) {
-=======
 	public Hospital(ArrayList<Department> dep, ArrayList<Staff> s, ArrayList<Patient> p) {
->>>>>>> 33802a1fdef2ad6085e7b6d2391c2192ed463d84
 
 		this.staffList = s;
 		this.departmentList = dep;
@@ -74,31 +62,17 @@ public class Hospital {
 		this.departmentList.remove(rmDepartment);
 	}
 
-
-	public static ArrayList<Staff> getStaff() {
+	// getters
+	public  ArrayList<Staff> getStaff() {
 		return staffList;
 	}
 
-	public static ArrayList<Patient> getPatient() {
+	public  ArrayList<Patient> getPatient() {
 		return patientList;
 	}
 
-	public static ArrayList<Department> getDepartment() {
+	public ArrayList<Department> getDepartment() {
 		return departmentList;
-	}
-
-
-	public int getSize(ArrayList ArrayList) {
-		return ArrayList.size();
-	}
-	public int getCntStaff(){
-		return getSize(staffList);
-	}
-	public int getCntPatients() {
-		return getSize(patientList);
-	}
-	public int getCntDepartments() {
-		return getSize(departmentList);
 	}
 
 

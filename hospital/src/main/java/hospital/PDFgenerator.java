@@ -15,7 +15,7 @@ import java.util.Iterator;
  
 public class PDFgenerator{
 	
-   public static void main(String[] args){
+   public static void printDepartments(Hospital hospital){
 	   
 // SET FONT STYLE
 	   Font headFont = FontFactory.getFont(FontFactory.HELVETICA, 40, Font.BOLD, new CMYKColor(100,100,100,100));
@@ -26,7 +26,7 @@ public class PDFgenerator{
 // OPEN NEW DOCUMENT	   
 	   Document document = new Document();
 	   try{
-	       PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("ParticipationList.pdf"));
+	       PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("src/test/data/ParticipationList.pdf"));
 	       document.open();
 	       document.add(new Paragraph("PARTICIPATION LIST\n", headFont));
 	    
@@ -42,17 +42,17 @@ public class PDFgenerator{
 	       
 // MAKE LIST
 	       // List title(department names)
-	       ArrayList<Department> departments = new ArrayList<Department>();
-	       departments = Hospital.getDepartment();
+	       
+	       ArrayList<Department> departments = hospital.getDepartment();
 
 	       Iterator<Department> deptNameIterator = departments.iterator();
 	       while(deptNameIterator.hasNext()) {
+	    	   ArrayList<Patient> patients = deptNameIterator.next().getPatients();
 	    	   String deptName = deptNameIterator.next().getName();
 	    	   document.add(new Paragraph("Department: "+deptName, titleFont));
 	    	   
 	    	   // List contents(patient information)
 	    	   List orderedList = new List(List.ORDERED);
-	    	   ArrayList<Patient> patients = new ArrayList<Patient>();
 	    	   Iterator<Patient> patientIterator = patients.iterator();
 	    	   while(patientIterator.hasNext()) {
 	    		   int patientNumber = patientIterator.next().getPatientNumber();

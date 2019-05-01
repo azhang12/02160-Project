@@ -125,7 +125,7 @@ public class DataView extends JFrame{
 		btnEditStaff.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.EditClicked("Staff");
+				controller.EditClicked("Staff",tblData.getSelectedRow());
 			}
 		});
 		
@@ -154,7 +154,7 @@ public class DataView extends JFrame{
 		btnEditPatient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.EditClicked("Patient");
+				controller.EditClicked("Patient",tblData.getSelectedRow());
 			}
 		});
 		
@@ -207,6 +207,7 @@ public class DataView extends JFrame{
 					@Override
 					public void valueChanged(ListSelectionEvent e) {
 						btnDeleteStaff.setEnabled((tblData.getSelectedRow() >= 0));
+						btnEditStaff.setEnabled((tblData.getSelectedRow() >= 0));
 					}
 				});
 				add(new JScrollPane(tblData), BorderLayout.CENTER);
