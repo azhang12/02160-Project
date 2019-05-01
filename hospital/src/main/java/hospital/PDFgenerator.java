@@ -1,5 +1,6 @@
 // This class creates new PDF file named "ParticipationList.pdf" under the project folder.
 // Refresh the whole project to find the file in package explorer.
+
 package hospital;
 
 import java.io.FileNotFoundException;
@@ -17,6 +18,7 @@ public class PDFgenerator{
    public static void main(String[] args){
 	   
 // SET FONT STYLE
+	   Font headFont = FontFactory.getFont(FontFactory.HELVETICA, 40, Font.BOLD, new CMYKColor(100,100,100,100));
 	   Font titleFont = FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD, new CMYKColor(99, 18, 0, 95));
 
 	   
@@ -26,6 +28,7 @@ public class PDFgenerator{
 	   try{
 	       PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("ParticipationList.pdf"));
 	       document.open();
+	       document.add(new Paragraph("PARTICIPATION LIST\n", headFont));
 	    
 	       
 // SET FILE ATTRIBUTES
