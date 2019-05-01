@@ -46,9 +46,9 @@ public class System {
 	}
 	
 	public static boolean movePatient(Hospital data, int PatientNumber, int newBed) {
-		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
 		
-		if(pat.getDepartment().getClass()== new InpatientDepartment().getClass()) {
+		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
+		if(pat.getDepartment() instanceof InpatientDepartment) {
 			InpatientDepartment ndep = (InpatientDepartment) pat.getDepartment();
 			pat.setBed(Finder.findBed(newBed, ndep.getBed()));
 			return true;
