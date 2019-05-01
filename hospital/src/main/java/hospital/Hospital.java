@@ -1,12 +1,14 @@
 package hospital;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
 
+=======
+import java.util.List;
+>>>>>>> branch 'master' of https://github.com/azhang12/02160-Project.git
 import java.util.ArrayList;
-
-
 
 public class Hospital {
 
@@ -23,71 +25,57 @@ public class Hospital {
 		this.departmentList = new ArrayList<Department>();
 		
 	}
+<<<<<<< HEAD
 	
 	public Hospital (ArrayList<Department>dep, ArrayList<Staff> s, ArrayList<Patient>p) {
+=======
+	public Hospital (List<Department> dep, List<Staff> s, List<Patient> p) {
+>>>>>>> branch 'master' of https://github.com/azhang12/02160-Project.git
 		this.staffList = s;
-		this.departmentList=dep;
-		this.patientList=p;
-		
-		//Add Patients to Departments
-		
-		
+		this.departmentList = dep;
+		this.patientList = p;
 	}
 	
-	
-	
-	//modifying lists of Staff, Patients, and Departments
+	//getters
+	public List<Staff> getStaff() {
+		return staffList;
+	}
+	public List<Patient> getPatient() {
+		return patientList;
+	}
+	public List<Department> getDepartment() {
+		return departmentList;
+	}
+
+	//Staff
 	public void addStaff(Staff newStaff) {
 		this.staffList.add(newStaff);
 	}
-	/*
 	public void removeStaff(Staff rmStaff) {
 		this.staffList.remove(rmStaff);
-	}
-	public void removeStaff(String rmStaffNo) {
-		Iterator iter = staffList.iterator();
-		while(iter.hasNext()) {
-			Staff rmStaff = (Staff) iter.next();
-			if(rmStaff.staffNumber == rmStaffNo) {
-				staffList.remove(rmStaff); 
-				break;
-			}
-		}
-	}
-	
-	public void addPatient(Patient newPatient) {
-		this.patientList.add(newPatient);
 	}	
-	public void removePatient(Patient rmPatient) {
-		this.patientList.remove(rmPatient);
-	}
-	public void removePatient(String rmPatientNo) {
-		Iterator iter = patientList.iterator();
-		while(iter.hasNext()) {
-			Patient rmPatient = (Patient) iter.next();
-			if(rmPatient.patientNumber == rmPatientNo) {
-				patientList.remove(rmPatient); //
-				break;
-			}
-		}
-	}
 	
+	//Patient
+	public void addPatient(Patient newPatient, Department newDepartment) {
+		this.patientList.add(newPatient);
+		newDepartment.admitPatient(newPatient);
+	}	
+	public void removePatient(Patient rmPatient, Department department) {
+		this.patientList.remove(rmPatient);
+		department.dischargePatient(rmPatient);
+	}
 	public void movePatient(Patient patient, Bed newBed) {
-<<<<<<< HEAD
 		patient.setBed(newBed);
 	}
-		
-=======
-		patient.Bed = newBed;
-	} //??
-		*/
 
+	//Department
 	public void addDepartment(Department newDepartment) {
 		this.departmentList.add(newDepartment);
 	}
 	public void removeDepartment(Department rmDepartment) {
 		this.departmentList.remove(rmDepartment);
 	}
+<<<<<<< HEAD
 	//getters
 	public static ArrayList<Staff> getStaff() {
 		return staffList;
@@ -111,14 +99,7 @@ public class Hospital {
 	public int getCntDepartments() {
 		return getSize(departmentList);
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/azhang12/02160-Project.git
 	
-	/*
-	@Override
-	public String toString() {
-		return cntStaff + " staff, " + cntPatients + "patients, " 
-	+ cntDepartments + "departments in this hospital." 
-	}
-	*/
-	
-
 }
