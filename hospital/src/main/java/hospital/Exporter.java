@@ -11,17 +11,41 @@ import java.util.Objects;
 public class Exporter {
 	
 	
-	
 	public boolean export(List<?> inputList, String outputFileName) {
 		List<List<String>> listOfLists = new ArrayList<List<String>>();
 		if(inputList.get(0) instanceof Department) {
+			List<String> cNames = new ArrayList<String>();
+			cNames.add("Department Name");
+			cNames.add("Inpatient");
+			cNames.add("No. of Beds");
+			listOfLists.add(cNames);
+			
+			
 			for (Object d : inputList) {
 				List<String> s = new ArrayList<String>();
 				s.add(((Department) d).getName());
+				if(d instanceof InpatientDepartment ) {
+					s.add("yes");
+					s.add(Integer.toString(((InpatientDepartment) d).getBed().size()));					
+				}
+				else {
+					s.add("no");
+					s.add("0");
+					
+				}
 				listOfLists.add(s);
 			}
 		}
 		else if (inputList.get(0) instanceof Staff) {
+			List<String> cNames = new ArrayList<String>();
+			cNames.add("First Name");
+			cNames.add("Last Name");
+			cNames.add("Department");
+			cNames.add("Job Role");
+			cNames.add("eMail");
+			cNames.add("Staff No");
+			cNames.add("accesLevel");
+			listOfLists.add(cNames);
 			for (Object d : inputList) {
 				List<String> s = new ArrayList<String>();
 				s.add(((Staff) d).getFirstName());
@@ -36,7 +60,52 @@ public class Exporter {
 			}
 		}
 		else if (inputList.get(0) instanceof Patient) {
-			
+			List<String> cNames = new ArrayList<String>();
+			cNames.add("First Name");
+			cNames.add("Last Name");
+			cNames.add("Department");
+			cNames.add("Birthday");
+			cNames.add("Address");
+			cNames.add("phone");
+			cNames.add("Alive");
+			cNames.add("Patient Number");
+			cNames.add("Nationality");
+			cNames.add("Bed Number");
+			cNames.add("Queue Number");
+			listOfLists.add(cNames);
+			for (Object d : inputList) {
+				List<String> s = new ArrayList<String>();
+		
+				s.add(((Patient) d).getFirstName());
+				s.add(((Patient) d).getLastName());
+				s.add(((Patient) d).getDepartment().getName());
+				s.add(((Patient)d).getBirthday());
+				s.add(((Patient)d).getAddress());
+				s.add(((Patient)d).getPhoneNumber());
+				if(((Patient)d).getAlive()) {
+					s.add("yes");
+				}
+				else {
+					s.add("no");
+				}
+				int num = ((Patient) d).getPatientNumber();
+				s.add(Integer.toString(num));
+				s.add(((Patient) d).getNationality());
+				
+				if(((Patient)d).getDepartment() instanceof InpatientDepartment){
+					int bedNo = ((Patient)d).getBed().getId();
+					s.add(Integer.toString(bedNo));
+					s.add("0");
+				}
+				else if (((Patient)d).getDepartment() instanceof OutpatientDepartment) {
+					int qNo = ((Patient)d).getQueueNumber();
+					
+					s.add("0");
+					s.add(Integer.toString(qNo));
+				}
+				
+				listOfLists.add(s);
+			}
 		}
 		else {
 			

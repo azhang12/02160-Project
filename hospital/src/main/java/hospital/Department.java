@@ -3,7 +3,7 @@ package hospital;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Department {
+public abstract class Department {
 
 	protected String name;
 

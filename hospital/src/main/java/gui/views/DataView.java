@@ -3,11 +3,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -42,14 +45,18 @@ public class DataView extends JFrame{
 	private JButton btnStaff = new JButton("Staff");
 	private JButton btnPat = new JButton("Patients");
 	private JButton btnDep = new JButton("Departments");
+	private JButton btnPrintPDF= new JButton("Print PDF of all Departments");
+	
 	private JButton btnEditPatient = new JButton("Edit");
 	private JButton btnEditStaff = new JButton("Edit");
+	
 	
 	private JButton btnAdmitPatient = new JButton("Admit");
 	private JButton btnDischargePatient = new JButton("Discharge");
 	private JButton btnCallPatient = new JButton ("Call");
 	private JButton btnChangeDepartment = new JButton ("Change Department");
 	private JButton btnChangeBed= new JButton ("Change Bed");
+	
 	
 	
 	
@@ -61,9 +68,19 @@ public class DataView extends JFrame{
 	
 	private void initGUI() {
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setTitle("Staff Data Manager");
 		setPreferredSize(new Dimension(800, 600));
+		
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	    this.addWindowListener(new WindowAdapter() {
+	        @Override
+	        public void windowClosing(WindowEvent event) {
+	            controller.closeWindow();
+	        }
+	    });
+		
+		
 		
 		btnStaff.addActionListener(new ActionListener() {
 			@Override
@@ -86,6 +103,13 @@ public class DataView extends JFrame{
 				controller.ShowData("Departments");
 			}
 		});
+		btnPrintPDF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				controller.PrintPdf();
+			}
+		});
 		
 		//BUTTO LISTENERS FOR ALL STAFF OPERATIONS
 		btnAddStaff.addActionListener(new ActionListener() {
@@ -98,7 +122,7 @@ public class DataView extends JFrame{
 		btnDeleteStaff.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.DeletePersonClicked(tblData.getSelectedRow());
+				controller.DeletePersonClicked("Staff",tblData.getSelectedRow());
 			}
 		});
 		
@@ -111,7 +135,7 @@ public class DataView extends JFrame{
 		btnEditStaff.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.EditClicked();
+				controller.EditClicked("Staff",tblData.getSelectedRow());
 			}
 		});
 		
@@ -126,7 +150,7 @@ public class DataView extends JFrame{
 		btnDeletePatient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.DeletePersonClicked(tblData.getSelectedRow());
+				controller.DeletePersonClicked("Patient",tblData.getSelectedRow());
 			}
 		});
 		
@@ -140,7 +164,7 @@ public class DataView extends JFrame{
 		btnEditPatient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.EditClicked();
+				controller.EditClicked("Patient",tblData.getSelectedRow());
 			}
 		});
 		
@@ -174,7 +198,9 @@ public class DataView extends JFrame{
 		toolBarData.add(btnStaff);
 		toolBarData.add(btnPat);
 		toolBarData.add(btnDep);
-		add(toolBarData, BorderLayout.SOUTH);
+		toolBarData.add(btnPrintPDF);
+		//add(toolBarData,toolBarOperations.getLocation());
+		add(toolBarData,BorderLayout.SOUTH);
 		
 		
 		//ToolBar2
@@ -192,12 +218,15 @@ public class DataView extends JFrame{
 					@Override
 					public void valueChanged(ListSelectionEvent e) {
 						btnDeleteStaff.setEnabled((tblData.getSelectedRow() >= 0));
+						btnEditStaff.setEnabled((tblData.getSelectedRow() >= 0));
 					}
 				});
 				add(new JScrollPane(tblData), BorderLayout.CENTER);
 				
 				pack();
 				setLocationRelativeTo(null);
+				
+				
 	
 				
 	}
@@ -218,6 +247,14 @@ public class DataView extends JFrame{
 	public void showError() {
 		// TODO Auto-generated method stub
 		
+	}
+	public void showError(String errorTxt) {
+		JOptionPane.showMessageDialog(this, errorTxt, "Not saved", JOptionPane.ERROR_MESSAGE);
+		
+	}
+	
+	public void showSucces(String text) {
+		JOptionPane.showMessageDialog(this, text,"",JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public void showAvailableOperations(String input) {
@@ -257,7 +294,7 @@ public class DataView extends JFrame{
 			//add(toolBarOperations, BorderLayout.NORTH);
 			toolBarOperations.repaint();
 		}
-		
+	
 		
 		
 		else {

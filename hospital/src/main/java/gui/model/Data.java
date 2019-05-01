@@ -40,22 +40,7 @@ public class Data extends AbstractTableModel {
 	public Hospital getData()
 	{ return this.hospital;}
 	
-	public void addStaff(List<JTextField> txtEntries) {
-		
-		
-		String firstName = (txtEntries.get(0).getText());
-		String lastName = (txtEntries.get(1).getText());
-		String departmentName = (txtEntries.get(2).getText());
-		String jobRole = (txtEntries.get(3).getText());
-		
-		
-		
-		if (System.registerStaff(hospital, firstName, lastName, jobRole, departmentName)) {
-			
-		}
-		readValue(whatData);
-		fireTableDataChanged(); // notify the views that data changed
-	}
+	
 
 	@Override
 	public int getColumnCount() {
@@ -98,17 +83,7 @@ public class Data extends AbstractTableModel {
 		return null;
 	}
 
-	public void removeStaff(int staffNo) {
-
-		int i = Finder.findStaff(hospital.getStaff(), staffNo);
-		if(i>-1) {
-			hospital.getStaff().remove(i);
-			readValue(whatData);
-			fireTableDataChanged();
-		}
-		
-		
-	}
+	
 	
 	public void readValue(String what) {
 		
@@ -253,6 +228,65 @@ public class Data extends AbstractTableModel {
 			d.add(staff.get(i).getJobRole().toString());
 			DisplayedData.add(d);
 		}
+		
+	}
+	public void addStaff(List<JTextField> txtEntries) {
+			
+			
+			String firstName = (txtEntries.get(0).getText());
+			String lastName = (txtEntries.get(1).getText());
+			String departmentName = (txtEntries.get(2).getText());
+			String jobRole = (txtEntries.get(3).getText());
+			if (System.registerStaff(hospital, firstName, lastName, jobRole, departmentName)) {
+				
+			}
+			readValue(whatData);
+			fireTableDataChanged(); // notify the views that data changed
+		}
+
+	public void addPatient(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addDepartment(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void editStaff(Staff staff, List<String> newValues) {
+		
+		if (System.editStaff(hospital,staff, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3))) {
+			
+		}
+		readValue(whatData);
+		fireTableDataChanged(); // notify the views that data changed
+		
+		
+	}
+	public void editPatient(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void editDepartment(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removePatient(int patNo) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+	public void removeStaff(int staffNo) {
+
+		int i = Finder.findStaffInt(hospital.getStaff(), staffNo);
+		if(i>-1) {
+			hospital.getStaff().remove(i);
+			readValue(whatData);
+			fireTableDataChanged();
+		}
+		
 		
 	}
 	

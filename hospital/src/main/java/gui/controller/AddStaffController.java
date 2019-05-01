@@ -29,7 +29,7 @@ public class AddStaffController {
 	//User clicked the Add-Button
 	public void addStaffClicked(List<JTextField> txtEntries) {
 		if(validateInput(txtEntries)) {
-			controller.addPerson( txtEntries);
+			controller.add( txtEntries,"Staff");
 		}
 		else {
 			view.showError();}
