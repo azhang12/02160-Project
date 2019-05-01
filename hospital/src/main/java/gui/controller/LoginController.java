@@ -6,6 +6,7 @@ import gui.model.Session;
 import gui.model.Data;
 import gui.model.User;
 import gui.views.LoginView;
+import hospital.Finder;
 import hospital.Staff;
 
 public class LoginController {
@@ -25,18 +26,15 @@ public class LoginController {
 	
 	//Daten auslesen!
 	public boolean validateCredentials(String username) {
-		User user = new User();
 		List<Staff> staff = data.getData().getStaff();
 		try {
 			int id = Integer.parseInt(username);
-			user.setUserId(id);
+			
 			
 			if ((!username.isEmpty())) {
 				for(Staff s : staff) {
 					if(s.getStaffNumber()==id) {
-						session.setUser(user);
-						session.setRole(s.getJobRole().toString());
-						session.setDepartment(s.getDepartment().getName());
+						session.setUser(Finder.findStaff(staff, id));
 						view.setVisible(false);
 						application.manageData(session);
 						return true;
@@ -53,6 +51,7 @@ public class LoginController {
 		}
 		view.showError();
 		return false;
+		
 		
 		
 		

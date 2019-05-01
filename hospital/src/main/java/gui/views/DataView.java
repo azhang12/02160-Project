@@ -22,6 +22,7 @@ import javax.swing.table.TableModel;
 
 import gui.controller.DataController;
 import gui.model.Session;
+import hospital.Access;
 
 
 public class DataView extends JFrame{
@@ -63,6 +64,7 @@ public class DataView extends JFrame{
 	public DataView(DataController controller) {
 		this.controller = controller;
 		initGUI();
+		
 	}
 	
 	
@@ -180,7 +182,7 @@ public class DataView extends JFrame{
 		btnDeleteDepartment.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.DeletePersonClicked(tblData.getSelectedRow());
+				controller.DeletePersonClicked("Department",tblData.getSelectedRow());
 			}
 		});
 		
@@ -226,7 +228,7 @@ public class DataView extends JFrame{
 				pack();
 				setLocationRelativeTo(null);
 				
-				
+		
 	
 				
 	}
@@ -241,7 +243,38 @@ public class DataView extends JFrame{
 	}
 
 	public void setSession(Session sessionModel) {
-		lblSession.setText(sessionModel.getDepartment() +":   " + sessionModel.getRole() + "   ("+ sessionModel.getUserId()+")");
+		lblSession.setText(sessionModel.getDepartment() +": "+ sessionModel.getUser().getJobRole() + "   ("+ sessionModel.getUserId()+")");
+		//Visibility
+		
+		if(!sessionModel.getAccess().getPatientRegistationDataAccess()){
+				btnAddPatient.setVisible(false);
+				btnDeletePatient.setVisible(false);
+				
+				btnAddStaff.setVisible(false);
+				btnDeleteStaff.setVisible(false);
+				
+				btnChangeDepartment.setVisible(false);
+				btnChangeBed.setVisible(false);
+		}
+		
+		if(!sessionModel.getAccess().getPatientAdmissionDataAccess()) {
+			btnAdmitPatient.setVisible(false);
+			btnDischargePatient.setVisible(false);
+			btnCallPatient.setVisible(false);
+		}
+		if(!sessionModel.getAccess().getPatientDataAccess()) {
+			btnFindPatients.setVisible(false);
+			btnEditPatient.setVisible(false);
+			btnPat.setVisible(false);
+			
+		}
+		if (!sessionModel.getAccess().getStaffDataAccess()) {
+			btnFindStaff.setVisible(false);
+			btnEditStaff.setVisible(false);
+			btnStaff.setVisible(false);
+			
+		}
+		
 	}
 
 	public void showError() {
@@ -263,8 +296,6 @@ public class DataView extends JFrame{
 			//toolbar Staff
 			
 			toolBarOperations.removeAll();
-			
-		
 			toolBarOperations.add(btnAddStaff);
 			toolBarOperations.add(btnDeleteStaff);
 			toolBarOperations.add(btnFindStaff);
@@ -315,6 +346,8 @@ public class DataView extends JFrame{
 	
 	
 	}
+	
+	
 
 	
 

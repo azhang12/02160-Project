@@ -3,7 +3,6 @@ package gui.model;
 public final class User {
 
 	private int userId;
-	private String role;
 	
 	
 	

@@ -12,6 +12,7 @@ import hospital.System;
 import gui.model.FilterStaffData;
 import gui.model.Session;
 import gui.model.Data;
+import gui.views.AddPatientView;
 import gui.views.AddStaffView;
 import gui.views.FilterStaffView;
 import gui.views.DataView;
@@ -52,6 +53,10 @@ public class DataController {
 		}
 		
 		else if(s.equals("Patient")) {
+			AddPatientController c = new AddPatientController(this);
+			AddPatientView view = new AddPatientView(c);
+			view.setVisible(true);
+			
 			
 		}
 		
@@ -96,6 +101,11 @@ public class DataController {
 			else if(s.equals("Patient")){
 				int patNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
 				dataModel.removePatient(patNo);
+				
+			}
+			else if(s.equals("Department")){
+				String depName = (dataModel.getValueAt(selectedRow, 0));
+				dataModel.removeDepartment(depName);
 				
 			}
 					
