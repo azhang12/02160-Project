@@ -43,7 +43,7 @@ public class PDFgenerator{
 	       Iterator<Department> deptNameIterator = departments.iterator();
 	       while(deptNameIterator.hasNext()) {
 	    	   String deptName = deptNameIterator.next().getName();
-	    	   document.add(new Paragraph(deptName, titleFont));
+	    	   document.add(new Paragraph("Department: "+deptName, titleFont));
 	    	   
 	    	   // List contents(patient information)
 	    	   List orderedList = new List(List.ORDERED);
