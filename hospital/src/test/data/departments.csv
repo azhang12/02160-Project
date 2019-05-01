@@ -1,4 +1,4 @@
-﻿Name,Inpatient,NoOfBeds,Beds available,Beds occupied, Patients wating
+﻿Name,Inpatient,NoOfBeds
 Department01,yes,13,
 Department02,yes,1,
 Department03,no,0,

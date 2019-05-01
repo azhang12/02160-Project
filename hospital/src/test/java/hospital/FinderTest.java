@@ -14,6 +14,7 @@ public class FinderTest {
 	JobRole job = hospital.JobRole.DOCTOR;
 	Staff test = new Staff("Kilian", "Speiser", job,"email", 2, new Access(), d);
 	
+	
 	@Test
 	public void findDepartmentTest() {
 		

@@ -81,7 +81,7 @@ public class Reader implements IReader{
 			String address = i.get(4);
 			String phone = i.get(5);
 			boolean alive = true;
-			if(i.get(6)!="yes") {alive=false;}
+			if(i.get(6).equals("no")) {alive=false;}
 			int patientNumber = Integer.parseInt(i.get(7));
 			String nation = i.get(8);
 			int bedNumber = Integer.parseInt(i.get(9));

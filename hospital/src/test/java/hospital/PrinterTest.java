@@ -13,6 +13,7 @@ public class PrinterTest {
 	Exporter e = new Exporter();
 	@Test
 	public void test() {
+		
 		Department dep1 = new Department("Department01");
 		Department dep2 = new Department("Department02");
 		Department dep3 = new Department("Department03");
