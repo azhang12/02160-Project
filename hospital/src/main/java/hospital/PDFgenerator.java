@@ -11,8 +11,6 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-
  
 public class PDFgenerator{
 	
@@ -43,25 +41,26 @@ public class PDFgenerator{
 	       
 // MAKE LIST
 	       // List title(department names)
-	       
 	       ArrayList<Department> departments = hospital.getDepartment();
-
-	       Iterator<Department> deptNameIterator = departments.iterator();
-	       while(deptNameIterator.hasNext()) {
-	    	   ArrayList<Patient> patients = deptNameIterator.next().getPatients();
-	    	   String deptName = deptNameIterator.next().getName();
-	    	   document.add(new Paragraph("Department: "+deptName, titleFont));
+	       
+	       for(Department dept: departments) {
+	    	   String deptName = dept.getName();
+	    	   document.add(new Paragraph("\n"+deptName, titleFont));
 	    	   
 	    	   // List contents(patient information)
 	    	   List orderedList = new List(List.ORDERED);
-	    	   Iterator<Patient> patientIterator = patients.iterator();
-	    	   while(patientIterator.hasNext()) {
-	    		   int patientNumber = patientIterator.next().getPatientNumber();
-	    		   String patientFirstName = patientIterator.next().getFirstName();
-	    		   String patientLastName = patientIterator.next().getLastName();
-	    		   boolean patientStatus = patientIterator.next().getAlive();
-	    		   orderedList.add(new ListItem(patientNumber+" | "+patientFirstName+" "+patientLastName+" | "+patientStatus));
-	    	   }
+	    	   ArrayList<Patient> patients = dept.getPatients();
+	    	   
+	    	   for(Patient patient: patients) {
+	    		   String pFirstName = patient.getFirstName();
+	    		   String pLastName = patient.getLastName();
+	    		   int pNum = patient.getPatientNumber();
+	    		   boolean pStatus = patient.getAlive();
+	    		   
+	    		   orderedList.add(new ListItem(pNum+" | "+pFirstName+" "+pLastName+" | "+pStatus));
+	    	   
+	       }
+	       
 		       document.add(orderedList);
 	       }
 
