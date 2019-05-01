@@ -52,6 +52,8 @@ public class DataView extends JFrame{
 	private JButton btnChangeDepartment = new JButton ("Change Department");
 	private JButton btnChangeBed= new JButton ("Change Bed");
 	
+	private JButton btnSaveChanges= new JButton ("Save Changes");
+	
 	
 	
 	public DataView(DataController controller) {
@@ -65,6 +67,13 @@ public class DataView extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Staff Data Manager");
 		setPreferredSize(new Dimension(800, 600));
+		
+		btnSaveChanges.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.exportData();
+			}
+		});
 		
 		btnStaff.addActionListener(new ActionListener() {
 			@Override
@@ -112,7 +121,7 @@ public class DataView extends JFrame{
 		btnEditStaff.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.EditClicked();
+				controller.EditStaffClicked();
 			}
 		});
 		
@@ -170,8 +179,11 @@ public class DataView extends JFrame{
 		
 		
 		
+		
+		
 		//Toolbar1
 		toolBarData= new JToolBar();
+		toolBarData.add(btnSaveChanges);
 		toolBarData.add(btnStaff);
 		toolBarData.add(btnPat);
 		toolBarData.add(btnDep);

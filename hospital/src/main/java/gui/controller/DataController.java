@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.swing.JTextField;
 
-
+import hospital.System;
 import gui.model.FilterStaffData;
 import gui.model.Session;
 import gui.model.Data;
@@ -101,9 +101,19 @@ public class DataController {
 		
 		
 	}
+	
+	public void EditStaffClicked() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	public void EditClicked() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void exportData() {
+		System.exportData(dataModel.getData());
 		
 	}
 
