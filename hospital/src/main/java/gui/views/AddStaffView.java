@@ -1,4 +1,4 @@
-package gui.views;
+gipackage gui.views;
 
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
