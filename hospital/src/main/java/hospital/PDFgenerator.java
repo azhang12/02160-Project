@@ -1,3 +1,5 @@
+// This class creates new PDF file named "ParticipationList.pdf" under the project folder.
+// Refresh the whole project to find the file in package explorer.
 package hospital;
 
 import java.io.FileNotFoundException;
