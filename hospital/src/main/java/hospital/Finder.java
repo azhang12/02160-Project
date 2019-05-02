@@ -43,7 +43,7 @@ public class Finder {
 		return null;
 	}
 	
-	public static int findStaff(List<Staff> staff, int staffNo) {
+	public static int findStaffInt(List<Staff> staff, int staffNo) {
 		for (int i=0; i<staff.size();++i) {
 			if(staff.get(i).getStaffNumber()==staffNo) {
 				return i;
@@ -52,11 +52,21 @@ public class Finder {
 		return -1;
 	}
 	
+	
+	public static Staff findStaff(List<Staff> staff, int staffNo) {
+		for (int i=0; i<staff.size();++i) {
+			if(staff.get(i).getStaffNumber()==staffNo) {
+				return staff.get(i);
+			}
+		}
+		return null;
+	}
+	
 	public static String findEmail(List<Staff> staff, String firstName, String lastName) {
 		
-		// removing spaces from first name and last name for email addresses
-		String fn = firstName.replace(" ", "");
-		String ln = lastName.replace(" ", "");
+		// removing spaces from first name and last name for email addresses. also converting all to lower case
+		String fn = firstName.replace(" ", "").toLowerCase();
+		String ln = lastName.replace(" ", "").toLowerCase();
 		
 		// looping through backwards should allow the system to find the email address with the highest number
 		for (int i = staff.size()-1; i>=0; i--) {

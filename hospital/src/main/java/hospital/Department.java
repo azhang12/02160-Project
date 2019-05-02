@@ -23,8 +23,9 @@ public abstract class Department {
 		this.name = Name;
 	}
 
+	// 
 	public boolean admitPatient(Patient newPatient) {
-		return this.admittedPatients.add(newPatient);
+		return this.admittedPatients.add(newPatient);	
 	}
 
 	public boolean dischargePatient(Patient patient) {

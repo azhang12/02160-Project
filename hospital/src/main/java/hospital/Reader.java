@@ -89,23 +89,30 @@ public class Reader implements IReader{
 			int bedNumber = Integer.parseInt(i.get(9));
 			int queueNumber = Integer.parseInt(i.get(10));
 			
-			
-			Department currentDep = Finder.findDepartment(dep, departmentList);
-			Patient pat = (new Patient(fName,lName,currentDep,birth,address,phone,alive,patientNumber,nation,null,0));
-			currentDep.admitPatient(pat);
-			//Identify the bed or queue number
-			if (currentDep!=null) {
-				if(bedNumber!=0&&queueNumber==0) {
-					Bed b = Finder.findBed(bedNumber, ((InpatientDepartment) currentDep).getBed());
-					b.setPatient(pat);
-					pat.setBed(b);
-					
+			if(!dep.equals("")) {
+				Department currentDep = Finder.findDepartment(dep, departmentList);
+				Patient pat = (new Patient(fName,lName,currentDep,birth,address,phone,alive,patientNumber,nation,null,0));
+				currentDep.admitPatient(pat);
+				//Identify the bed or queue number
+				if (currentDep!=null) {
+					if(bedNumber!=0&&queueNumber==0) {
+						Bed b = Finder.findBed(bedNumber, ((InpatientDepartment) currentDep).getBed());
+						b.setPatient(pat);
+						pat.setBed(b);
+						
+					}
+					else if (bedNumber==0&&queueNumber!=0) {
+						pat.setQueueNumber(queueNumber);
+					}
 				}
-				else if (bedNumber==0&&queueNumber!=0) {
-					pat.setQueueNumber(queueNumber);
-				}
+				patients.add(pat);
 			}
-			patients.add(pat);
+			else{
+				Patient pat = (new Patient(fName,lName,null,birth,address,phone,alive,patientNumber,nation,null,0));
+				patients.add(pat);
+			}
+			
+			
 				
 		}
 		return patients;

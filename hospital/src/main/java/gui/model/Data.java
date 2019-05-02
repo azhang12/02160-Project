@@ -83,17 +83,7 @@ public class Data extends AbstractTableModel {
 		return null;
 	}
 
-	public void removeStaff(int staffNo) {
-
-		int i = Finder.findStaff(hospital.getStaff(), staffNo);
-		if(i>-1) {
-			hospital.getStaff().remove(i);
-			readValue(whatData);
-			fireTableDataChanged();
-		}
-		
-		
-	}
+	
 	
 	public void readValue(String what) {
 		
@@ -255,12 +245,85 @@ public class Data extends AbstractTableModel {
 		}
 
 	public void addPatient(List<JTextField> txtEntries) {
-		// TODO Auto-generated method stub
+		
+		
+		String firstName = (txtEntries.get(0).getText());
+		String lastName = (txtEntries.get(1).getText());
+		String dob = (txtEntries.get(2).getText());
+		String address = (txtEntries.get(3).getText());
+		String phone = (txtEntries.get(4).getText());
+		String alive = (txtEntries.get(5).getText());
+		String nation= (txtEntries.get(6).getText());
+		
+		boolean aliveBool =true;
+		if(alive.equals("no")) {aliveBool=false;}
+		
+		if (System.registerPatient(hospital, firstName, lastName,dob,address,phone,aliveBool,nation)) {
+			
+		}
+		readValue(whatData);
+		fireTableDataChanged(); // notify the views that data changed
+			
 		
 	}
 
 	public void addDepartment(List<JTextField> txtEntries) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void editStaff(Staff staff, List<String> newValues) {
+		
+		if (System.editStaff(hospital,staff, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3))) {
+			
+		}
+		readValue(whatData);
+		fireTableDataChanged(); // notify the views that data changed
+		
+		
+	}
+	public void editPatient(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
+		
+	}
+	public void editDepartment(List<JTextField> txtEntries) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void removePatient(int patNo) {
+		//TO-DO Implement remove Patient
+	
+		
+		
+	}
+	public void removeStaff(int staffNo) {
+
+		int i = Finder.findStaffInt(hospital.getStaff(), staffNo);
+		if(i>-1) {
+			hospital.getStaff().remove(i);
+			readValue(whatData);
+			fireTableDataChanged();
+		}
+		
+		
+	}
+
+	public void removeDepartment(String depName) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	public void admitPatient(int patNum, String newDepartment) {
+		Patient pat = Finder.findPatient(patNum, this.hospital.getPatient());
+		Department dep = Finder.findDepartment(newDepartment, hospital.getDepartment());
+		pat.setDepartment(dep);
+		dep.admitPatient(pat);
+		readValue(whatData);
+		fireTableDataChanged();
+		
+		
 		
 	}
 	

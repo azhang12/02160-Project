@@ -75,10 +75,16 @@ public class Exporter {
 			listOfLists.add(cNames);
 			for (Object d : inputList) {
 				List<String> s = new ArrayList<String>();
+				
 		
 				s.add(((Patient) d).getFirstName());
 				s.add(((Patient) d).getLastName());
-				s.add(((Patient) d).getDepartment().getName());
+				if(((Patient) d).getDepartment()!=null) {
+					s.add(((Patient) d).getDepartment().getName());
+				}
+				else {s.add("");}
+						
+						
 				s.add(((Patient)d).getBirthday());
 				s.add(((Patient)d).getAddress());
 				s.add(((Patient)d).getPhoneNumber());
@@ -103,10 +109,19 @@ public class Exporter {
 					s.add("0");
 					s.add(Integer.toString(qNo));
 				}
+				else {
+					s.add("0");
+					s.add("0");
+				}
+				
 				
 				listOfLists.add(s);
 			}
+			
 		}
+				
+				
+		
 		else {
 			
 		}

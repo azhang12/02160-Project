@@ -39,10 +39,12 @@ public class Hospital {
 	}
 
 	// Patient
-	public void addPatient(Patient newPatient, Department newDepartment) {
+	public void addPatient(Patient newPatient) {
 		this.patientList.add(newPatient);
-		newDepartment.admitPatient(newPatient);
+		
 	}
+	
+	
 
 	public void removePatient(Patient rmPatient, Department department) {
 		this.patientList.remove(rmPatient);

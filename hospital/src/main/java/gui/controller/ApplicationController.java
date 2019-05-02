@@ -9,20 +9,24 @@ public class ApplicationController {
 	
 	private LoginController loginController;
 	private DataController dataController;
+	public String departmentFile ="src/test/data/depExport.csv";
+	public String staffFile ="src/test/data/staffExport.csv";
+	public String patFile="src/test/data/patExport.csv";
 	
 	
 	public void manageData(Session session) {
-		Data d = new Data(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"),"Staff");
+		Data d = new Data(System.loadData(departmentFile, staffFile, patFile),"Staff");
 		DataController c = new DataController(this,d,session);
 		DataView view = new DataView(c);
-		c.setView(view,"Staff");
+		c.setView(view,"Department");
+		
 		view.setVisible(true);
 	}
 	
 	
 	
-	public void login(Data d) {
-		
+	public void login() {
+		Data d = new Data(System.loadData(departmentFile , staffFile, patFile),"Department");
 		loginController = new LoginController(this,d);
 		loginController.display();
 	}
@@ -30,9 +34,9 @@ public class ApplicationController {
 	
 	
 	public static void main(String[] args) {
-		Data d = new Data(System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv"),"Staff");
+		
 		ApplicationController app = new ApplicationController();
-		app.login(d);
+		app.login();
 		
 	}
 

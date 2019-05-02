@@ -10,6 +10,7 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -21,6 +22,7 @@ import javax.swing.table.TableModel;
 
 import gui.controller.DataController;
 import gui.model.Session;
+import hospital.Access;
 
 
 public class DataView extends JFrame{
@@ -44,6 +46,8 @@ public class DataView extends JFrame{
 	private JButton btnStaff = new JButton("Staff");
 	private JButton btnPat = new JButton("Patients");
 	private JButton btnDep = new JButton("Departments");
+	private JButton btnPrintPDF= new JButton("Print PDF of all Departments");
+	
 	private JButton btnEditPatient = new JButton("Edit");
 	private JButton btnEditStaff = new JButton("Edit");
 	
@@ -60,6 +64,7 @@ public class DataView extends JFrame{
 	public DataView(DataController controller) {
 		this.controller = controller;
 		initGUI();
+		
 	}
 	
 	
@@ -100,6 +105,13 @@ public class DataView extends JFrame{
 				controller.ShowData("Departments");
 			}
 		});
+		btnPrintPDF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				controller.PrintPdf();
+			}
+		});
 		
 		//BUTTO LISTENERS FOR ALL STAFF OPERATIONS
 		btnAddStaff.addActionListener(new ActionListener() {
@@ -112,7 +124,7 @@ public class DataView extends JFrame{
 		btnDeleteStaff.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.DeletePersonClicked(tblData.getSelectedRow());
+				controller.DeletePersonClicked("Staff",tblData.getSelectedRow());
 			}
 		});
 		
@@ -140,7 +152,7 @@ public class DataView extends JFrame{
 		btnDeletePatient.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.DeletePersonClicked(tblData.getSelectedRow());
+				controller.DeletePersonClicked("Patient",tblData.getSelectedRow());
 			}
 		});
 		
@@ -158,6 +170,13 @@ public class DataView extends JFrame{
 			}
 		});
 		
+		btnAdmitPatient.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.AdmitPatientClicked(tblData.getSelectedRow());
+			}
+		});
+		
 		//BUTTON LISTENERS FOR ALL DEPARTMENT OPERATIONS
 		
 		btnAddDepartment.addActionListener(new ActionListener() {
@@ -170,7 +189,7 @@ public class DataView extends JFrame{
 		btnDeleteDepartment.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.DeletePersonClicked(tblData.getSelectedRow());
+				controller.DeletePersonClicked("Department",tblData.getSelectedRow());
 			}
 		});
 		
@@ -188,6 +207,7 @@ public class DataView extends JFrame{
 		toolBarData.add(btnStaff);
 		toolBarData.add(btnPat);
 		toolBarData.add(btnDep);
+		toolBarData.add(btnPrintPDF);
 		//add(toolBarData,toolBarOperations.getLocation());
 		add(toolBarData,BorderLayout.SOUTH);
 		
@@ -208,12 +228,15 @@ public class DataView extends JFrame{
 					public void valueChanged(ListSelectionEvent e) {
 						btnDeleteStaff.setEnabled((tblData.getSelectedRow() >= 0));
 						btnEditStaff.setEnabled((tblData.getSelectedRow() >= 0));
+						btnAdmitPatient.setEnabled((tblData.getSelectedRow() >= 0));
 					}
 				});
 				add(new JScrollPane(tblData), BorderLayout.CENTER);
 				
 				pack();
 				setLocationRelativeTo(null);
+				
+		
 	
 				
 	}
@@ -228,12 +251,51 @@ public class DataView extends JFrame{
 	}
 
 	public void setSession(Session sessionModel) {
-		lblSession.setText(sessionModel.getDepartment() +":   " + sessionModel.getRole() + "   ("+ sessionModel.getUserId()+")");
+		lblSession.setText(sessionModel.getDepartment() +": "+ sessionModel.getUser().getJobRole() + "   ("+ sessionModel.getUserId()+")");
+		//Visibility
+		
+		if(!sessionModel.getAccess().getPatientRegistationDataAccess()){
+				btnAddPatient.setVisible(false);
+				btnDeletePatient.setVisible(false);
+				
+				btnAddStaff.setVisible(false);
+				btnDeleteStaff.setVisible(false);
+				
+				btnChangeDepartment.setVisible(false);
+				btnChangeBed.setVisible(false);
+		}
+		
+		if(!sessionModel.getAccess().getPatientAdmissionDataAccess()) {
+			btnAdmitPatient.setVisible(false);
+			btnDischargePatient.setVisible(false);
+			btnCallPatient.setVisible(false);
+		}
+		if(!sessionModel.getAccess().getPatientDataAccess()) {
+			btnFindPatients.setVisible(false);
+			btnEditPatient.setVisible(false);
+			btnPat.setVisible(false);
+			
+		}
+		if (!sessionModel.getAccess().getStaffDataAccess()) {
+			btnFindStaff.setVisible(false);
+			btnEditStaff.setVisible(false);
+			btnStaff.setVisible(false);
+			
+		}
+		
 	}
 
 	public void showError() {
 		// TODO Auto-generated method stub
 		
+	}
+	public void showError(String errorTxt) {
+		JOptionPane.showMessageDialog(this, errorTxt, "Not saved", JOptionPane.ERROR_MESSAGE);
+		
+	}
+	
+	public void showSucces(String text) {
+		JOptionPane.showMessageDialog(this, text,"",JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public void showAvailableOperations(String input) {
@@ -242,8 +304,6 @@ public class DataView extends JFrame{
 			//toolbar Staff
 			
 			toolBarOperations.removeAll();
-			
-		
 			toolBarOperations.add(btnAddStaff);
 			toolBarOperations.add(btnDeleteStaff);
 			toolBarOperations.add(btnFindStaff);
@@ -273,7 +333,7 @@ public class DataView extends JFrame{
 			//add(toolBarOperations, BorderLayout.NORTH);
 			toolBarOperations.repaint();
 		}
-		
+	
 		
 		
 		else {
@@ -294,6 +354,12 @@ public class DataView extends JFrame{
 	
 	
 	}
+	
+	public void showAdmitPatient() {
+		
+	}
+	
+	
 
 	
 
