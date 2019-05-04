@@ -38,7 +38,7 @@ private static final long serialVersionUID = 8981053836072595592L;
 		this.txtNames = new ArrayList<String>();
 		this.depCombo = new String[Hospital.getDepartment().size() + 1];
 		this.jobCombo = new String[JobRole.values().length + 1];
-		this.inputValues = new ArrayList<String>();;
+		this.inputValues = new ArrayList<String>();
 		
 		initGUI();
 	}
@@ -103,7 +103,7 @@ private static final long serialVersionUID = 8981053836072595592L;
 		pack();
 		setLocationRelativeTo(null);
 	}
-
+	
 	public void showError(String message) {
 		JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);	
 	}
