@@ -27,22 +27,39 @@ public class AddStaffController {
 	}
 	
 	//User clicked the Add-Button
-	public void addStaffClicked(List<JTextField> txtEntries) {
-		if(validateInput(txtEntries)) {
-			controller.add( txtEntries,"Staff");
+	public void addStaffClicked(List<String> entries, List<String> txtNames) {
+		if(validateInput(entries, txtNames) == "") {
+			controller.add(entries,"Staff");
+			view.dispose();
 		}
 		else {
-			view.showError();}
+			view.showError(validateInput(entries, txtNames));}
 	}
 		
 	
 		//Are all Values Correct?
-	private boolean validateInput(List<JTextField> txtEntries) {
-		for (JTextField f : txtEntries) {
-			if(f.getText().isEmpty()) {return false;}
+	private String validateInput(List<String> entries, List<String> txtNames) {
+		String errMess = "";
+		int errMessCount = 0;
+		for (int i = 0; i < entries.size(); i++){
+			if(entries.get(i) == null) {
+				if (errMessCount > 0) {
+					errMess += ", ";
+				}
+				
+				errMess += txtNames.get(i);
+				errMessCount += 1;
+			}
 		}
-		return true;
+	
 		
+		if (errMessCount == 1) {
+			errMess += " field is empty";
+		} else if (errMessCount > 1) {
+			errMess += " fields are empty";
+		}
+		
+		return errMess;	
 	}
 	
 	

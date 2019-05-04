@@ -11,9 +11,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 import gui.controller.AddStaffController;
 import gui.utils.GridBagLayoutUtils;
+import hospital.Hospital;
+import hospital.JobRole;
 
 public class AddStaffView extends JFrame implements IError {
 	
@@ -23,11 +26,19 @@ private static final long serialVersionUID = 8981053836072595592L;
 	private List <JTextField> txtEntries;
 	private List<String> txtNames;
 	private AddStaffController controller;
+	private String[] depCombo;
+	private String[] jobCombo;
+	private List<String> inputValues;
+	private JComboBox<String> jobComboBox;
+	private JComboBox<String> depComboBox;
 	
 	public AddStaffView(AddStaffController controller) {
 		this.controller=controller;
 		this.txtEntries= new ArrayList<JTextField>();
-		this.txtNames= new ArrayList<String>();
+		this.txtNames = new ArrayList<String>();
+		this.depCombo = new String[Hospital.getDepartment().size() + 1];
+		this.jobCombo = new String[JobRole.values().length + 1];
+		this.inputValues = new ArrayList<String>();;
 		
 		initGUI();
 	}
@@ -43,58 +54,58 @@ private static final long serialVersionUID = 8981053836072595592L;
 		txtNames.add("Department Name");
 		txtNames.add("Job Role");
 		
-		for ( int i=0; i<txtNames.size();++i) {
-			this.txtEntries.add(new JTextField(20));
+		// adding text names for label names
+		for (int i = 0; i < txtNames.size(); ++i) {
 			add(new JLabel(txtNames.get(i)+":"), GridBagLayoutUtils.constraint(0, i, 5));
-			add(txtEntries.get(txtEntries.size()-1), GridBagLayoutUtils.constraint(1, i, 5));
-			add(new JLabel("<html><font color=red>!</font></html>"), GridBagLayoutUtils.constraint(2, i, 5));	
 		}
 		
-		// if fn is empty
-			// exclaim is visible
-			// hover over exclaim says 'first name field is empty' --> append
+		// defining an array with the vertical index of each input type:
+		int[] text = {0, 1};
 		
-		// if ln is empty
-			// exclaim is visible
-			// hover over exclaim says 'first name field is empty'
+		for ( int i=0; i < text.length;++i) {
+			this.txtEntries.add(new JTextField(20));
+			add(txtEntries.get(i), GridBagLayoutUtils.constraint(1, text[i], 5));
+		}
 		
-		// if dep is empty
-			// exclaim is visible
-			// hover over exclaim says 'dep field is empty'
+		// department combo box
+		this.depCombo[0] = "Make selection";
+		for (int i = 1; i < depCombo.length; i++) {
+			this.depCombo[i] = Hospital.getDepartment().get(i - 1).getName();
+		}
+		depComboBox = new JComboBox<>(depCombo);
+
+		// job role combo box
+		this.jobCombo[0] = "Make selection";
+		for (int i = 1; i < jobCombo.length; i++) {
+			this.jobCombo[i] = JobRole.values()[i - 1].toString();
+		}
+		jobComboBox = new JComboBox<>(jobCombo);
 		
-		// if dep is invalid
-			// exclaim is visible
-			// hover over exclaim says 'dep field is invalid'
-		
-		// if job is empty
-			// exclaim is visible
-			// hover over exclaim says 'job field is empty'
-		
-		// if fn is empty
-			// exclaim is visible
-			// hover over exclaim says 'first name field is empty'
-		
-		// if (i1 && i2 && i3 && i4) {
-			// 
-		
+		// placing combo boxes
+		add(depComboBox, GridBagLayoutUtils.constraint(1, 2, 5));
+		add(jobComboBox, GridBagLayoutUtils.constraint(1, 3, 5));
 		
 		//add a button.
 		btnSave = new JButton("Add");
 		btnSave.setBounds(50, 150, 100, 30);
-		add(btnSave,GridBagLayoutUtils.constraint(1, txtEntries.size(), 5));
+		add(btnSave,GridBagLayoutUtils.constraint(1, txtNames.size(), 5));
 		btnSave.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.addStaffClicked(txtEntries);
+				inputValues.add(txtEntries.get(0).getText());
+				inputValues.add(txtEntries.get(1).getText());
+				inputValues.add((String)depComboBox.getSelectedItem());
+				inputValues.add((String)jobComboBox.getSelectedItem());
+				
+				controller.addStaffClicked(inputValues, txtNames);
 			}
 		});
 		pack();
 		setLocationRelativeTo(null);
 	}
 
-	public void showError() {
-		JOptionPane.showMessageDialog(this, "You are missing some Information", "Not saved", JOptionPane.ERROR_MESSAGE);
-		
+	public void showError(String message) {
+		JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);	
 	}
 
 

@@ -17,7 +17,7 @@ import hospital.System;
 
 public class Data extends AbstractTableModel {
 	private static final long serialVersionUID = -8100080945080186023L;
-	private Hospital hospital;
+	public static Hospital hospital;
 	private String whatData;
 	private List<String>  ColumnNames= new ArrayList<String>();
 	private List<List<String>>  DisplayedData = new ArrayList<List<String>>();
@@ -93,7 +93,7 @@ public class Data extends AbstractTableModel {
 		else if (what=="Departments") {setTableToDepartments(hospital);}
 	}
 	
-	private void setTableToDepartments(Hospital data) {
+	public void setTableToDepartments(Hospital data) {
 		DisplayedData.clear();
 		ColumnNames.clear();
 		List<Department> dep = hospital.getDepartment();
@@ -230,13 +230,12 @@ public class Data extends AbstractTableModel {
 		}
 		
 	}
-	public void addStaff(List<JTextField> txtEntries) {
+	public void addStaff(List<String> txtEntries) {	
 			
-			
-			String firstName = (txtEntries.get(0).getText());
-			String lastName = (txtEntries.get(1).getText());
-			String departmentName = (txtEntries.get(2).getText());
-			String jobRole = (txtEntries.get(3).getText());
+			String firstName = (txtEntries.get(0));
+			String lastName = (txtEntries.get(1));
+			String departmentName = (txtEntries.get(2));
+			String jobRole = (txtEntries.get(3));
 			if (System.registerStaff(hospital, firstName, lastName, jobRole, departmentName)) {
 				
 			}
@@ -244,16 +243,16 @@ public class Data extends AbstractTableModel {
 			fireTableDataChanged(); // notify the views that data changed
 		}
 
-	public void addPatient(List<JTextField> txtEntries) {
+	public void addPatient(List<String> txtEntries) {
 		
 		
-		String firstName = (txtEntries.get(0).getText());
-		String lastName = (txtEntries.get(1).getText());
-		String dob = (txtEntries.get(2).getText());
-		String address = (txtEntries.get(3).getText());
-		String phone = (txtEntries.get(4).getText());
-		String alive = (txtEntries.get(5).getText());
-		String nation= (txtEntries.get(6).getText());
+		String firstName = (txtEntries.get(0));
+		String lastName = (txtEntries.get(1));
+		String dob = (txtEntries.get(2));
+		String address = (txtEntries.get(3));
+		String phone = (txtEntries.get(4));
+		String alive = (txtEntries.get(5));
+		String nation= (txtEntries.get(6));
 		
 		boolean aliveBool =true;
 		if(alive.equals("no")) {aliveBool=false;}
@@ -267,7 +266,7 @@ public class Data extends AbstractTableModel {
 		
 	}
 
-	public void addDepartment(List<JTextField> txtEntries) {
+	public void addDepartment(List<String> txtEntries) {
 		// TODO Auto-generated method stub
 		
 	}

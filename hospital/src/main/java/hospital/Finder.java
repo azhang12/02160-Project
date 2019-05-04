@@ -71,7 +71,7 @@ public class Finder {
 		// looping through backwards should allow the system to find the email address with the highest number
 		for (int i = staff.size()-1; i>=0; i--) {
 			
-			String em = staff.get(i).getEmail(); // get the staff member's email address
+			String em = staff.get(i).getEmail(); // get email address
 			String emID = em.split("@")[0]; // isolate the part of the email before the "@"
 			if (Pattern.matches(fn + "." + ln, emID)) { 
 				return (fn + "." + ln + "2@hospital.dk"); // if only 1 exists
@@ -81,7 +81,7 @@ public class Finder {
 				return (fn + "." + ln + (oldNum + 1) + "@hospital.dk");
 			}
 		}
-		return (fn + "." + ln + "@hospital.dk"); // this is only returned if it was already an original email address
+		return (fn + "." + ln + "@hospital.dk"); // only returned if it is a unique email address
 
 	}
 	

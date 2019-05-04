@@ -1,19 +1,13 @@
 package hospital;
 
-
-
-
-
 public class Staff extends Person {
 	
 	private JobRole jobRole;
 	private String eMail;
 	private int staffNumber;
 	private Access access;
+	
 	//Constructor Implementation
-	
-	
-	
 	public Staff(String FirstName, String LastName, JobRole role, String mail,int staffNo,  Access level, Department dep) {
 		
 		this.firstName = FirstName;
@@ -24,9 +18,6 @@ public class Staff extends Person {
 		this.access = level;
 		this.department = dep;
 	}
-	
-	
-	
 	
 	//Getters and Setters to get and set Data
 	public JobRole getJobRole() {

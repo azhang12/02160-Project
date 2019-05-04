@@ -1,6 +1,7 @@
 package hospital;
 // comment
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
 
@@ -73,9 +74,7 @@ public class Hospital {
 		return patientList;
 	}
 
-	public ArrayList<Department> getDepartment() {
+	public static ArrayList<Department> getDepartment() {
 		return departmentList;
 	}
-
-
 }

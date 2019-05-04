@@ -28,7 +28,7 @@ public class AddPatientController {
 	//User clicked the Add-Button
 	public void addPatientClicked(List<JTextField> txtEntries) {
 		if(validateInput(txtEntries)) {
-			controller.add( txtEntries,"Patient");
+			controller.add(txtEntries,"Patient");
 		}
 		else {
 			view.showError();}

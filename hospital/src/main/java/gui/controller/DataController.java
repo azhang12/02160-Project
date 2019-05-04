@@ -55,24 +55,20 @@ public class DataController {
 		else if(s.equals("Patient")) {
 			AddPatientController c = new AddPatientController(this);
 			AddPatientView view = new AddPatientView(c);
-			view.setVisible(true);
-			
-			
+			view.setVisible(true);	
 		}
 		
 		else if(s.equals("Staff")) {
 			AddStaffController c = new AddStaffController(sessionModel,this);
 			AddStaffView view = new AddStaffView(c);
 			c.setView(view);
-			view.setVisible(true);
-			
-		}
-		
+			view.setVisible(true);	
+		}	
 	}
 	
 	
 
-	public void add(List<JTextField> txtEntries,String whatData) {
+	public void add(List<String> txtEntries,String whatData) {
 		
 		if(whatData.equals("Staff")) {
 			dataModel.addStaff(txtEntries);
@@ -85,9 +81,7 @@ public class DataController {
 		}
 		else {
 			view.showError();
-		}
-			
-			
+		}	
 	}
 
 
