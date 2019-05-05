@@ -3,7 +3,7 @@ package hospital;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Department {
+public abstract class Department implements IObserver {
 
 	protected String name;
 

@@ -1,11 +1,13 @@
 package hospital;
 
-public class Staff extends Person {
+import java.util.ArrayList;
+public class Staff extends Person implements ISubject {
 	
 	private JobRole jobRole;
 	private String eMail;
 	private int staffNumber;
 	private Access access;
+	private ArrayList<IObserver> observers;
 	
 	//Constructor Implementation
 	public Staff(String FirstName, String LastName, JobRole role, String mail,int staffNo,  Access level, Department dep) {
@@ -17,6 +19,7 @@ public class Staff extends Person {
 		this.staffNumber = staffNo;
 		this.access = level;
 		this.department = dep;
+		observers = new ArrayList<IObserver>();
 	}
 	
 	//Getters and Setters to get and set Data
@@ -50,6 +53,28 @@ public class Staff extends Person {
 		return new Staff(this.getFirstName(),this.getLastName(),this.getJobRole(),this.getEmail(),this.getStaffNumber(),this.getAccessLevel(),this.getDepartment());
 		
 	}
+
+	@Override
+	public void registerObserver(IObserver observer) {
+		observers.add(observer);
+		
+	}
+
+	@Override
+	public void unregisterObserver(IObserver observer) {
+		int observerIndex = observers.indexOf(observer);
+		observers.remove(observerIndex);
+		
+	}
+
+	@Override
+	public void notifyObserver() {
+		for ( IObserver observer: observers) {
+			observer.update(this);
+		}
+		
+	}
+
 	
 	
 }
