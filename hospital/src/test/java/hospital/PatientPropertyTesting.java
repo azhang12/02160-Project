@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class PatientPropertyTesting {
-  Department dep1 = new Department("Department07");
+  Department dep1 = new InpatientDepartment("Department07",4);
   Bed bed1 = new Bed();
   Bed bed2 = new Bed();
 

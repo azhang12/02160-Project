@@ -47,4 +47,8 @@ public class ExporterTest {
 		
 	}
 
+	@Test 
+	public void testExceptionCatch() {
+		assertFalse(e.export(hospital.getPatient(), "src/test/data/staff3.cs"));
+	}
 }

@@ -2,6 +2,7 @@ package hospital;
 
 import static org.junit.Assert.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.junit.Test;
@@ -29,14 +30,13 @@ public class ReaderTest {
 		
 		assertEquals(2,s.size());
 		
-		
 	}
 	
 	
 	@Test
 	public void testReadPatients() {
 	
-		assertEquals(1,p.size());
+		assertEquals(3,p.size());
 	}
 	
 	@Test 
@@ -47,6 +47,21 @@ public class ReaderTest {
 	@Test 
 	public void testPatientsinDepartment(){
 		assertTrue("Patient is admitted to the Department01",1==d.get(0).getPatients().size());
+	}
+	
+	public void testPatintQueue() {
+		
+		Patient pat = new Patient("Jamal","Peters",d.get(3),"November","Cologne","+223132",false,2,"Germany",new Bed(),1);
+		
+		
+		assertTrue("Patient is added to Queue", d.get(3).getPatients().get(0).getQueueNumber()==1);
+	}
+	
+	@Test 
+	public void testException() {
+		String exc = "depart.cs";
+		assertEquals(r.read(exc),null);
+		
 	}
 	
 	

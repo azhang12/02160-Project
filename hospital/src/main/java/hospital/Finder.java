@@ -96,10 +96,9 @@ public class Finder {
 		else if(role==JobRole.NURSE) {
 			return new StaffAccess();
 		}
-		else if(role==JobRole.IT) {
+		else  {
 			return new ICTAccess();
 		}
-		return null;
 	}
 		
 }

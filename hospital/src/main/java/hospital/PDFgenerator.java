@@ -56,8 +56,12 @@ public class PDFgenerator{
 	    		   String pLastName = patient.getLastName();
 	    		   int pNum = patient.getPatientNumber();
 	    		   boolean pStatus = patient.getAlive();
+	    		   String alive ="";
+	    		   if (pStatus) {alive = "Alive";}
+	    		   else { alive = "Died";}
 	    		   
-	    		   orderedList.add(new ListItem(pNum+" | "+pFirstName+" "+pLastName+" | "+pStatus));
+	    		   
+	    		   orderedList.add(new ListItem(pNum+" | "+pFirstName+" "+pLastName+" | "+alive));
 	    	   
 	       }
 	       

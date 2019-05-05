@@ -21,6 +21,8 @@ public abstract class Department {
 
 	Department(String Name) {
 		this.name = Name;
+		this.admittedPatients= new ArrayList<Patient>();
+		this.staff = new ArrayList<Staff>();
 	}
 
 	// 
@@ -50,6 +52,13 @@ public abstract class Department {
 
 	public String toString() {
 		return this.name;
+	}
+	
+	public void setPatient(ArrayList<Patient> newList) {
+		this.admittedPatients=newList;
+	}
+	public void setStaff(ArrayList<Staff> newList) {
+		this.staff=newList;
 	}
 
 }
