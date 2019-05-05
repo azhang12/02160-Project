@@ -1,5 +1,7 @@
 package gui.controller;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JTextField;
@@ -27,8 +29,14 @@ public class AddPatientController {
 	
 	//User clicked the Add-Button
 	public void addPatientClicked(List<JTextField> txtEntries) {
+		// Added these lines below to get rid of the error
+		List<String> tempList = Arrays.asList();				//
 		if(validateInput(txtEntries)) {
-			controller.add(txtEntries,"Patient");
+			for(JTextField tF : txtEntries) {					//
+				String t = tF.getText();						//
+				tempList.add(t);								//
+			}													//
+			controller.add(tempList,"Patient");					// tempList was txtEntries
 		}
 		else {
 			view.showError();}
@@ -37,6 +45,7 @@ public class AddPatientController {
 	
 		//Are all Values Correct?
 	private boolean validateInput(List<JTextField> txtEntries) {
+		
 		for (JTextField f : txtEntries) {
 			if(f.getText().isEmpty()) {return false;}
 		}
