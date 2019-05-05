@@ -6,28 +6,39 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import gui.model.StaffData;
+import gui.model.Data;
 import hospital.Hospital;
+import hospital.InpatientDepartment;
 import hospital.JobRole;
 import hospital.Staff;
+import hospital.StaffAccess;
 import hospital.System;
 
 public class LoginControllerTest {
 	
 	ApplicationController app = new ApplicationController();
-	Hospital hosp = System.loadData("src/test/data/departments.csv" , "src/test/data/staff.csv", "src/test/data/patients.csv");
-	
-	StaffData data = new StaffData(hosp,"Staff");
+	Hospital hosp = new Hospital();
+	Staff test = new Staff("Kilian", "Speiser", JobRole.DOCTOR,"kilian.speiser@hospital.dk", 2, new StaffAccess(), new InpatientDepartment("Dep01",3));
+	Data data = new Data();
 	LoginController controller = new LoginController(app,data);
+	
 	
 	@Test
 	public void validateCredentialsTest() {
-		if(System.registerStaff(hosp,"Kilian", "Speiser", "Doctor", "Department01"));
-		controller.validateCredentials("3");
-		Staff s = (Staff)hosp.getStaff().get(2);
-		assertEquals(hosp.getStaff().size(),3);
-		assertTrue("Staff was not added as Department is missing",s.getStaffNumber()==3);
+		hosp.addStaff(test);
+		assertTrue("User was found",controller.validateCredentials("2"));
 	}
 	
+	@Test
+	public void validateTestEmpty() {
+		assertFalse("No input",controller.validateCredentials(""));
+	}
+	@Test
+	public void validateTestNotFound() {
+		assertFalse("No input",controller.validateCredentials("4"));
+	}
+	
+	
 }
+
 

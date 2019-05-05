@@ -53,8 +53,8 @@ public class LoginView extends JFrame implements IError {
 		
 	}
 
-	public void showError() {
-		JOptionPane.showMessageDialog(this, "UserId not found", "Login error", JOptionPane.ERROR_MESSAGE);
+	public void showError(String errorText) {
+		JOptionPane.showMessageDialog(this, errorText, "Login error", JOptionPane.ERROR_MESSAGE);
 		
 	}
 	

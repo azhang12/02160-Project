@@ -2,7 +2,7 @@ package hospital;
 
 public class StaffAccess extends Access {
 	
-	StaffAccess() {
+	public StaffAccess() {
 		super();
 		enablePatientDataAccess();
 		enablePatientAdmissionDataAccess();

@@ -39,6 +39,7 @@ public class AddStaffTest {
 		view.setVisible(true);
 		view.setVisible(true);
 		
+		
 		int k=0;
 		k=1;
 		

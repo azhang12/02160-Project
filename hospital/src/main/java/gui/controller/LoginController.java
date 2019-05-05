@@ -31,7 +31,7 @@ public class LoginController {
 			int id = Integer.parseInt(username);
 			
 			
-			if ((!username.isEmpty())) {
+			
 				for(Staff s : staff) {
 					if(s.getStaffNumber()==id) {
 						session.setUser(Finder.findStaff(staff, id));
@@ -41,18 +41,14 @@ public class LoginController {
 					}
 				}
 				
-			} else {
-				view.showError();
-			}
 		}
 		
 		catch(Exception e) {
-			view.showError();
+			view.showError("No Input!");
+			return false;
 		}
-		view.showError();
+		view.showError("User Id not found!");
 		return false;
-		
-		
 		
 		
 		
