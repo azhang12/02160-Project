@@ -11,7 +11,7 @@ public class ExporterTest {
 	
 	
 	Exporter e = new Exporter();
-	Hospital hospital = System.loadData("src/test/data/departments.csv",  "src/test/data/staff.csv", "src/test/data/patients.csv");
+	Hospital hospital = System.loadData("src/test/data/depExport.csv",  "src/test/data/staffExport.csv", "src/test/data/patExport.csv");
 	@Test
 	public void test() {
 		

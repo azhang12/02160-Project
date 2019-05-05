@@ -10,9 +10,9 @@ import hospital.Reader;
 public class ReaderTest {
 
 	Reader r = new Reader();
-	ArrayList <Department> d = r.readDepartment("src/test/data/departments.csv");
-	ArrayList <Staff> s = r.readStaff(d, "src/test/data/staff.csv");
-	ArrayList <Patient> p = r.readPatients (d, "src/test/data/patients.csv");
+	ArrayList <Department> d = r.readDepartment("src/test/data/depExport.csv");
+	ArrayList <Staff> s = r.readStaff(d, "src/test/data/staffExport.csv");
+	ArrayList <Patient> p = r.readPatients (d, "src/test/data/patExport.csv");
 	
 	
 	
@@ -28,7 +28,7 @@ public class ReaderTest {
 	public void testReadStaff() {
 		
 		
-		assertEquals(2,s.size());
+		assertEquals(4,s.size());
 		
 	}
 	
@@ -36,17 +36,17 @@ public class ReaderTest {
 	@Test
 	public void testReadPatients() {
 	
-		assertEquals(3,p.size());
+		assertEquals(2,p.size());
 	}
 	
 	@Test 
 	public void testStaffinDepartment(){
-		assertTrue("Staff works for the Department",1==d.get(2).getStaff().size());
+		assertTrue("Staff works for the Department",0==d.get(2).getStaff().size());
 	}
 	
 	@Test 
 	public void testPatientsinDepartment(){
-		assertTrue("Patient is admitted to the Department01",1==d.get(0).getPatients().size());
+		assertTrue("Patient is admitted to the Department01",2==d.get(0).getPatients().size());
 	}
 	
 	public void testPatintQueue() {
