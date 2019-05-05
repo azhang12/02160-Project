@@ -98,7 +98,7 @@ public class Reader implements IReader{
 					if(bedNumber!=0&&queueNumber==0) {
 						Bed b = Finder.findBed(bedNumber, ((InpatientDepartment) currentDep).getBed());
 						b.setPatient(pat);
-						pat.setBed(b);
+						pat.setBed(b,true);
 						
 					}
 					else if (bedNumber==0&&queueNumber!=0) {
