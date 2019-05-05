@@ -17,8 +17,8 @@ public class PDFgenerator{
    public static void printDepartments(Hospital hospital){
 	   
 // SET FONT STYLE
-	   Font headFont = FontFactory.getFont(FontFactory.HELVETICA, 40, Font.BOLD, new CMYKColor(100,100,100,100));
-	   Font titleFont = FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD, new CMYKColor(99, 18, 0, 95));
+	   Font headFont = FontFactory.getFont(FontFactory.HELVETICA, 30, Font.BOLD, new CMYKColor(100,100,100,100));
+	   Font titleFont = FontFactory.getFont(FontFactory.HELVETICA, 15, Font.BOLD, new CMYKColor(99, 18, 0, 95));
 
 	   
 	   
@@ -55,14 +55,14 @@ public class PDFgenerator{
 	    		   String pFirstName = patient.getFirstName();
 	    		   String pLastName = patient.getLastName();
 	    		   int pNum = patient.getPatientNumber();
-	    		   String pStatus;
-	    		   if (patient.getAlive()==true){
-	    			   pStatus = "Alive";
-	    		   } else {
-	    			   pStatus = "Dead";
-	    		   }
+
+	    		   boolean pStatus = patient.getAlive();
+	    		   String alive ="";
+	    		   if (pStatus) {alive = "Alive";}
+	    		   else { alive = "Dead";}
 	    		   
-	    		   orderedList.add(new ListItem(pNum+" | "+pFirstName+" "+pLastName+" | "+pStatus));
+	    		   
+	    		   orderedList.add(new ListItem(pNum+" | "+pFirstName+" "+pLastName+" | "+alive));
 	    	   
 	       }
 	       

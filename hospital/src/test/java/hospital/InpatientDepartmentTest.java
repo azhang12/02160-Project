@@ -8,8 +8,9 @@ public class InpatientDepartmentTest {
 	
 	InpatientDepartment testDepartment1 = new InpatientDepartment();
 	InpatientDepartment testDepartment2 = new InpatientDepartment();
+	Bed testBed = new Bed();
 	
-	Patient testPatient = new Patient("Bill", "Smith", null, "22/04/1998", "Elektrovej, Kongens Lyngby 2800, Denmark", "+45927564", true, 1, "Danish", null, null);
+	Patient testPatient = new Patient("Bill", "Smith", testDepartment1, "22/04/1998", "Elektrovej, Kongens Lyngby 2800, Denmark", "+45927564", true, 1, "Danish", testBed, 1);
 	
 	@Test 
 	public void checkAlreadyAssigned() {
