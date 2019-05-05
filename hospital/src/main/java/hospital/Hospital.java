@@ -7,7 +7,7 @@ import javax.swing.text.html.HTMLDocument.Iterator;
 
 import java.util.ArrayList;
 
-public class Hospital implements IObserver{
+public class Hospital {
 
 	// array lists
 	protected static ArrayList<Staff> staffList = new ArrayList<Staff>();
@@ -16,9 +16,11 @@ public class Hospital implements IObserver{
 
 	// constructor
 	public Hospital() {
+		
+		this.departmentList = new ArrayList<Department>();
 		this.staffList = new ArrayList<Staff>();
 		this.patientList = new ArrayList<Patient>();
-		this.departmentList = new ArrayList<Department>();
+		
 
 	}
 
@@ -79,22 +81,5 @@ public class Hospital implements IObserver{
 	}
 
 
-	@Override
-	public void update(Staff staff) {
-		int staffIndex = this.staffList.indexOf(staff);
-		if(staffIndex!=-1) {
-			for (Department dep: this.departmentList) {
-				int depIndex = dep.getStaff().indexOf(staff);
-				if(depIndex!=-1) {
-					//remove staff from old Department
-					ArrayList<Staff> newList = dep.getStaff();
-					newList.remove(depIndex);
-					dep.setStaff(newList);
-				}
-			//Add staff to new Department
-			staff.getDepartment().addStaff(staff);
-			}
-		}
-		
-	}
+	
 }

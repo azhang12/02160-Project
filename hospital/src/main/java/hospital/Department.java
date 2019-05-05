@@ -60,5 +60,45 @@ public abstract class Department implements IObserver {
 	public void setStaff(ArrayList<Staff> newList) {
 		this.staff=newList;
 	}
-
+	@Override
+	public void update(Person toUpdate) {
+		if(toUpdate instanceof Staff) {
+			//Remove Staff from old Department
+			int i=this.staff.indexOf(toUpdate);
+			if(i!=-1) {
+				this.staff.remove(i);
+				//Remove old Observer from oberverArray
+			}
+			int i2= ((Staff) toUpdate).getObservers().indexOf(this);
+			if(i2!=-1) {
+				//If oberserver is still there
+				toUpdate.unregisterObserver(((Staff) toUpdate).getObservers().get(i2));
+			}
+			//Add new Observer the oberver array
+			toUpdate.registerObserver(((Staff) toUpdate).getDepartment());
+			toUpdate.getDepartment().addStaff((Staff)toUpdate);
+		}
+	
+		else if(toUpdate instanceof Patient) {
+			//Remove Patient from old Department
+			int i=this.admittedPatients.indexOf(toUpdate);
+			if(i!=-1) {
+				this.admittedPatients.remove(i);
+				//Remove old Observer from oberverArray
+			}
+			int i2= ((Patient) toUpdate).getObservers().indexOf(this);
+			if(i2!=-1) {
+				//If oberserver is still there
+				toUpdate.unregisterObserver(((Patient) toUpdate).getObservers().get(i2));
+			}
+			//Add new Observer the oberver array
+			toUpdate.registerObserver(((Patient) toUpdate).getDepartment());
+			List<Patient> newDep = toUpdate.getDepartment().getPatients();
+			newDep.add((Patient) toUpdate);
+			
+		}
+	}
 }
+
+
+

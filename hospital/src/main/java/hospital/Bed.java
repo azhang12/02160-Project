@@ -2,7 +2,7 @@ package hospital;
 
 
 
-public class Bed  {
+public class Bed {
 
 	//variables
 	private Patient patient;
@@ -33,5 +33,7 @@ public class Bed  {
 			return true;
 		}else return false;
 	}
+	
+	
 
 }

@@ -17,9 +17,7 @@ public class Patient extends Person {
 	
 	// Constructor used to manually set fields -- useful for testing getters and setters (?)
 	public Patient(String FirstName, String LastName, Department dep, String dob, String address, String phone, boolean living, int PatientNo, String national, Bed BedID, int queue) {
-		this.firstName = FirstName;
-		this.lastName = LastName;
-		this.department = dep;
+		super(FirstName,LastName,dep);
 		this.birthday = dob;
 		this.homeAddress = address;
 		this.phoneNumber = phone;
@@ -66,9 +64,11 @@ public class Patient extends Person {
 	}
 	public Bed getBed(){
 		return this.bed;
+		
 	}
 	public void setBed(Bed newBed){
 		this.bed = newBed;
+		notifyObserver();
 	}
 	public int getQueueNumber(){
 		return this.queueNumber;
