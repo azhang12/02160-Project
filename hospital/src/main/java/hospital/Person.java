@@ -17,7 +17,7 @@ public abstract class Person implements ISubject {
 		department = _department;
 		observers = new ArrayList<IObserver>();
 		this.registerObserver(_department);
-		notifyObserver();
+		
 	}
 	
 
@@ -66,11 +66,21 @@ public abstract class Person implements ISubject {
 		
 	@Override
 		public void notifyObserver() {
+			
 			for (IObserver obs: observers) {
 				obs.update(this);
 			}
 			
+			
 		}
+	@Override
+	public void updateObserverList() {
+		
+			this.observers.clear();
+			this.registerObserver(this.getDepartment());
+		
+	}
+	
 	
 	
 

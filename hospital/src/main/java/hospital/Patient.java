@@ -26,6 +26,11 @@ public class Patient extends Person {
 		this.bed = BedID;
 		this.queueNumber = queue;
 		this.nationality=national;
+		if(BedID!=null) {
+			registerObserver(BedID);
+		}
+		
+		super.notifyObserver();
 	}
 
 	// Getters and setters
@@ -66,14 +71,40 @@ public class Patient extends Person {
 		return this.bed;
 		
 	}
-	public void setBed(Bed newBed){
+	public void setBed(Bed newBed,boolean update){
+		if (this.getBed()!=null){
+			this.getBed().setPatient(null);
+		}
+		
 		this.bed = newBed;
-		notifyObserver();
+		
+		if(update) {
+			updateObserverList();
+			notifyObserver();
+		}
 	}
+	
+	
 	public int getQueueNumber(){
 		return this.queueNumber;
 	}
 	public void setQueueNumber(int newQueueNumber){
 		this.queueNumber = newQueueNumber;
+	}
+	@Override
+	public void updateObserverList() {
+		super.updateObserverList();
+		if(this.getBed()!=null) {
+			this.registerObserver(this.getBed());
+		}
+		else {
+			this.registerObserver(new Bed(this,0));
+		}
+		
+	}
+	@Override
+	public void setDepartment(Department d) {
+		super.setDepartment(d);
+		this.setBed(null, true);
 	}
 }

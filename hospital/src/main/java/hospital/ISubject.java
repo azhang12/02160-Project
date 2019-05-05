@@ -13,6 +13,6 @@ public interface ISubject {
 	
 	//Notifies Oberserver
 	public void notifyObserver();
-	
+	public void updateObserverList();
 
 }

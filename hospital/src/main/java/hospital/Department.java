@@ -70,12 +70,7 @@ public abstract class Department implements IObserver {
 				//Remove old Observer from oberverArray
 			}
 			int i2= ((Staff) toUpdate).getObservers().indexOf(this);
-			if(i2!=-1) {
-				//If oberserver is still there
-				toUpdate.unregisterObserver(((Staff) toUpdate).getObservers().get(i2));
-			}
-			//Add new Observer the oberver array
-			toUpdate.registerObserver(((Staff) toUpdate).getDepartment());
+			
 			toUpdate.getDepartment().addStaff((Staff)toUpdate);
 		}
 	
@@ -86,13 +81,7 @@ public abstract class Department implements IObserver {
 				this.admittedPatients.remove(i);
 				//Remove old Observer from oberverArray
 			}
-			int i2= ((Patient) toUpdate).getObservers().indexOf(this);
-			if(i2!=-1) {
-				//If oberserver is still there
-				toUpdate.unregisterObserver(((Patient) toUpdate).getObservers().get(i2));
-			}
-			//Add new Observer the oberver array
-			toUpdate.registerObserver(((Patient) toUpdate).getDepartment());
+			
 			List<Patient> newDep = toUpdate.getDepartment().getPatients();
 			newDep.add((Patient) toUpdate);
 			

@@ -4,7 +4,7 @@ public interface IObserver {
 	//Change input???
 	
 	public void update(Person subjectToUpdate);
- 
+	
 
 }
 //When Staff changes-> others have to be notified

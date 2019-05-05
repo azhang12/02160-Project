@@ -17,8 +17,8 @@ public class PDFgenerator{
    public static void printDepartments(Hospital hospital){
 	   
 // SET FONT STYLE
-	   Font headFont = FontFactory.getFont(FontFactory.HELVETICA, 40, Font.BOLD, new CMYKColor(100,100,100,100));
-	   Font titleFont = FontFactory.getFont(FontFactory.HELVETICA, 20, Font.BOLD, new CMYKColor(99, 18, 0, 95));
+	   Font headFont = FontFactory.getFont(FontFactory.HELVETICA, 30, Font.BOLD, new CMYKColor(100,100,100,100));
+	   Font titleFont = FontFactory.getFont(FontFactory.HELVETICA, 15, Font.BOLD, new CMYKColor(99, 18, 0, 95));
 
 	   
 	   
@@ -35,7 +35,7 @@ public class PDFgenerator{
 	       document.addCreationDate();
 	       document.addCreator("kaget");
 	       document.addTitle("ParticipationList");
-	       document.addSubject("A list of all patients admitted to a certain department at the moment");
+	       document.addSubject("A list of all departments, patients and there current status");
 	       
 	       
 	       
@@ -55,10 +55,11 @@ public class PDFgenerator{
 	    		   String pFirstName = patient.getFirstName();
 	    		   String pLastName = patient.getLastName();
 	    		   int pNum = patient.getPatientNumber();
+
 	    		   boolean pStatus = patient.getAlive();
 	    		   String alive ="";
 	    		   if (pStatus) {alive = "Alive";}
-	    		   else { alive = "Died";}
+	    		   else { alive = "Dead";}
 	    		   
 	    		   
 	    		   orderedList.add(new ListItem(pNum+" | "+pFirstName+" "+pLastName+" | "+alive));

@@ -16,6 +16,7 @@ public class Staff extends Person  {
 		this.eMail = mail;
 		this.staffNumber = staffNo;
 		this.access = level;
+		notifyObserver();
 	}
 	
 	//Getters and Setters to get and set Data
@@ -49,6 +50,7 @@ public class Staff extends Person  {
 		return new Staff(this.getFirstName(),this.getLastName(),this.getJobRole(),this.getEmail(),this.getStaffNumber(),this.getAccessLevel(),this.getDepartment());
 		
 	}
+	
 
 	
 
