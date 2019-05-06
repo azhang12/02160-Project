@@ -125,6 +125,27 @@ public class System {
 		return true;
 		
 	}
+
+
+
+	public static boolean callPatient(Hospital hospital, Patient pat, int newId) {
+		if (pat.getDepartment() instanceof InpatientDepartment){
+			InpatientDepartment dep = (InpatientDepartment)pat.getDepartment();
+			Bed b = Finder.findBed(newId, dep.getBed());
+			if(b.isOccupied()) {return false;}
+			pat.setBed(b, true);
+		}
+		else if(pat.getDepartment() instanceof InpatientDepartment) {
+			OutpatientDepartment dep = (OutpatientDepartment)pat.getDepartment();
+			int q = Finder.findQueueNumber(dep);
+			pat.setQueueNumber(q);
+		}
+		
+		else {
+			return false;
+		}
+		
+	}
 	
 	
 	

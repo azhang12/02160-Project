@@ -8,6 +8,8 @@ import javax.swing.JTextField;
 
 import hospital.Department;
 import hospital.Finder;
+import hospital.InpatientDepartment;
+import hospital.OutpatientDepartment;
 import hospital.Staff;
 import hospital.System;
 import gui.model.FilterStaffData;
@@ -243,7 +245,11 @@ public class DataController {
 
 	public void DischargePatientClicked(int selectedRow) {
 		if(selectedRow>-1){
-			
+			int patNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
+			if((Finder.findPatient(patNo, dataModel.getData().getPatient()).getDepartment()!=null)){
+				dataModel.dischargePatient(patNo);
+				
+			}
 		}
 		
 		else {
@@ -254,8 +260,28 @@ public class DataController {
 
 	public void CallPatientClicked(int selectedRow) {
 		if(selectedRow>-1) {
+			int patNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
+			Department dep = Finder.findDepartment(Finder.findPatient(patNo, dataModel.getData().getPatient()).getDepartment().getName(), dataModel.getData().getDepartment());
+			if(dep instanceof InpatientDepartment) {
+				//Show Beds
+				String[] beds= new String[((InpatientDepartment) dep).getBed().size()];
+				for (int i=0; i<beds.length;++i) {
+					beds[i] = (Integer.toString(((InpatientDepartment) dep).getBed().get(i).getId()));
+				}
+			   	String newBedId = (String)JOptionPane.showInputDialog(null, "Choose now...",
+			        "Choose Bed ...", JOptionPane.QUESTION_MESSAGE, null,
+			        beds, // Array of choices
+			        beds[0]); // Initial choice
+				
+				int newId = Integer.parseInt(newBedId);
+				dataModel.callPatient(selectedRow,newId);
+			}
+			else if(dep instanceof OutpatientDepartment) {
+				dataModel.callPatient(selectedRow,0);
+			}
 			
-			dataModel.callPatient(selectedRow);
+			
+			
 		}
 		else {
 			view.showError("Please select Patient");

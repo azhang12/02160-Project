@@ -5,7 +5,7 @@ import java.util.List;
 
 public class InpatientDepartment extends Department{
 
-	private List<Bed> beds = new ArrayList<Bed>();
+	private List<Bed> beds;
 	
 	public InpatientDepartment() {}
 	public InpatientDepartment(String name, int noOfBeds) {

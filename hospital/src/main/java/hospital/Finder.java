@@ -100,5 +100,15 @@ public class Finder {
 			return new ICTAccess();
 		}
 	}
+
+	public static int findQueueNumber(OutpatientDepartment dep) {
+		int output=1;
+		for (Patient pat: dep.getPatients()) {
+			if(pat.getQueueNumber()!=0) {
+				if (pat.getQueueNumber()>output) {output=pat.getQueueNumber();}
+			}
+		}
+		return output;
+	}
 		
 }
