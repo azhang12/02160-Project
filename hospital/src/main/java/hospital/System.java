@@ -134,11 +134,13 @@ public class System {
 			Bed b = Finder.findBed(newId, dep.getBed());
 			if(b.isOccupied()) {return false;}
 			pat.setBed(b, true);
+			return true;
 		}
-		else if(pat.getDepartment() instanceof InpatientDepartment) {
+		else if(pat.getDepartment() instanceof OutpatientDepartment) {
 			OutpatientDepartment dep = (OutpatientDepartment)pat.getDepartment();
 			int q = Finder.findQueueNumber(dep);
 			pat.setQueueNumber(q);
+			return true;
 		}
 		
 		else {

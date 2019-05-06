@@ -332,7 +332,7 @@ public class Data extends AbstractTableModel {
 		int patNo = Integer.parseInt(getValueAt(selectedRow, 0));
 		Patient pat = Finder.findPatient(patNo, this.hospital.getPatient());
 		Department dep = Finder.findDepartment(pat.getDepartment().getName(),hospital.getDepartment());
-		if(!System.callPatient(hospital,pat,newId))
+		if(!System.callPatient(hospital,pat,newId));
 		readValue(whatData);
 		fireTableDataChanged();
 	}

@@ -89,11 +89,14 @@ public abstract class Department implements IObserver {
 			
 		}
 	}
-
 	public void updateQueue() {
-		
-		
+		for (Patient pat: this.admittedPatients) {
+			pat.setQueueNumber(0);
+		}
+			
 	}
+
+	
 
 	
 }
