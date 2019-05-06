@@ -199,6 +199,12 @@ public class DataView extends JFrame{
 				controller.ChangeDepartmentClicked(tblData.getSelectedRow());
 			}
 		});
+		btnChangeBed.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.ChangeBedClicked(tblData.getSelectedRow());
+			}
+		});
 		//BUTTON LISTENERS FOR ALL DEPARTMENT OPERATIONS
 		
 		btnAddDepartment.addActionListener(new ActionListener() {

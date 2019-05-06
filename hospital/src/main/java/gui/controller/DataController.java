@@ -295,6 +295,12 @@ public class DataController {
 		
 	}
 
+	public void ChangeBedClicked(int selectedRow) {
+		dataModel.changeBed(selectedRow);
+		CallPatientClicked(selectedRow);
+		
+	}
+
 	
 
 	
