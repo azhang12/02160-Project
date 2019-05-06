@@ -337,11 +337,3 @@ public class Data extends AbstractTableModel {
 		fireTableDataChanged();
 	}
 }
-	
-	
-	
-	
-	
-	
-
-

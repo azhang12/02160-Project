@@ -289,6 +289,12 @@ public class DataController {
 		
 	}
 
+	public void ChangeDepartmentClicked(int selectedRow) {
+		this.DischargePatientClicked(selectedRow);
+		this.AdmitPatientClicked(selectedRow);
+		
+	}
+
 	
 
 	

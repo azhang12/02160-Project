@@ -189,6 +189,16 @@ public class DataView extends JFrame{
 				controller.CallPatientClicked(tblData.getSelectedRow());
 			}
 		});
+		
+		
+		
+		
+		btnChangeDepartment.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controller.ChangeDepartmentClicked(tblData.getSelectedRow());
+			}
+		});
 		//BUTTON LISTENERS FOR ALL DEPARTMENT OPERATIONS
 		
 		btnAddDepartment.addActionListener(new ActionListener() {
