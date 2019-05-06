@@ -57,6 +57,12 @@ public class LoginView extends JFrame implements IError {
 		JOptionPane.showMessageDialog(this, errorText, "Login error", JOptionPane.ERROR_MESSAGE);
 		
 	}
+
+	@Override
+	public void showError() {
+		showError("Error Occured")
+		
+	}
 	
 	
 }

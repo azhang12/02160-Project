@@ -1,5 +1,6 @@
 package gui.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JTextField;
@@ -28,7 +29,11 @@ public class AddPatientController {
 	//User clicked the Add-Button
 	public void addPatientClicked(List<JTextField> txtEntries) {
 		if(validateInput(txtEntries)) {
-			controller.add(txtEntries,"Patient");
+			List<String> strings = new ArrayList<String>();
+			for(JTextField t : txtEntries) {
+				strings.add(t.getText());
+			}
+			controller.add(strings,"Patient");
 		}
 		else {
 			view.showError();}
@@ -40,7 +45,7 @@ public class AddPatientController {
 		for (JTextField f : txtEntries) {
 			if(f.getText().isEmpty()) {return false;}
 		}
-		if(!txtEntries.get(5).getText().equals("yes") && !txtEntries.get(6).getText().equals("no")) {
+		if(!txtEntries.get(5).getText().equals("yes") && !txtEntries.get(5).getText().equals("no")) {
 			return false;
 		}
 		

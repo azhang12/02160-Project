@@ -17,7 +17,7 @@ import hospital.System;
 
 public class Data extends AbstractTableModel {
 	private static final long serialVersionUID = -8100080945080186023L;
-	public static Hospital hospital;
+	private Hospital hospital;
 	private String whatData;
 	private List<String>  ColumnNames= new ArrayList<String>();
 	private List<List<String>>  DisplayedData = new ArrayList<List<String>>();
@@ -318,12 +318,14 @@ public class Data extends AbstractTableModel {
 		Patient pat = Finder.findPatient(patNum, this.hospital.getPatient());
 		Department dep = Finder.findDepartment(newDepartment, hospital.getDepartment());
 		pat.setDepartment(dep);
-		dep.admitPatient(pat);
 		readValue(whatData);
 		fireTableDataChanged();
-		
-		
-		
+	}
+
+	public void dischargePatient(int patNo) {
+		(Finder.findPatient(patNo, hospital.getPatient())).setDepartment(null);
+		readValue(whatData);
+		fireTableDataChanged();
 	}
 	
 	

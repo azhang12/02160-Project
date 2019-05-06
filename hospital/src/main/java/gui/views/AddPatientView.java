@@ -58,11 +58,10 @@ private static final long serialVersionUID = 8981053836072595592L;
 		}
 		
 		// defining an array with the vertical index of each input type:
-		int[] text = {0, 1, 2, 3, 4, 6};
-		int[] radio = {5};
+		
 		
 		// adding text fields
-		for ( int i=0; i < text.length;++i) {
+		for ( int i=0; i < txtNames.size();++i) {
 			this.txtEntries.add(new JTextField(20));
 		}
 		
@@ -82,8 +81,8 @@ private static final long serialVersionUID = 8981053836072595592L;
 		//radioPanel.add(noButton);	
 		
 		// placement of input based on arrays above
-		for (int i = 0; i < text.length; i++) { // text fields and associated exclamations
-			add(txtEntries.get(i), GridBagLayoutUtils.constraint(1, text[i], 5));
+		for (int i = 0; i < txtEntries.size(); i++) { // text fields and associated exclamations
+			add(txtEntries.get(i), GridBagLayoutUtils.constraint(1, i, 5));
 		}
 		
 		//for (int i = 0; i < radio.length; i++) { // radio buttons
@@ -107,6 +106,10 @@ private static final long serialVersionUID = 8981053836072595592L;
 
 	public void showError() {
 		JOptionPane.showMessageDialog(this, "You are missing some Information", "Not saved", JOptionPane.ERROR_MESSAGE);
+		
+	}
+	public void showError(String error) {
+		JOptionPane.showMessageDialog(this, error, "Not saved", JOptionPane.ERROR_MESSAGE);
 		
 	}
 }

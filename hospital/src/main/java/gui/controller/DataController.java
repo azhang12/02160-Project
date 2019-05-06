@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import hospital.Department;
 import hospital.Finder;
 import hospital.Staff;
 import hospital.System;
@@ -55,6 +56,7 @@ public class DataController {
 		else if(s.equals("Patient")) {
 			AddPatientController c = new AddPatientController(this);
 			AddPatientView view = new AddPatientView(c);
+			c.setView(view);
 			view.setVisible(true);	
 		}
 		
@@ -203,23 +205,61 @@ public class DataController {
 	}
 
 	public void AdmitPatientClicked(int selectedRow) {
-		// TODO Auto-generated method stub
-		if(selectedRow>=0) {
-			String newDepartment = JOptionPane.showInputDialog("Please insert the Department:");
-			int patNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
-	        if(Finder.findDepartment(newDepartment, dataModel.getData().getDepartment())!=null){
-	        	
-	        	dataModel.admitPatient(patNo,newDepartment);
-	        }
-	        else {
-	        	view.showError("Not such Department found");
-	        }
+		int patNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
+		if(Finder.findPatient(patNo, dataModel.getData().getPatient()) != null) {
+			if(Finder.findPatient(patNo, dataModel.getData().getPatient()).getDepartment()==null){
+				String[] choices= new String[this.dataModel.getData().getDepartment().size()];
+				for (int i=0; i<choices.length;++i) {
+					choices[i] = this.dataModel.getData().getDepartment().get(i).getName();
+				}
+			    String newDepartment = (String) JOptionPane.showInputDialog(null, "Choose now...",
+			        "Admit patient ...", JOptionPane.QUESTION_MESSAGE, null, // Use
+			                                                                        // default
+			                                                                        // icon
+			        choices, // Array of choices
+			        choices[0]); // Initial choice
+				
+				
+		        if(Finder.findDepartment(newDepartment, dataModel.getData().getDepartment())!=null){
+		        	
+		        	dataModel.admitPatient(patNo,newDepartment);
+		        }
+		        else {
+		        	view.showError("Not such Department found");
+		        }
+			}
+			else {
+				view.showError("Patient already admitted. Please discharge firstly!");
+			}
+		
 	        
 		}
 		else {
 			view.showError("Please select Patient");
 		}
 		
+		
+	}
+
+	public void DischargePatientClicked(int selectedRow) {
+		if(selectedRow>-1){
+			
+		}
+		
+		else {
+			view.showError("Please select Patient");
+		}
+		
+	}
+
+	public void CallPatientClicked(int selectedRow) {
+		if(selectedRow>-1) {
+			
+			dataModel.callPatient(selectedRow);
+		}
+		else {
+			view.showError("Please select Patient");
+		}
 		
 	}
 

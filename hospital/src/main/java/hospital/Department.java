@@ -81,9 +81,11 @@ public abstract class Department implements IObserver {
 				this.admittedPatients.remove(i);
 				//Remove old Observer from oberverArray
 			}
+			if(toUpdate.getDepartment()!=null) {
+				List<Patient> newDep = toUpdate.getDepartment().getPatients();
+				newDep.add((Patient) toUpdate);
+			}
 			
-			List<Patient> newDep = toUpdate.getDepartment().getPatients();
-			newDep.add((Patient) toUpdate);
 			
 		}
 	}

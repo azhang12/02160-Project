@@ -108,5 +108,11 @@ private static final long serialVersionUID = 8981053836072595592L;
 		JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);	
 	}
 
+	@Override
+	public void showError() {
+		JOptionPane.showMessageDialog(this, "Error occured", "Error", JOptionPane.ERROR_MESSAGE);
+		
+	}
+
 
 }

@@ -44,6 +44,13 @@ public class ObserverPatternTest {
 		assertEquals(dep1.getStaff().size(),0);
 		
 	}
+	@Test
+	public void setDepartmentNull() {
+		//TO-DO implement
+		Hospital hosp = add();
+		pat1.setDepartment(null);
+		
+	}
 
 	@Test
 	public void autoUpdatePatients() {

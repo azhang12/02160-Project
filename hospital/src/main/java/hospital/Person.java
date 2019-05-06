@@ -68,7 +68,11 @@ public abstract class Person implements ISubject {
 		public void notifyObserver() {
 			
 			for (IObserver obs: observers) {
-				obs.update(this);
+				if(obs!=null)
+				{
+					obs.update(this);
+				}
+				
 			}
 			
 			

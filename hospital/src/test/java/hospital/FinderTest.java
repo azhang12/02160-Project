@@ -116,15 +116,17 @@ public class FinderTest {
 	
 	@Test
 	public void findPatient() {
-		Department dep = new InpatientDepartment("hi",12);
+		InpatientDepartment dep = new InpatientDepartment("hi",12);
 		
-		Patient pat = new Patient("Kilian","Speiser",dep,"Dezember","Germany","342323",true,123421,"Germany",new Bed(),0);
+		Patient pat = new Patient("Kilian","Speiser",dep,"Dezember","Germany","342323",true,123421,"Germany",dep.getBed().get(3),0);
 		List<Patient> patients = new ArrayList<Patient>();
 		patients.add(new Patient());
 		patients.add(pat);
 		
 		assertEquals(Finder.findPatient(123421, patients),pat);
 		assertEquals("not found",Finder.findPatient(123422, patients),null);
+		assertEquals(pat.getBed().getPatient(),pat);
+		assertEquals(pat,pat.getBed().getPatient());
 		
 		
 	}
