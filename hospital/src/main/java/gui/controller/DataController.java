@@ -289,6 +289,18 @@ public class DataController {
 		
 	}
 
+	public void ChangeDepartmentClicked(int selectedRow) {
+		this.DischargePatientClicked(selectedRow);
+		this.AdmitPatientClicked(selectedRow);
+		
+	}
+
+	public void ChangeBedClicked(int selectedRow) {
+		dataModel.changeBed(selectedRow);
+		CallPatientClicked(selectedRow);
+		
+	}
+
 	
 
 	
