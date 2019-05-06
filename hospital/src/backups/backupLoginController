@@ -44,7 +44,7 @@ public class LoginController {
 		}
 		
 		catch(Exception e) {
-			view.showError("Wrong Input!");
+			view.showError("No Input!");
 			return false;
 		}
 		view.showError("User Id not found!");
