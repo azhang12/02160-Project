@@ -109,7 +109,7 @@ public class Data extends AbstractTableModel {
 		for (int i=0; i<dep.size();++i) {
 			List<String> newList = new ArrayList<String>();
 			newList.add(dep.get(i).getName());
-			if(dep.get(i).getClass()==new InpatientDepartment("",0).getClass()) {
+			if(dep.get(i)instanceof InpatientDepartment) {
 				InpatientDepartment current = (InpatientDepartment)dep.get(i);
 				if(current.getBed()!=null) {
 					int bedsTotal= current.getBed().size();

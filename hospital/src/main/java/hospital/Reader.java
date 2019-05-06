@@ -103,6 +103,7 @@ public class Reader implements IReader{
 					}
 					else if (bedNumber==0&&queueNumber!=0) {
 						pat.setQueueNumber(queueNumber);
+						((OutpatientDepartment)pat.getDepartment()).getQueue().add(pat);
 					}
 				}
 				patients.add(pat);
