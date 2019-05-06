@@ -32,40 +32,7 @@ public class Hospital {
 		this.patientList = p;
 	}
 
-	// Staff
-	public void addStaff(Staff newStaff) {
-		this.staffList.add(newStaff);
-	}
-
-	public void removeStaff(Staff rmStaff) {
-		this.staffList.remove(rmStaff);
-	}
-
-	// Patient
-	public void addPatient(Patient newPatient) {
-		this.patientList.add(newPatient);
-		
-	}
 	
-	
-
-	public void removePatient(Patient rmPatient, Department department) {
-		this.patientList.remove(rmPatient);
-		department.dischargePatient(rmPatient);
-	}
-
-	public void movePatient(Patient patient, Bed newBed) {
-		patient.setBed(newBed);
-	}
-
-	// Department
-	public void addDepartment(Department newDepartment) {
-		this.departmentList.add(newDepartment);
-	}
-
-	public void removeDepartment(Department rmDepartment) {
-		this.departmentList.remove(rmDepartment);
-	}
 
 	// getters
 	public  ArrayList<Staff> getStaff() {
