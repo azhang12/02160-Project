@@ -56,4 +56,5 @@ public class InpatientDepartment extends Department{
 		
 	}
 	
+	
 }
