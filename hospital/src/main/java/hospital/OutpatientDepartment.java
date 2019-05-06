@@ -35,6 +35,8 @@ public class OutpatientDepartment extends Department {
 		
 		for (int i=0; i<admittedPatients.size();++i) {
 			admittedPatients.get(i).setQueueNumber(i+1);
+			outPatientQueue.clear();
+			outPatientQueue.add(admittedPatients.get(i));
 		}
 			
 	}

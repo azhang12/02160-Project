@@ -9,7 +9,7 @@ import com.opencsv.CSVReader;
 
 public class Reader implements IReader{
 
-	Reader(){}
+	public Reader(){}
 	@Override
 	public List<List<String>> read(String filename) {
 		List<List<String>> listOfLists = new ArrayList<List<String>>();

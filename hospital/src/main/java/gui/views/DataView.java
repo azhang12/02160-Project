@@ -70,7 +70,7 @@ public class DataView extends JFrame{
 	private void initGUI() {
 		
 		
-		setTitle("Staff Data Manager");
+		setTitle("Data Manager");
 		setPreferredSize(new Dimension(800, 600));
 		
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -299,7 +299,7 @@ public class DataView extends JFrame{
 	}
 
 	public void showError() {
-		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this, "ERROR", "Not saved", JOptionPane.ERROR_MESSAGE);
 		
 	}
 	public void showError(String errorTxt) {

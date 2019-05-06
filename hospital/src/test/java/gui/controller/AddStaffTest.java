@@ -12,30 +12,36 @@ import gui.model.Data;
 import gui.views.AddStaffView;
 import gui.views.EditStaffView;
 import hospital.Finder;
+import hospital.Hospital;
+import hospital.System;
 
 public class AddStaffTest {
+	public String departmentFile ="src/test/data/depExport.csv";
+	public String staffFile ="src/test/data/staffExport.csv";
+	public String patFile="src/test/data/patExport.csv";
+	public Hospital h = System.loadData(departmentFile, staffFile, patFile);
 
 	@Test
 	public void testView() {
 		Session s = new Session();
 		ApplicationController app = new ApplicationController();
-		Data d = new Data();
+		Data d = new Data(h,"Staff");
 		DataController dc = new DataController(app,d,s);
 		AddStaffController c = new AddStaffController(s,dc);
 		AddStaffView  view = new AddStaffView(c);
 		view.setVisible(true);
 		view.setVisible(true);
+		
 	}
 	@Test
 	public void addStaffClickedTest() {
+		Data d = new Data(h,"Staff");
 		Session s = new Session();
 		ApplicationController app = new ApplicationController();
-		Data d = new Data();
 		DataController dc = new DataController(app,d,s);
 		AddStaffController c = new AddStaffController(s,dc);
 		AddStaffView  view = new AddStaffView(c);
-		view.setVisible(true);
-		view.setVisible(true);
+		
 		List<String> txt = new ArrayList<String>();
 		List<String> txtNames = new ArrayList<String>();
 		txt.add("kilian");

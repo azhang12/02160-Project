@@ -134,13 +134,6 @@ public class DataController {
 				dataModel.removePatient(patNo);
 				
 			}
-			else if(s.equals("Department")){
-				String depName = (dataModel.getValueAt(selectedRow, 0));
-				dataModel.removeDepartment(depName);
-				
-			}
-					
-			
 			
 		}
 		else {

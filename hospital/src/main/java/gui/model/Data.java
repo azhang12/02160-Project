@@ -267,14 +267,7 @@ public class Data extends AbstractTableModel {
 	}
 
 	public void addDepartment(String DepartmentName, int bedNo) {
-		if(bedNo==0) {
-			OutpatientDepartment department = new OutpatientDepartment(DepartmentName);
-			this.hospital.getDepartment().add(department);
-		}
-		else {
-			InpatientDepartment department = new InpatientDepartment(DepartmentName,bedNo);
-			this.hospital.getDepartment().add(department);
-		}
+		System.addDepartment(this.hospital, DepartmentName, bedNo);
 		readValue(whatData);
 		fireTableDataChanged(); 
 	}
@@ -293,13 +286,14 @@ public class Data extends AbstractTableModel {
 		// TODO Auto-generated method stub
 		
 	}
-	public void editDepartment(List<JTextField> txtEntries) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 	public void removePatient(int patNo) {
-		//TO-DO Implement remove Patient
+		
+		System.removePatient(hospital,patNo);
+		readValue(whatData);
+		fireTableDataChanged();
+		
 	
 		
 		
@@ -308,7 +302,7 @@ public class Data extends AbstractTableModel {
 
 		int i = Finder.findStaffInt(hospital.getStaff(), staffNo);
 		if(i>-1) {
-			hospital.getStaff().remove(i);
+			System.removeStaff(hospital,staffNo);
 			readValue(whatData);
 			fireTableDataChanged();
 		}

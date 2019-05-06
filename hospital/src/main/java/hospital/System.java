@@ -51,7 +51,7 @@ public class System {
 		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
 		if(pat.getDepartment() instanceof InpatientDepartment) {
 			InpatientDepartment ndep = (InpatientDepartment) pat.getDepartment();
-			pat.setBed(Finder.findBed(newBed, ndep.getBed()));
+			pat.setBed(Finder.findBed(newBed, ndep.getBed()),true);
 			return true;
 		}
 		else return false;
@@ -93,11 +93,24 @@ public class System {
 		e.export(hosp.getPatient(), "src/test/data/patExport.csv");
 		
 	}
+	
+	public static void addDepartment(Hospital hosp, String DepartmentName, int bedNo) {
+		if(bedNo==0) {
+			OutpatientDepartment department = new OutpatientDepartment(DepartmentName);
+			hosp.getDepartment().add(department);
+		}
+		else {
+			InpatientDepartment department = new InpatientDepartment(DepartmentName,bedNo);
+			hosp.getDepartment().add(department);
+		}
+	}
+	
+	
 
 
 
 	public static boolean editStaff(Hospital hosp,Staff staff, String newFirstName, String newLastName, String newDepartment, String newJobRole) {
-		// TODO Auto-generated method stub
+	
 		Department currentDep = Finder.findDepartment(staff.getDepartment().getName(),hosp.getDepartment());
 		Department newDep = Finder.findDepartment(newDepartment,hosp.getDepartment());
 		JobRole currentRole = staff.getJobRole();
@@ -125,9 +138,6 @@ public class System {
 		return true;
 		
 	}
-
-
-
 	public static boolean callPatient(Hospital hospital, Patient pat, int newId) {
 		if (pat.getDepartment() instanceof InpatientDepartment){
 			InpatientDepartment dep = (InpatientDepartment)pat.getDepartment();
@@ -140,6 +150,7 @@ public class System {
 			OutpatientDepartment dep = (OutpatientDepartment)pat.getDepartment();
 			int q = Finder.findQueueNumber(dep);
 			pat.setQueueNumber(q);
+			dep.updateQueue();
 			return true;
 		}
 		
@@ -147,6 +158,22 @@ public class System {
 			return false;
 		}
 		
+	}
+
+
+
+	public static void removeStaff(Hospital hospital, int staffNo) {
+		Staff s = Finder.findStaff(hospital.getStaff(), staffNo);
+		int i = hospital.getStaff().indexOf(s);
+		hospital.getStaff().remove(i);
+	}
+
+
+
+	public static void removePatient(Hospital hospital, int patNo) {
+		Patient s = Finder.findPatient(patNo, hospital.getPatient());
+		int i = hospital.getPatient().indexOf(s);
+		hospital.getPatient().remove(i);
 	}
 	
 	
