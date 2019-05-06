@@ -2,7 +2,7 @@ package hospital;
 
 public class ICTAccess extends Access {
 	
-	ICTAccess() {
+	public ICTAccess() {
 		super();
 		enableAllAccess();
 	}

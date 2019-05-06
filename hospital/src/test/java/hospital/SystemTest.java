@@ -47,8 +47,9 @@ public class SystemTest {
 		Hospital hosp = add();
 		System.registerPatient(hosp, "Max", "Ryan", "19927", "Reading", "+674645", true, "Denmark");
 		System.admitPatient(hosp, hosp.getPatient().get(3).getPatientNumber(), "D02");
-		assertEquals(hosp.getDepartment().get(1),hosp.getPatient().get(3).getDepartment());
-		
+		assertEquals("Department Property has Changed",hosp.getDepartment().get(1),hosp.getPatient().get(3).getDepartment());
+		assertTrue("Department Property has Changed",hosp.getDepartment().get(1).getPatients().indexOf(hosp.getPatient().get(3))!=-1);
+		assertEquals(dep2.getPatients().size(),2);
 	}
 	
 	@Test
@@ -153,6 +154,21 @@ public class SystemTest {
 		String newJob = "Doctor";
 		
 		assertFalse("WrongJ Department",System.editStaff(hosp,staff1,newFirstName, newLastName, newDepartment,newJob));
+		
+	}
+	
+	@Test 
+	public void removeStaffTest() {
+		Hospital hosp = add();
+		System.removeStaff(hosp, staff1.getStaffNumber());
+		assertEquals("Staff also removed from Department List",dep1.getStaff().size(),0);
+		
+	}
+	@Test 
+	public void removePatientTest() {
+		Hospital hosp = add();
+		System.removePatient(hosp, pat1.getPatientNumber());
+		assertEquals("Patients also removed from Department List",dep1.getPatients().size(),1);
 		
 	}
 

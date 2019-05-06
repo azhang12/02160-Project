@@ -2,6 +2,10 @@ package gui.controller;
 
 import java.util.ArrayList;
 
+import org.junit.Test;
+
+import gui.model.Data;
+import gui.model.Session;
 import hospital.Department;
 import hospital.Hospital;
 import hospital.ICTAccess;
@@ -42,7 +46,11 @@ public class AddDepartmentTest {
 	
 	@Test
 	public void AddDepartmentClickedTest() {
-		
+		ApplicationController app = new ApplicationController();
+		Session s = new Session();
+		Data d = new Data(add(),"Staff");
+		DataController controller = new DataController(app,d ,s);
+		controller.AddClicked("Department");
 	}
 
 }

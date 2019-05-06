@@ -21,6 +21,7 @@ public class Data extends AbstractTableModel {
 	private String whatData;
 	private List<String>  ColumnNames= new ArrayList<String>();
 	private List<List<String>>  DisplayedData = new ArrayList<List<String>>();
+	private Session user;
 	
 	
 	public Data() {
@@ -30,9 +31,10 @@ public class Data extends AbstractTableModel {
 		
 	}
 	
-	public Data(Hospital h, String d) {
+	public Data(Hospital h, String d,Session s) {
 		this.hospital=h;
 		this.whatData = d;
+		this.user = s;
 		readValue( whatData);
 	}
 	
@@ -156,7 +158,7 @@ public class Data extends AbstractTableModel {
 	
 
 	private void setTableToPatients(Hospital data) {
-		//FirstName,LastName,Department,Birthday,Address,phoneNumber,Alive,patientNumber,Nationality,bedNumber,queueNumber
+		
 		DisplayedData.clear();
 		ColumnNames.clear();
 		List<Patient> patients = data.getPatient();
@@ -198,15 +200,20 @@ public class Data extends AbstractTableModel {
 			}
 			else {d.add("");}
 		
-			
-			///ADD Further Info
-			
-			DisplayedData.add(d);
+			//Only Show the info the user is allowed to see
+			if(!user.getAccess().getOtherDepartmetnsAccess()&&user.getDepartment().equals(patients.get(i).getDepartment().getName())) {
+				DisplayedData.add(d);
 			}
+			else if(user.getAccess().getOtherDepartmetnsAccess()) {
+				DisplayedData.add(d);
+			}
+		}
 		
 	}
 
 	public void setTableToStaff(Hospital data) {
+		boolean onlyDep = true;
+		
 		DisplayedData.clear();
 		ColumnNames.clear();
 		List<Staff> staff = data.getStaff();
@@ -219,6 +226,7 @@ public class Data extends AbstractTableModel {
 		this.ColumnNames.add("JobRole");
 		
 		for (int i=0; i<staff.size();++i) {
+			
 			List<String> d = new ArrayList<String>();
 			d.add(Integer.toString(staff.get(i).getStaffNumber()));
 			d.add(staff.get(i).getFirstName());
@@ -226,7 +234,13 @@ public class Data extends AbstractTableModel {
 			d.add(staff.get(i).getEmail());
 			d.add(staff.get(i).getDepartment().getName());
 			d.add(staff.get(i).getJobRole().toString());
-			DisplayedData.add(d);
+			//Only Show the info the user is allowed to see
+			if(!user.getAccess().getOtherDepartmetnsAccess()&&user.getDepartment().equals(staff.get(i).getDepartment().getName())) {
+				DisplayedData.add(d);
+			}
+			else if(user.getAccess().getOtherDepartmetnsAccess()) {
+				DisplayedData.add(d);
+			}
 		}
 		
 	}
@@ -313,9 +327,7 @@ public class Data extends AbstractTableModel {
 	
 
 	public void admitPatient(int patNum, String newDepartment) {
-		Patient pat = Finder.findPatient(patNum, this.hospital.getPatient());
-		Department dep = Finder.findDepartment(newDepartment, hospital.getDepartment());
-		pat.setDepartment(dep);
+		System.admitPatient(this.hospital, patNum, newDepartment);
 		readValue(whatData);
 		fireTableDataChanged();
 	}

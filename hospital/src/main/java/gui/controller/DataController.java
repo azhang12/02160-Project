@@ -160,7 +160,7 @@ public class DataController {
 	}
 
 	public void ShowData(String s) {
-		this.dataModel= new Data(dataModel.getData(),s);
+		this.dataModel= new Data(dataModel.getData(),s,sessionModel);
 		this.view.setTableModel(dataModel,s);
 		
 		
@@ -324,6 +324,10 @@ public class DataController {
 	public void ChangeBedClicked(int selectedRow) {
 		dataModel.changeBed(selectedRow);
 		CallPatientClicked(selectedRow);
+		
+	}
+	
+	public void hideOthers() {
 		
 	}
 

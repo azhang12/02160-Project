@@ -12,12 +12,15 @@ public abstract class Access {
 	private boolean staff_data = false;
 
 	private boolean patient_registration = false;
+	
+	private boolean only_this_department_data = false;
 
 	protected void enableAllAccess() {
 		this.patient_data = true;
 		this.patient_admission_data = true;
 		this.staff_data = true;
 		this.patient_registration = true;
+		this.only_this_department_data = true;
 	}
 
 	// Patient Data
@@ -55,6 +58,15 @@ public abstract class Access {
 	public boolean getPatientRegistationDataAccess() {
 		return patient_registration;
 	}
+	
+	// Patient Data
+		protected void enableOtherDepartmentsAcces() {
+			this.only_this_department_data= true;
+		}
+
+		public boolean getOtherDepartmetnsAccess() {
+			return only_this_department_data;
+		}
 	
 	@Override
 	public abstract String toString();

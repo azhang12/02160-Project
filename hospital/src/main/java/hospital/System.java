@@ -25,37 +25,16 @@ public class System {
 		
 		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
 		Department dep = Finder.findDepartment(DepartmentName, data.getDepartment());
-		
-		pat.setDepartment(dep);
-		dep.admitPatient(pat);
-		
-				
+		pat.setDepartment(dep);	
 	}
 	
 	public static void dischargePatient(Hospital data, int PatientNumber) {
 		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
 		Department dep = Finder.findDepartment(pat.getDepartment().getName(), data.getDepartment());
 		pat.setDepartment(null);
-		dep.dischargePatient(pat);
 	}
 	
-	public static void movePatient(Hospital data, int PatientNumber, String newDepartment) {
-		
-		dischargePatient(data, PatientNumber);
-		admitPatient(data,PatientNumber,newDepartment);
-		
-	}
 	
-	public static boolean movePatient(Hospital data, int PatientNumber, int newBed) {
-		
-		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
-		if(pat.getDepartment() instanceof InpatientDepartment) {
-			InpatientDepartment ndep = (InpatientDepartment) pat.getDepartment();
-			pat.setBed(Finder.findBed(newBed, ndep.getBed()),true);
-			return true;
-		}
-		else return false;
-	}
 	
 	public static boolean registerStaff(Hospital data,String FirstName, String LastName, String jobRole, String depName ) {
 		Department  dep = Finder.findDepartment(depName, data.getDepartment());
@@ -165,7 +144,10 @@ public class System {
 	public static void removeStaff(Hospital hospital, int staffNo) {
 		Staff s = Finder.findStaff(hospital.getStaff(), staffNo);
 		int i = hospital.getStaff().indexOf(s);
+		int i2 = s.getDepartment().getStaff().indexOf(s);
 		hospital.getStaff().remove(i);
+		s.getDepartment().getStaff().remove(i2);
+		
 	}
 
 
@@ -173,7 +155,9 @@ public class System {
 	public static void removePatient(Hospital hospital, int patNo) {
 		Patient s = Finder.findPatient(patNo, hospital.getPatient());
 		int i = hospital.getPatient().indexOf(s);
+		int i2 = s.getDepartment().getPatients().indexOf(s);
 		hospital.getPatient().remove(i);
+		s.getDepartment().getPatients().remove(i2);
 	}
 	
 	
