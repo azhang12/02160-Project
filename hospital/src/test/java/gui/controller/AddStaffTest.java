@@ -1,5 +1,7 @@
 package gui.controller;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +11,7 @@ import gui.model.Session;
 import gui.model.Data;
 import gui.views.AddStaffView;
 import gui.views.EditStaffView;
+import hospital.Finder;
 
 public class AddStaffTest {
 
@@ -24,24 +27,34 @@ public class AddStaffTest {
 		view.setVisible(true);
 	}
 	@Test
-	public void testEditStaff() {
-		List<String> newData = new ArrayList<String>();
-		newData.add("name");
-		newData.add("name2");
-		newData.add("Department01");
-		newData.add("DOCTOR");
+	public void addStaffClickedTest() {
 		Session s = new Session();
 		ApplicationController app = new ApplicationController();
 		Data d = new Data();
 		DataController dc = new DataController(app,d,s);
-		EditStaffController c = new EditStaffController(s,dc);
-		EditStaffView  view = new EditStaffView(c,newData);
+		AddStaffController c = new AddStaffController(s,dc);
+		AddStaffView  view = new AddStaffView(c);
 		view.setVisible(true);
 		view.setVisible(true);
+		List<String> txt = new ArrayList<String>();
+		List<String> txtNames = new ArrayList<String>();
+		txt.add("kilian");
+		txt.add("Ray");
+		txt.add("Department04");
+		txt.add("DOCTOR");
+		txtNames.add("First Name");
+		txtNames.add("Last Name");
+		txtNames.add("Department Name");
+		txtNames.add("Job Role");
+		
+		c.addStaffClicked(txt, txtNames);
+		assertEquals(d.getData().getDepartment().get(3).getStaff().get(0).getFirstName(),"kilian");
+		assertEquals(d.getData().getDepartment().get(3).getStaff().get(0).getLastName(),"Ray");
 		
 		
-		int k=0;
-		k=1;
+		
+		
 		
 	}
+
 }

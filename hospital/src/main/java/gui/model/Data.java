@@ -316,11 +316,7 @@ public class Data extends AbstractTableModel {
 		
 	}
 
-	public void removeDepartment(String depName) {
-		// TODO Auto-generated method stub
-		
-		
-	}
+	
 
 	public void admitPatient(int patNum, String newDepartment) {
 		Patient pat = Finder.findPatient(patNum, this.hospital.getPatient());

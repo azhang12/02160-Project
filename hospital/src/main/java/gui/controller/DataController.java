@@ -115,9 +115,7 @@ public class DataController {
 		else if (whatData.equals("Patient")) {
 			dataModel.addPatient(txtEntries);
 		}
-		else if (whatData.equals("Department")) {
-			dataModel.addDepartment(txtEntries);
-		}
+		
 		else {
 			view.showError();
 		}	

@@ -364,15 +364,7 @@ public class DataView extends JFrame{
 		}
 	}
 	
-	public void showAdmitPatient() {
-		
-	}
-
-
-	public int displayCall(int selectedRow) {
-		
-		return 0;
-	}
+	
 	
 	
 
