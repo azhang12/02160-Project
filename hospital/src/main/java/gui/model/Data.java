@@ -266,9 +266,17 @@ public class Data extends AbstractTableModel {
 		
 	}
 
-	public void addDepartment(List<String> txtEntries) {
-		// TODO Auto-generated method stub
-		
+	public void addDepartment(String DepartmentName, int bedNo) {
+		if(bedNo==0) {
+			OutpatientDepartment department = new OutpatientDepartment(DepartmentName);
+			this.hospital.getDepartment().add(department);
+		}
+		else {
+			InpatientDepartment department = new InpatientDepartment(DepartmentName,bedNo);
+			this.hospital.getDepartment().add(department);
+		}
+		readValue(whatData);
+		fireTableDataChanged(); 
 	}
 
 	public void editStaff(Staff staff, List<String> newValues) {

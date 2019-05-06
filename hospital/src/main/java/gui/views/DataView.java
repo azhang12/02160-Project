@@ -40,10 +40,8 @@ public class DataView extends JFrame{
 	private JButton btnDeleteStaff = new JButton("Remove Staff");
 	private JButton btnDeletePatient = new JButton("Remove Patient");
 	private JButton btnAddDepartment= new JButton("Add Department");
-	private JButton btnDeleteDepartment = new JButton("Remove Department");
 	private JButton btnFindStaff = new JButton("Filter");
 	private JButton btnFindPatients = new JButton("Filter");
-	private JButton btnFindDepartments = new JButton("Filter");
 	private JButton btnStaff = new JButton("Staff");
 	private JButton btnPat = new JButton("Patients");
 	private JButton btnDep = new JButton("Departments");
@@ -119,7 +117,7 @@ public class DataView extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.AddPersonClicked("Staff");
+				controller.AddClicked("Staff");
 			}
 		});
 		btnDeleteStaff.addActionListener(new ActionListener() {
@@ -147,7 +145,7 @@ public class DataView extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.AddPersonClicked("Patient");
+				controller.AddClicked("Patient");
 			}
 		});
 		btnDeletePatient.addActionListener(new ActionListener() {
@@ -211,20 +209,7 @@ public class DataView extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.AddPersonClicked("Department");
-			}
-		});
-		btnDeleteDepartment.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.DeletePersonClicked("Department",tblData.getSelectedRow());
-			}
-		});
-		
-		btnFindDepartments.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.FilterClicked();
+				controller.AddClicked("Department");
 			}
 		});
 		
@@ -371,16 +356,12 @@ public class DataView extends JFrame{
 				toolBarOperations.removeAll();
 			
 				toolBarOperations.add(btnAddDepartment);
-				toolBarOperations.add(btnDeleteDepartment);
-				toolBarOperations.add(btnFindDepartments);
 				toolBarOperations.add(Box.createHorizontalGlue());
 				toolBarOperations.add(lblSession);
 				//add(toolBarOperations, BorderLayout.NORTH);
 				toolBarOperations.repaint();
 			
 		}
-	
-	
 	}
 	
 	public void showAdmitPatient() {

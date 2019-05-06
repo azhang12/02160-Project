@@ -49,9 +49,44 @@ public class DataController {
 		view.setVisible(true);
 	}
 	
-	public void AddPersonClicked(String s) {
+	public void AddClicked(String s) {
 		
 		if(s.equals("Department")) {
+			
+			String[] choices = new String[2];
+			choices[0]= "Inpatient Department";
+			choices[1]= "Outpatient Department";
+			
+		   	String newDep = (String)JOptionPane.showInputDialog(null, "Choose now...",
+		        "What kind of Department...", JOptionPane.QUESTION_MESSAGE, null,
+		        choices, // Array of choices
+		        choices[0]); // Initial choice
+		   	String newDepName="";
+		   	while(Finder.findDepartment(newDepName, dataModel.getData().getDepartment())!=null||newDepName.equals("")) {
+	   			newDepName = (String) JOptionPane.showInputDialog("Please enter Department Name:");
+	   		}
+		   	if(newDep.equals(choices[0])){
+		   		String bedNo="";
+		   		int beds=0;
+		   		while (beds<=0) {
+		   			bedNo = (String) JOptionPane.showInputDialog("Please enter Number of Beds:");
+		   			try {  
+			            beds = Integer.parseInt(bedNo);
+			         } catch (NumberFormatException e) {  
+			        	
+			         }  
+		   		}	
+		   		//ADD INPATIENTDEPARTMENT
+		   		dataModel.addDepartment(newDepName, beds);
+		   		
+		   	}
+		   	else if(newDep.equals(choices[1])) {
+		   		//Add outpatient Department
+		   		dataModel.addDepartment(newDepName, 0);
+		   		
+		   	}
+		   
+		   	
 			
 		}
 		
