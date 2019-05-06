@@ -60,7 +60,7 @@ public class LoginView extends JFrame implements IError {
 
 	@Override
 	public void showError() {
-		showError("Error Occured")
+		showError("Error Occured");
 		
 	}
 	

@@ -96,7 +96,7 @@ public class FilterStaffData extends AbstractTableModel {
 
 	public void removeStaff(int staffNo) {
 
-		int i = Finder.findStaff(staff, staffNo);
+		int i = Finder.findStaffInt(staff, staffNo);
 		if(i>-1) {
 			staff.remove(i);
 			fireTableDataChanged();
