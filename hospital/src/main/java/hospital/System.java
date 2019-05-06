@@ -1,8 +1,6 @@
 package hospital;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 
 public class System {
 	
@@ -30,7 +28,6 @@ public class System {
 	
 	public static void dischargePatient(Hospital data, int PatientNumber) {
 		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
-		Department dep = Finder.findDepartment(pat.getDepartment().getName(), data.getDepartment());
 		pat.setDepartment(null);
 	}
 	
@@ -92,7 +89,6 @@ public class System {
 	
 		Department currentDep = Finder.findDepartment(staff.getDepartment().getName(),hosp.getDepartment());
 		Department newDep = Finder.findDepartment(newDepartment,hosp.getDepartment());
-		JobRole currentRole = staff.getJobRole();
 		JobRole newRole = Finder.findJobRole(newJobRole);
 		
 		if(newRole!=null && newDep!=null) {
@@ -119,23 +115,32 @@ public class System {
 	}
 	public static boolean callPatient(Hospital hospital, Patient pat, int newId) {
 		if (pat.getDepartment() instanceof InpatientDepartment){
-			InpatientDepartment dep = (InpatientDepartment)pat.getDepartment();
-			Bed b = Finder.findBed(newId, dep.getBed());
-			if(b.isOccupied()) {return false;}
-			pat.setBed(b, true);
-			return true;
+			if(pat.getBed()==null) {
+				InpatientDepartment dep = (InpatientDepartment)pat.getDepartment();
+				Bed b = Finder.findBed(newId, dep.getBed());
+				if(b.isOccupied()) {return false;}
+				pat.setBed(b, true);
+				return true;
+			}
+			else {
+				return false;
+			}
+			
 		}
 		else if(pat.getDepartment() instanceof OutpatientDepartment) {
-			OutpatientDepartment dep = (OutpatientDepartment)pat.getDepartment();
-			int q = Finder.findQueueNumber(dep);
-			pat.setQueueNumber(q);
-			dep.updateQueue();
-			return true;
+			if(pat.getQueueNumber()==0) {
+				OutpatientDepartment dep = (OutpatientDepartment)pat.getDepartment();
+				int q = Finder.findQueueNumber(dep);
+				pat.setQueueNumber(q);
+				dep.updateQueue();
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		
-		else {
-			return false;
-		}
+		return false;
 		
 	}
 

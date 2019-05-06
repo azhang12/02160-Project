@@ -3,8 +3,6 @@ under the very top-level folder(the 'hospital' project folder in this case).
 Refresh the whole project to see the file in package explorer.*/
 
 package hospital;
-
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
  
 import com.itextpdf.text.*;
@@ -16,7 +14,7 @@ public class PDFgenerator{
 	
 	private static ArrayList<String> patientListing(ArrayList<Patient> patients) {
 		
-		ArrayList<String> returnList = new ArrayList();
+		ArrayList<String> returnList = new ArrayList<String>();
 		for(Patient p : patients) {
  		   String name = p.getFirstName() + " " +p.getLastName();
  		   int pNum = p.getPatientNumber();
@@ -47,7 +45,7 @@ public class PDFgenerator{
 			Document document = new Document();
 			try{
 				
-				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("src/test/data/ParticipationList.pdf"));
+				PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("ParticipationList.pdf"));
 				document.open();
 				document.add(new Paragraph("PARTICIPATION LIST\n", headFont));
 		    

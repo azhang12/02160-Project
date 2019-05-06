@@ -69,8 +69,6 @@ public abstract class Department implements IObserver {
 				this.staff.remove(i);
 				//Remove old Observer from oberverArray
 			}
-			int i2= ((Staff) toUpdate).getObservers().indexOf(this);
-			
 			toUpdate.getDepartment().addStaff((Staff)toUpdate);
 		}
 	
@@ -92,6 +90,7 @@ public abstract class Department implements IObserver {
 	public void updateQueue() {
 		for (Patient pat: this.admittedPatients) {
 			pat.setQueueNumber(0);
+			
 		}
 			
 	}

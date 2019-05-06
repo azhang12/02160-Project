@@ -1,7 +1,5 @@
 package hospital;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 //Part of the Observer Pattern

@@ -288,7 +288,7 @@ public class DataController {
 		if(selectedRow>-1) {
 			int patNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
 			Department dep = Finder.findDepartment(Finder.findPatient(patNo, dataModel.getData().getPatient()).getDepartment().getName(), dataModel.getData().getDepartment());
-			if(dep instanceof InpatientDepartment) {
+			if(dep instanceof InpatientDepartment&&Finder.findPatient(patNo,dataModel.getData().getPatient()).getBed()==null) {
 				//Show Beds
 				String[] beds= new String[((InpatientDepartment) dep).getBed().size()];
 				for (int i=0; i<beds.length;++i) {
@@ -302,8 +302,11 @@ public class DataController {
 				int newId = Integer.parseInt(newBedId);
 				dataModel.callPatient(selectedRow,newId);
 			}
-			else if(dep instanceof OutpatientDepartment) {
+			else if(dep instanceof OutpatientDepartment&&Finder.findPatient(patNo,dataModel.getData().getPatient()).getQueueNumber()==0) {
 				dataModel.callPatient(selectedRow,0);
+			}
+			else {
+				view.showError("Patient already called!");
 			}
 			
 			

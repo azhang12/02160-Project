@@ -136,4 +136,16 @@ public class FinderTest {
 		Finder f = new Finder();
 		
 	}
+	
+	@Test
+	public void findQueueNumberTest(){
+		OutpatientDepartment outDep = new OutpatientDepartment("D01");
+		Patient pat = new Patient("Kilian","Speiser",outDep,"Dezember","Germany","342323",true,123421,"Germany",new Bed(),1);
+		int i = Finder.findQueueNumber(outDep);
+		assertEquals(i,1);
+		outDep.admitPatient(pat);
+		i = Finder.findQueueNumber(outDep);
+		assertEquals(i,1);
+		
+	}
 }
