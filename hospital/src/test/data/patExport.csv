@@ -1,3 +1,5 @@
 First Name,Last Name,Department,Birthday,Address,phone,Alive,Patient Number,Nationality,Bed Number,Queue Number
 Mike,Vick,Department01,19911211,Copenhagen,12223124,yes,1,Germany,12,0
 Jamal,Peters,Department03,19530103,Cologne,+12124143,no,2,Germany,0,1
+Cat,Biscuit,Department03,19960313,Aarhus,+4512341234,yes,3,Italy,2,2
+Jane,Brown,Department04,19880112,Kgs.Lyngby,+4500222200,yes,4,Australia,1,3
