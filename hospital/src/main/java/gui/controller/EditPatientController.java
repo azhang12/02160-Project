@@ -74,6 +74,7 @@ public class EditPatientController {
 			}
 			
 			controller.editPatientInfo(patient,newValues);
+			view.setVisible(false);
 		}
 		else {
 			view.showError("Please add Information to change");}
