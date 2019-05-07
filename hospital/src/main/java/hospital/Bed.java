@@ -8,7 +8,7 @@ public class Bed implements IObserver{
 	private Patient patient;
 	private int id;
 	
-	//constuctors
+	//Constructors
 	public Bed() {}
 	public Bed(Patient patient, int id){
 		this.patient = patient;
