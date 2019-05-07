@@ -245,7 +245,7 @@ public class EditPatientView extends JFrame {
 		lblAliveDead.setBounds(393, 285, 146, 18);
 		contentPane.add(lblAliveDead);
 		
-		btnCancle = new JButton("Cancle");
+		btnCancle = new JButton("Cancel");
 		btnCancle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controller.editPatientClose();

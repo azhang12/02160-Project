@@ -136,8 +136,10 @@ public class System {
 		if(newStatus!=null) {
 			if(newStatus.equals("Alive")) {
 				patient.setAlive(true);
-			} else {
+			} else if(newStatus.equals("Dead")){
 				patient.setAlive(false);
+			} else {
+				//do nothing
 			}
 		}
 		
