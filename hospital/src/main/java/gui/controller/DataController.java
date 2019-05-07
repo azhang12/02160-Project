@@ -60,30 +60,39 @@ public class DataController {
 		        "What kind of Department...", JOptionPane.QUESTION_MESSAGE, null,
 		        choices, // Array of choices
 		        choices[0]); // Initial choice
-		   	String newDepName="";
-		   	while(Finder.findDepartment(newDepName, dataModel.getData().getDepartment())!=null||newDepName.equals("")) {
-	   			newDepName = (String) JOptionPane.showInputDialog("Please enter Department Name:");
-	   		}
-		   	if(newDep.equals(choices[0])){
-		   		String bedNo="";
-		   		int beds=0;
-		   		while (beds<=0) {
-		   			bedNo = (String) JOptionPane.showInputDialog("Please enter Number of Beds:");
-		   			try {  
-			            beds = Integer.parseInt(bedNo);
-			         } catch (NumberFormatException e) {  
-			        	
-			         }  
-		   		}	
-		   		//ADD INPATIENTDEPARTMENT
-		   		dataModel.addDepartment(newDepName, beds);
-		   		
+		   	//Only if not closed
+		   	if (newDep!=null) {
+		   		String newDepName="";
+			   	while(Finder.findDepartment(newDepName, dataModel.getData().getDepartment())!=null||newDepName.equals("")) {
+		   			if(newDepName!=null) {
+		   				newDepName = (String) JOptionPane.showInputDialog("Please enter Department Name:");
+		   			}
+		   		}
+			   	if(newDep.equals(choices[0])){
+			   		String bedNo="";
+			   		int beds=0;
+			   		while (beds<=0) {
+			   			if(bedNo!=null){
+			   				bedNo = (String) JOptionPane.showInputDialog("Please enter Number of Beds:");
+				   			try {  
+					            beds = Integer.parseInt(bedNo);
+					         } catch (NumberFormatException e) {  
+					        	
+					         }  
+			   			}
+			   			
+			   		}	
+			   		//ADD INPATIENTDEPARTMENT
+			   		dataModel.addDepartment(newDepName, beds);
+			   		
+			   	}
+			   	else if(newDep.equals(choices[1])) {
+			   		//Add outpatient Department
+			   		dataModel.addDepartment(newDepName, 0);
+			   		
+			   	}
 		   	}
-		   	else if(newDep.equals(choices[1])) {
-		   		//Add outpatient Department
-		   		dataModel.addDepartment(newDepName, 0);
-		   		
-		   	}
+		   	
 		   
 		   	
 			

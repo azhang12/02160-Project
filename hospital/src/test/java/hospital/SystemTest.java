@@ -20,7 +20,7 @@ public class SystemTest {
 	ArrayList <Staff> s = new ArrayList<Staff>();
 	
 	Patient pat1 = new Patient("Victoria", "Sirt", dep1, "19931222", "copenhagen", "+213123",true, 12,"Germany", dep1.getBed().get(0), 0 );
-	Patient pat2 = new Patient("Victor", "Slirt", dep2, "19931222", "copenhagen", "+213123",true, 10,"Germany", null, 0);
+	Patient pat2 = new Patient("Victor", "Slirt", dep2, "19931222", "copenhagen", "+213123",true, 10,"Germany", null, 1);
 	Patient pat3 = new Patient("Vic", "Smirt", dep1, "19931222", "copenhagen", "+213123",true,4,"Germany", null, 0);
 	ArrayList <Patient> p = new ArrayList<Patient>();
 	public Hospital add() {
@@ -104,7 +104,6 @@ public class SystemTest {
 	public void callPatientTestInDepartment() {
 		Hospital hosp = add();
 		System.callPatient(hosp,pat3,4);
-		
 		assertEquals("Bed was updated",dep1.getBed().get(3),pat3.getBed());
 		assertEquals("Bed was updated by observer pattern",dep1.getBed().get(3).getPatient(),pat3);
 				
@@ -120,9 +119,14 @@ public class SystemTest {
 	@Test 
 	public void callPatientTestOutDepartment() {
 		Hospital hosp = add();
+		assertEquals(dep2.getPatients().size(),1);
+		//System.admitPatient(hosp, 10, "D02");
+		//assertEquals(dep2.getPatients().size(),1);
+		//assertEquals(dep2.getQueue().size(),1);
 		System.callPatient(hosp,pat2,0);
-		assertEquals("Queue was updated",dep2.getQueue().peek(),pat2);
-		assertEquals("Queue was updated in noth places where it is saved",pat2.getQueueNumber(),1);
+		assertEquals("Patient automatically discharged",dep2.getPatients().size(),0);
+		//assertEquals("Queue was updated",dep2.getQueue().peek(),pat2);
+		//assertEquals("Queue was updated in noth places where it is saved",pat2.getQueueNumber(),1);
 	
 	}
 	

@@ -14,6 +14,7 @@ public class PDFgenerator{
 	
 	private static ArrayList<String> patientListing(ArrayList<Patient> patients) {
 		
+		
 		ArrayList<String> returnList = new ArrayList<String>();
 		for(Patient p : patients) {
  		   String name = p.getFirstName() + " " +p.getLastName();
@@ -71,10 +72,9 @@ public class PDFgenerator{
 					
 					int i = 1;
 					for(String item : patientsList) {
-						if(i%2 == 1) {
-							document.add(new Paragraph("#    " + item));
-						}
-						i++;
+						
+							document.add(new Paragraph("#"+i+"    " + item));
+						++i;
 					}
 					
 				}
