@@ -51,6 +51,7 @@ private static final long serialVersionUID = 8981053836072595592L;
 		txtNames.add("Patient ID");
 		txtNames.add("First Name");
 		txtNames.add("Last Name");
+		txtNames.add("Department");
 		txtNames.add("Birthday");
 		txtNames.add("Address");
 		txtNames.add("PhoneNumber");
