@@ -114,9 +114,11 @@ public class Patient extends Person {
 			this.setQueueNumber(i+1);
 			((OutpatientDepartment) d).addToQueue(this);
 		}
+
 	}
 	
 	public Patient copy() {
 		return new Patient(this.getFirstName(), this.getLastName(), this.getDepartment(), this.getBirthday(), this.getAddress(), this.getPhoneNumber(), this.getAlive(), this.getPatientNumber(), this.getNationality(), this.getBed(), this.getQueueNumber());
+
 	}
 }

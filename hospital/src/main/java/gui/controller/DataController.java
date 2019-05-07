@@ -253,6 +253,7 @@ public class DataController {
 		dataModel.editStaff(staff, newValues);	
 	}
 	
+
 	public void editPatientInfo(Patient patient, List<String> newValues) {
 		dataModel.editPatient(patient, newValues);
 	}
@@ -367,7 +368,7 @@ public class DataController {
 		CallPatientClicked(selectedRow);
 		
 	}
-	
+
 	public Data getDataModel() {
 		return this.dataModel;
 	}

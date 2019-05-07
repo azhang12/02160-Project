@@ -158,6 +158,7 @@ public class System {
 		return false;
 	}
 	
+	
 	public static boolean printPDF(Hospital hospital) {
 		PDFgenerator.printDepartments(hospital);
 		return true;
@@ -194,10 +195,11 @@ public class System {
 			}
 		}
 		
-		return false;
-		
+		return false;		
 	}
-	
+
+
+
 	public static void removeStaff(Hospital hospital, int staffNo) {
 		Staff s = Finder.findStaff(hospital.getStaff(), staffNo);
 		int i = hospital.getStaff().indexOf(s);
@@ -206,6 +208,8 @@ public class System {
 		s.getDepartment().getStaff().remove(i2);
 		
 	}
+
+
 
 	public static void removePatient(Hospital hospital, int patNo) {
 		Patient s = Finder.findPatient(patNo, hospital.getPatient());

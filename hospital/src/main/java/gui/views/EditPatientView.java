@@ -1,4 +1,3 @@
-
 package gui.views;
 
 import java.awt.GridBagLayout;
@@ -367,3 +366,4 @@ public class EditPatientView extends JFrame {
 	}
 }
 */
+

@@ -79,9 +79,15 @@ public class EditPatientController {
 			} else {
 				status = "Dead";
 			}
+			
+			String newStatus = txtEntries.get(6).getText();
+			
 			if(txtEntries.get(6).getText().isEmpty()) {newValues.add(status);}
-			else {
-				newValues.add(txtEntries.get(6).getText());
+			else if((newStatus.equals("Alive")) || newStatus.equals("Dead")){
+				newValues.add(newStatus);
+			} else {
+				newValues.add(status);
+
 			}
 			
 			controller.editPatientInfo(patient,newValues);
@@ -100,6 +106,8 @@ public class EditPatientController {
 		return false;
 		
 	}
+}
+
 /*
 
 <<<<<<< HEAD
@@ -177,17 +185,22 @@ public class EditPatientController {
 	}
 
 =======
+=======
+
+
+>>>>>>> 98d06992b27d4fef91b7f8be39af2c53473bb837
 
 
 	public void editPatientClose() {
 		view.setVisible(false);
 		
 	}
+<<<<<<< HEAD
 >>>>>>> d0f45d519819b9a0900df3624b54b7ed4f5a802b
 }
 	
 	*/
-	
+
 
 	
 	

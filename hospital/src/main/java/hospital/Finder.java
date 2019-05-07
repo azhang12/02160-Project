@@ -31,6 +31,15 @@ public class Finder {
 		return null;
 	}
 	
+	public static int findPatientInt(List<Patient> patient, int patNo) {
+		for (int i=0; i<patient.size();++i) {
+			if(patient.get(i).getPatientNumber()==patNo) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 	public static Bed findBed(int bedNumber, List<Bed> bedList) {
 		for (Bed bed : bedList) {
 			if(bed.getId()==bedNumber)

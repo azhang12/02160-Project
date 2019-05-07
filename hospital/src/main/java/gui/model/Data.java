@@ -204,13 +204,13 @@ public class Data extends AbstractTableModel {
 			if(!user.getAccess().getOtherDepartmetnsAccess()) {
 				if(patients.get(i).getDepartment()!=null&&user.getDepartment().equals(patients.get(i).getDepartment().getName())) {
 					DisplayedData.add(d);
-				
 			}
 				
 			}
 			else if(user.getAccess().getOtherDepartmetnsAccess()) {
 				DisplayedData.add(d);
 			}
+
 		}
 		
 	}
@@ -300,6 +300,7 @@ public class Data extends AbstractTableModel {
 	}
 	public void editPatient(Patient patient, List<String> newValues) {
 
+
 		if (System.editPatient(hospital,patient, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3),newValues.get(4),newValues.get(5))) {
 			
 		}
@@ -314,6 +315,7 @@ public class Data extends AbstractTableModel {
 			
 		}
 		readValue(whatData);
+
 		fireTableDataChanged();		
 	}
 	
