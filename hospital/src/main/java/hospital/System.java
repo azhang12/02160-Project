@@ -62,9 +62,9 @@ public class System {
 	
 	public static void exportData(Hospital hosp) {
 		Exporter e = new Exporter();
-		e.export(hosp.getDepartment(), "src/test/data/depExportTest.csv");
-		e.export(hosp.getStaff(), "src/test/data/staffExportTest.csv");
-		e.export(hosp.getPatient(), "src/test/data/patExportTest.csv");
+		e.export(hosp.getDepartment(), "depExport.csv");
+		e.export(hosp.getStaff(), "staffExport.csv");
+		e.export(hosp.getPatient(), "patExport.csv");
 		
 	}
 	

@@ -295,7 +295,7 @@ public class DataView extends JFrame{
 		if (!sessionModel.getAccess().getStaffDataAccess()) {
 			btnFindStaff.setVisible(false);
 			btnEditStaff.setVisible(false);
-			btnStaff.setVisible(false);
+			
 			
 		}
 		

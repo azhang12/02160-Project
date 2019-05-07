@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.util.List;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -13,8 +12,6 @@ import gui.model.FilterPatientData;
 import gui.model.Session;
 
 import gui.views.FilterPatientView;
-import hospital.Patient;
-
 public class FilterPatientController {
 
 	

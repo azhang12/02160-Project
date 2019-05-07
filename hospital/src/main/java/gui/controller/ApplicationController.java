@@ -9,9 +9,9 @@ public class ApplicationController {
 	
 	private LoginController loginController;
 	private DataController dataController;
-	public String departmentFile ="src/test/data/depExport.csv";
-	public String staffFile ="src/test/data/staffExport.csv";
-	public String patFile="src/test/data/patExport.csv";
+	public String departmentFile ="depExport.csv";
+	public String staffFile ="staffExport.csv";
+	public String patFile="patExport.csv";
 	
 	
 	public void manageData(Session session) {

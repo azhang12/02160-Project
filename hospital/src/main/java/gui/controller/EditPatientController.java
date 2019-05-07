@@ -39,6 +39,7 @@ public class EditPatientController {
 			if(txtEntries.get(0).getText().isEmpty()) {
 				newValues.add(patient.getFirstName());
 			} else {
+		
 				newValues.add(txtEntries.get(0).getText());
 			}
 			if(txtEntries.get(1).getText().isEmpty()) {

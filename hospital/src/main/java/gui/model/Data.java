@@ -200,16 +200,7 @@ public class Data extends AbstractTableModel {
 			else {d.add("");}
 		
 			//Only Show the info the user is allowed to see
-			if(!user.getAccess().getOtherDepartmetnsAccess()) {
-				if(patients.get(i).getDepartment()!=null&&user.getDepartment().equals(patients.get(i).getDepartment().getName())) {
-					DisplayedData.add(d);
-			}
-				
-				
-			}
-			else if(user.getAccess().getOtherDepartmetnsAccess()) {
-				DisplayedData.add(d);
-			}
+			DisplayedData.add(d);
 
 		}
 		
@@ -243,6 +234,7 @@ public class Data extends AbstractTableModel {
 			else if(user.getAccess().getOtherDepartmetnsAccess()) {
 				DisplayedData.add(d);
 			}
+			
 		}
 		
 	}
