@@ -11,7 +11,6 @@ import hospital.InpatientDepartment;
 import hospital.OutpatientDepartment;
 import hospital.Patient;
 import hospital.Staff;
-import hospital.Patient;
 import hospital.System;
 import gui.model.FilterStaffData;
 import gui.model.FilterPatientData;
@@ -24,7 +23,6 @@ import gui.views.FilterPatientView;
 import gui.views.DataView;
 import gui.views.EditPatientView;
 import gui.views.EditStaffView;
-import gui.views.EditPatientView;
 
 public class DataController {
 	
