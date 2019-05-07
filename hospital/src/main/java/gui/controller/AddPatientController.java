@@ -29,7 +29,7 @@ public class AddPatientController {
 	//User clicked the Add-Button
 	public void addPatientClicked(List<JTextField> txtEntries) {
 		// Added these lines below to get rid of the error
-		List<String> tempList = Arrays.asList();				//
+
 		if(validateInput(txtEntries)) {
 
 			List<String> strings = new ArrayList<String>();
@@ -37,12 +37,8 @@ public class AddPatientController {
 				strings.add(t.getText());
 			}
 			controller.add(strings,"Patient");
-
-			for(JTextField tF : txtEntries) {					
-				String t = tF.getText();						
-				tempList.add(t);								
-			}													
-			controller.add(tempList,"Patient");
+			
+			view.setVisible(false);
 
 		}
 		else {
