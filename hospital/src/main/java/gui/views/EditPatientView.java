@@ -1,8 +1,4 @@
 
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/azhang12/02160-Project.git
 package gui.views;
 
 import java.awt.BorderLayout;

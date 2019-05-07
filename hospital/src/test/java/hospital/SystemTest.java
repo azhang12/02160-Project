@@ -190,13 +190,14 @@ public class SystemTest {
 	@Test
 	public void editPatientTest() {
 		Hospital hosp = add();
-		System.editPatient(hosp, pat1, pat2.getFirstName(), pat2.getLastName(), pat2.getBirthday(),pat2.getAddress(), pat2.getPhoneNumber(), pat2.getNationality());
+		System.editPatient(hosp, pat1, pat2.getFirstName(), pat2.getLastName(), pat2.getBirthday(),pat2.getAddress(), pat2.getPhoneNumber(), pat2.getNationality(), "Dead");
 		assertEquals(pat1.getFirstName(),(pat2.getFirstName()));
 		assertEquals(pat1.getLastName(),pat2.getLastName());
 		assertEquals(pat1.getBirthday(),pat2.getBirthday());
 		assertEquals(pat1.getAddress(),pat2.getAddress());
 		assertEquals(pat1.getPhoneNumber(),pat2.getPhoneNumber());
 		assertEquals(pat1.getNationality(),pat2.getNationality());
+		assertEquals(pat1.getAlive(),false);
 		
 		
 	}
@@ -204,7 +205,8 @@ public class SystemTest {
 	public void editPatientTestNull() {
 		Hospital hosp = add();
 		
-		System.editPatient(hosp, pat1, null, null, null,null, null, null);
+			
+		System.editPatient(hosp, pat1, null, null, null,null, null, null,null);
 		assertEquals(pat1.getFirstName(),"Victoria");
 		assertEquals(pat1.getLastName(),"Sirt");
 		assertEquals(pat1.getBirthday(),"19931222");
