@@ -79,9 +79,14 @@ public class EditPatientController {
 			} else {
 				status = "Dead";
 			}
+			
+			String newStatus = txtEntries.get(6).getText();
+			
 			if(txtEntries.get(6).getText().isEmpty()) {newValues.add(status);}
-			else {
-				newValues.add(txtEntries.get(6).getText());
+			else if((newStatus.equals("Alive")) || newStatus.equals("Dead")){
+				newValues.add(newStatus);
+			} else {
+				newValues.add(status);
 			}
 			
 			controller.editPatientInfo(patient,newValues);
