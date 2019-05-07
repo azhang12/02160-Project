@@ -48,7 +48,8 @@ public class AddDepartmentTest {
 	public void AddDepartmentClickedTest() {
 		ApplicationController app = new ApplicationController();
 		Session s = new Session();
-		Data d = new Data(add(),"Staff");
+		s.setUser(staff1);
+		Data d = new Data(add(),"Staff",s);
 		DataController controller = new DataController(app,d ,s);
 		controller.AddClicked("Department");
 		

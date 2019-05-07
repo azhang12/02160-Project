@@ -1,6 +1,5 @@
 package gui.controller;
 
-import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.List;
 

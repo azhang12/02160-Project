@@ -10,9 +10,7 @@ import org.junit.Test;
 import gui.model.Session;
 import gui.model.Data;
 import gui.views.AddStaffView;
-import gui.views.EditStaffView;
 import hospital.Department;
-import hospital.Finder;
 import hospital.Hospital;
 import hospital.ICTAccess;
 import hospital.InpatientDepartment;
@@ -22,7 +20,6 @@ import hospital.Patient;
 import hospital.Reader;
 import hospital.Staff;
 import hospital.StaffAccess;
-import hospital.System;
 
 public class AddStaffTest {
 	Reader r = new Reader();
@@ -64,9 +61,10 @@ public class AddStaffTest {
 	@Test
 	public void testView() {
 		Session s = new Session();
+		s.setUser(staff1);
 		ApplicationController app = new ApplicationController();
 		Hospital h = add();
-		Data d = new Data(h,"Staff");
+		Data d = new Data(h,"Staff",s);
 		DataController dc = new DataController(app,d,s);
 		AddStaffController c = new AddStaffController(s,dc);
 		AddStaffView  view = new AddStaffView(c);
@@ -77,8 +75,9 @@ public class AddStaffTest {
 	@Test
 	public void addStaffClickedTest() {
 		Hospital h = add();
-		Data d = new Data(h,"Staff");
 		Session s = new Session();
+		s.setUser(staff1);
+		Data d = new Data(h,"Staff",s);
 		ApplicationController app = new ApplicationController();
 		DataController dc = new DataController(app,d,s);
 		AddStaffController c = new AddStaffController(s,dc);
