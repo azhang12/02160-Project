@@ -115,10 +115,26 @@ public class System {
 			newDep.addStaff(staff);
 			return true;
 		}
-		else return false;
-		
-		
+		else return false;	
 	}
+	
+	public static boolean editPatient(Hospital hosp, Patient patient, String newFirstName, String newLastName, String newAddress, String newPhoneNumber, String newAlive, String newNationality) {
+		
+		patient.setFirstName(newFirstName);
+		patient.setLastName(newLastName);
+		patient.setAddress(newAddress);
+		patient.setPhoneNumber(newPhoneNumber);
+		if (newAlive == "true") {
+			patient.setAlive(true);
+		} else {
+			patient.setAlive(false);
+		}
+		patient.setNationality(newNationality);
+		
+		return true;
+	}
+	
+	
 	
 	public static boolean printPDF(Hospital hospital) {
 		PDFgenerator.printDepartments(hospital);

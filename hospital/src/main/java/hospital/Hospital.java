@@ -72,7 +72,7 @@ public class Hospital {
 		return staffList;
 	}
 
-	public  ArrayList<Patient> getPatient() {
+	public ArrayList<Patient> getPatient() {
 		return patientList;
 	}
 

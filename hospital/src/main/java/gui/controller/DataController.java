@@ -11,15 +11,19 @@ import hospital.Finder;
 import hospital.InpatientDepartment;
 import hospital.OutpatientDepartment;
 import hospital.Staff;
+import hospital.Patient;
 import hospital.System;
 import gui.model.FilterStaffData;
+import gui.model.FilterPatientData;
 import gui.model.Session;
 import gui.model.Data;
 import gui.views.AddPatientView;
 import gui.views.AddStaffView;
 import gui.views.FilterStaffView;
+import gui.views.FilterPatientView;
 import gui.views.DataView;
 import gui.views.EditStaffView;
+import gui.views.EditPatientView;
 
 public class DataController {
 	
@@ -125,11 +129,20 @@ public class DataController {
 
 
 
-	public void FilterClicked() {
-		FilterStaffController c = new FilterStaffController(sessionModel,this,new FilterStaffData(dataModel.getData()));
-		FilterStaffView view = new FilterStaffView(c);	
-		c.setView(view);
-		view.setVisible(true);
+	public void FilterClicked(String s) {
+		if (s.equals("Patient")) {
+			FilterPatientController c = new FilterPatientController(sessionModel,this,new FilterPatientData(dataModel.getData()));
+			FilterPatientView view = new FilterPatientView(c);	
+			c.setView(view);
+			view.setVisible(true);
+		} else if (s.equals("Staff")) {
+			FilterStaffController c = new FilterStaffController(sessionModel,this,new FilterStaffData(dataModel.getData()));
+			FilterStaffView view = new FilterStaffView(c);	
+			c.setView(view);
+			view.setVisible(true);
+		}
+		
+
 		
 	}
 
@@ -148,6 +161,12 @@ public class DataController {
 			}
 					
 			else if(s.equals("Patient")) {
+				Patient patient = Finder.findPatient(Integer.parseInt(dataModel.getValueAt(selectedRow, 0)), dataModel.getData().getPatient());
+			
+				EditPatientController c = new EditPatientController(sessionModel, this);
+				EditPatientView view = new EditPatientView(c, patient);
+				c.setView(view);
+				view.setVisible(true);
 				
 			}
 			
@@ -197,6 +216,10 @@ public class DataController {
 	public void editStaffInfo(Staff staff, List<String> newValues) {
 		
 		dataModel.editStaff(staff, newValues);	
+	}
+	
+	public void editPatientInfo(Patient patient, List<String> newValues) {
+		dataModel.editPatient(patient, newValues);
 	}
 
 	public void PrintPdf() {

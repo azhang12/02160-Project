@@ -132,7 +132,7 @@ public class DataView extends JFrame{
 		btnFindStaff.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.FilterClicked();
+				controller.FilterClicked("Staff");
 			}
 		});
 		btnEditStaff.addActionListener(new ActionListener() {
@@ -160,7 +160,7 @@ public class DataView extends JFrame{
 		btnFindPatients.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				controller.FilterClicked();
+				controller.FilterClicked("Patient");
 			}
 		});
 		

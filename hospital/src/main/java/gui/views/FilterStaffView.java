@@ -41,7 +41,7 @@ private static final long serialVersionUID = 8981053836072595592L;
 		
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		
 		setResizable(false);
