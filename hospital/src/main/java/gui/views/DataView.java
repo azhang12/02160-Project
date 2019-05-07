@@ -263,6 +263,9 @@ public class DataView extends JFrame{
 	public void setSession(Session sessionModel) {
 		lblSession.setText(sessionModel.getDepartment() +": "+ sessionModel.getUser().getJobRole() + "   ("+ sessionModel.getUserId()+")");
 		//Visibility
+		if(!sessionModel.getAccess().getOtherDepartmetnsAccess()) {
+			btnPrintPDF.setVisible(false);
+		}
 		
 		if(!sessionModel.getAccess().getPatientRegistationDataAccess()){
 				btnAddPatient.setVisible(false);
