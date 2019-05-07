@@ -104,21 +104,7 @@ public class System {
 		else return false;	
 	}
 	
-	public static boolean editPatient(Hospital hosp, Patient patient, String newFirstName, String newLastName, String newAddress, String newPhoneNumber, String newAlive, String newNationality) {
-		
-		patient.setFirstName(newFirstName);
-		patient.setLastName(newLastName);
-		patient.setAddress(newAddress);
-		patient.setPhoneNumber(newPhoneNumber);
-		if (newAlive == "true") {
-			patient.setAlive(true);
-		} else {
-			patient.setAlive(false);
-		}
-		patient.setNationality(newNationality);
-		
-		return true;
-	}
+
 	
 	public static boolean editPatient(Hospital hospital, Patient patient, String newFirstName, String newLastName, String newBirthday,
 			String newAddress, String newPhoneNumber, String newNationality, String newStatus) {
@@ -148,10 +134,12 @@ public class System {
 		}
 		
 		if(newStatus!=null) {
-			if(newStatus == "Alive") {
+			if(newStatus.equals("Alive")) {
 				patient.setAlive(true);
-			} else {
+			} else if(newStatus.equals("Dead")){
 				patient.setAlive(false);
+			} else {
+				//do nothing
 			}
 		}
 		

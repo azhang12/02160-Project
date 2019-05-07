@@ -74,7 +74,7 @@ public class FilterPatientData extends AbstractTableModel {
 			return p.getNationality();
 		}
 		else if (columnIndex == 9) {
-			return p.getBed();
+			return p.getBed().getId();
 		}
 		else if (columnIndex == 10) {
 			return p.getQueueNumber();
@@ -191,11 +191,11 @@ public class FilterPatientData extends AbstractTableModel {
 					patient.remove(i);
 				}
 			}
-			if(!txtEntries.get(10).getText().isEmpty()) {
-				if (!txtEntries.get(10).getText().equalsIgnoreCase(Integer.toString(patient.get(i).getQueueNumber()))){
-					patient.remove(i);
-				}
-			}
+			//if(!txtEntries.get(10).getText().isEmpty()) {
+			//	if (!txtEntries.get(10).getText().equalsIgnoreCase(Integer.toString(patient.get(i).getQueueNumber()))){
+			//		patient.remove(i);
+			//	}
+			//}
 
 		}
 		fireTableDataChanged();	
