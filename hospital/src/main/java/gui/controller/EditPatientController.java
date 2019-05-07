@@ -1,3 +1,4 @@
+
 package gui.controller;
 
 import java.util.ArrayList;
@@ -72,6 +73,8 @@ public class EditPatientController {
 				newValues.add(txtEntries.get(6).getText());
 			}
 			controller.editPatientInfo(patient, newValues);
+			
+			view.setVisible(false);
 			
 		} else {
 			view.showError("Please add information to edit");
