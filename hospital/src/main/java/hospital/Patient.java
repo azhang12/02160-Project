@@ -104,12 +104,16 @@ public class Patient extends Person {
 	}
 	@Override
 	public void setDepartment(Department d) {
-		if(d instanceof OutpatientDepartment) {
-			((OutpatientDepartment)d).updateQueue();
-		}
+		
 		super.setDepartment(d);
 		this.setBed(null, true);
 		this.setQueueNumber(0);
+		
+		if(d instanceof OutpatientDepartment) {
+			int i = ((OutpatientDepartment)d).getQueue().size();
+			this.setQueueNumber(i+1);
+			((OutpatientDepartment) d).addToQueue(this);
+		}
 	}
 	
 	public Patient copy() {

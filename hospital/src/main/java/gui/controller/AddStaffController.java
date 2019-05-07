@@ -30,6 +30,7 @@ public class AddStaffController {
 		testing = validateInput(entries, txtNames);
 		if(testing == "") {
 			controller.add(entries,"Staff");
+			
 			view.dispose();
 		}
 		else {
@@ -65,6 +66,9 @@ public class AddStaffController {
 	
 	}
 	
+	public DataController getController() {
+		return this.controller;
+	}
 	
 	
 	

@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class Exporter {
@@ -99,7 +98,10 @@ public class Exporter {
 				s.add(((Patient) d).getNationality());
 				
 				if(((Patient)d).getDepartment() instanceof InpatientDepartment){
-					int bedNo = ((Patient)d).getBed().getId();
+					int bedNo=0;
+					if(((Patient)d).getBed()!=null) {
+						bedNo = ((Patient)d).getBed().getId();
+					}
 					s.add(Integer.toString(bedNo));
 					s.add("0");
 				}

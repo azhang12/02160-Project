@@ -4,7 +4,6 @@ package gui.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
 
@@ -96,7 +95,7 @@ public class FilterStaffData extends AbstractTableModel {
 
 	public void removeStaff(int staffNo) {
 
-		int i = Finder.findStaff(staff, staffNo);
+		int i = Finder.findStaffInt(staff, staffNo);
 		if(i>-1) {
 			staff.remove(i);
 			fireTableDataChanged();

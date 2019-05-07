@@ -1,6 +1,18 @@
 First Name,Last Name,Department,Job Role,eMail,Staff No,accesLevel
 Amy,Maguire,Department04,DOCTOR,a.maguire@hospital.dk,2,Staff
-kilian,speiser,Department01,NURSE,kilian.speiser@hospital.dk,3,Staff
-ben,june,Department05,CLERK,ben.june@hospital.dk,5,Clerk
+Kilian,Speiser,Department01,NURSE,kilian.speiser@hospital.dk,3,Staff
+Ben,June,Department05,CLERK,ben.june@hospital.dk,5,Clerk
 Alex,Clark,Department04,IT,Alex.Clark@hospital.dk,7,ICT
-Kilian,Meier,Department01,CLERK,kilian.meier@hospital.dk,8,Clerk
+Miriam,Meier,Department01,CLERK,kilian.meier@hospital.dk,8,Clerk
+Bryan,January,Department04,NURSE,bryan.january@hospital.dk,9,Staff
+Maria,Fabruary,Department05,NURSE,maria.february@hospital.dk,10,Staff
+Francesca,March,Department02,NURSE,francesca.march@hospital.dk,11,Staff
+David,April,Department03,DOCTOR,david.april@hospital.dk,12,Staff
+Maxim,May,Department01,NURSE,maxim.may@hospital.dk,13,Staff
+Ben,June,Department05,DOCTOR,ben.june2@hospital.dk,14,Staff
+Ryan,July,Department01,IT,ryan.july@hospital.dk,15,ICT
+Darron,August,Department03,CLERK,darron.august@hospital.dk,16,Clerk
+David,September,Department02,NURSE,david.september@hospital.dk,17,Staff
+Alexander,October,Department04,NURSE,alexander.october@hospital.dk,18,Staff
+Joseph,November,Department04,DOCTOR,joseph.november@hospital.dk,19,Staff
+Kim,December,Department04,NURSE,kim.december@hospital.dk,20,Staff

@@ -22,9 +22,6 @@ import javax.swing.table.TableModel;
 
 import gui.controller.DataController;
 import gui.model.Session;
-import hospital.Access;
-import hospital.Finder;
-
 
 public class DataView extends JFrame{
 	
@@ -40,10 +37,8 @@ public class DataView extends JFrame{
 	private JButton btnDeleteStaff = new JButton("Remove Staff");
 	private JButton btnDeletePatient = new JButton("Remove Patient");
 	private JButton btnAddDepartment= new JButton("Add Department");
-	private JButton btnDeleteDepartment = new JButton("Remove Department");
 	private JButton btnFindStaff = new JButton("Filter");
 	private JButton btnFindPatients = new JButton("Filter");
-	private JButton btnFindDepartments = new JButton("Filter");
 	private JButton btnStaff = new JButton("Staff");
 	private JButton btnPat = new JButton("Patients");
 	private JButton btnDep = new JButton("Departments");
@@ -72,7 +67,7 @@ public class DataView extends JFrame{
 	private void initGUI() {
 		
 		
-		setTitle("Staff Data Manager");
+		setTitle("Data Manager");
 		setPreferredSize(new Dimension(800, 600));
 		
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -119,7 +114,7 @@ public class DataView extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.AddPersonClicked("Staff");
+				controller.AddClicked("Staff");
 			}
 		});
 		btnDeleteStaff.addActionListener(new ActionListener() {
@@ -147,7 +142,7 @@ public class DataView extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.AddPersonClicked("Patient");
+				controller.AddClicked("Patient");
 			}
 		});
 		btnDeletePatient.addActionListener(new ActionListener() {
@@ -211,20 +206,7 @@ public class DataView extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				controller.AddPersonClicked("Department");
-			}
-		});
-		btnDeleteDepartment.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.DeletePersonClicked("Department",tblData.getSelectedRow());
-			}
-		});
-		
-		btnFindDepartments.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				controller.FilterClicked();
+				controller.AddClicked("Department");
 			}
 		});
 		
@@ -281,16 +263,20 @@ public class DataView extends JFrame{
 	public void setSession(Session sessionModel) {
 		lblSession.setText(sessionModel.getDepartment() +": "+ sessionModel.getUser().getJobRole() + "   ("+ sessionModel.getUserId()+")");
 		//Visibility
+		if(!sessionModel.getAccess().getOtherDepartmetnsAccess()) {
+			btnPrintPDF.setVisible(false);
+		}
 		
 		if(!sessionModel.getAccess().getPatientRegistationDataAccess()){
 				btnAddPatient.setVisible(false);
 				btnDeletePatient.setVisible(false);
+				btnEditPatient.setVisible(false);
+				btnAdmitPatient.setVisible(false);
 				
 				btnAddStaff.setVisible(false);
 				btnDeleteStaff.setVisible(false);
 				
-				btnChangeDepartment.setVisible(false);
-				btnChangeBed.setVisible(false);
+				
 		}
 		
 		if(!sessionModel.getAccess().getPatientAdmissionDataAccess()) {
@@ -302,6 +288,8 @@ public class DataView extends JFrame{
 			btnFindPatients.setVisible(false);
 			btnEditPatient.setVisible(false);
 			btnPat.setVisible(false);
+			btnChangeDepartment.setVisible(false);
+			btnChangeBed.setVisible(false);
 			
 		}
 		if (!sessionModel.getAccess().getStaffDataAccess()) {
@@ -314,7 +302,7 @@ public class DataView extends JFrame{
 	}
 
 	public void showError() {
-		// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(this, "ERROR", "Not saved", JOptionPane.ERROR_MESSAGE);
 		
 	}
 	public void showError(String errorTxt) {
@@ -371,27 +359,15 @@ public class DataView extends JFrame{
 				toolBarOperations.removeAll();
 			
 				toolBarOperations.add(btnAddDepartment);
-				toolBarOperations.add(btnDeleteDepartment);
-				toolBarOperations.add(btnFindDepartments);
 				toolBarOperations.add(Box.createHorizontalGlue());
 				toolBarOperations.add(lblSession);
 				//add(toolBarOperations, BorderLayout.NORTH);
 				toolBarOperations.repaint();
 			
 		}
-	
-	
 	}
 	
-	public void showAdmitPatient() {
-		
-	}
-
-
-	public int displayCall(int selectedRow) {
-		
-		return 0;
-	}
+	
 	
 	
 

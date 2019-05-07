@@ -9,7 +9,7 @@ import com.opencsv.CSVReader;
 
 public class Reader implements IReader{
 
-	Reader(){}
+	public Reader(){}
 	@Override
 	public List<List<String>> read(String filename) {
 		List<List<String>> listOfLists = new ArrayList<List<String>>();
@@ -42,7 +42,7 @@ public class Reader implements IReader{
 			Access access = Finder.findAccess(job);
 			Staff newStaff = (new Staff(i.get(0), i.get(1), job, i.get(4), Integer.parseInt(i.get(5)),  access, currentDep));
 			staff.add(newStaff);
-			currentDep.getStaff().add(newStaff);
+			newStaff.setDepartment(currentDep); //To make sure observerPattern functions
 		}
 		
 		
@@ -66,7 +66,6 @@ public class Reader implements IReader{
 		
 		return departments;
 	}
-	
 	public ArrayList<Patient> readPatients (List<Department> departmentList, String fileName){
 		ArrayList<Patient>  patients = new ArrayList<Patient>();
 		List<List<String>> listOfLists = this.read(fileName);
@@ -88,38 +87,30 @@ public class Reader implements IReader{
 			String nation = i.get(8);
 			int bedNumber = Integer.parseInt(i.get(9));
 			int queueNumber = Integer.parseInt(i.get(10));
+			Department currentDep = Finder.findDepartment(dep, departmentList);
+			Patient p = new Patient(fName,lName,currentDep,birth,address,phone,alive,patientNumber,nation,null,0);
 			
-			if(!dep.equals("")) {
-				Department currentDep = Finder.findDepartment(dep, departmentList);
-				Patient pat = (new Patient(fName,lName,currentDep,birth,address,phone,alive,patientNumber,nation,null,0));
-				currentDep.getPatients().add(pat);
-				//Identify the bed or queue number
-				if (currentDep!=null) {
+			if(currentDep!=null) {
+
+				
 					if(bedNumber!=0&&queueNumber==0) {
 						Bed b = Finder.findBed(bedNumber, ((InpatientDepartment) currentDep).getBed());
-						b.setPatient(pat);
-						pat.setBed(b,true);
+						p.setBed(b,true);
 						
 					}
 					else if (bedNumber==0&&queueNumber!=0) {
-						pat.setQueueNumber(queueNumber);
+						p.setQueueNumber(queueNumber);
+						((OutpatientDepartment)p.getDepartment()).getQueue().add(p);
 					}
 				}
-				patients.add(pat);
-			}
-			else{
-				Patient pat = (new Patient(fName,lName,null,birth,address,phone,alive,patientNumber,nation,null,0));
-				patients.add(pat);
-				
-			}
+			
+			patients.add(p);
 			
 			
 				
 		}
 		return patients;
 	}
-	
-	
 
 }
 

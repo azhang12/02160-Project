@@ -69,37 +69,48 @@ public abstract class Department implements IObserver {
 				this.staff.remove(i);
 				//Remove old Observer from oberverArray
 			}
-			int i2= ((Staff) toUpdate).getObservers().indexOf(this);
-			
 			toUpdate.getDepartment().addStaff((Staff)toUpdate);
 		}
 	
 		else if(toUpdate instanceof Patient) {
 			//Remove Patient from old Department
 			int i=this.admittedPatients.indexOf(toUpdate);
+			if(this instanceof OutpatientDepartment) {
+				updateQueue();
+			}
+			
 			if(i!=-1) {
 				this.admittedPatients.remove(i);
 				//Remove old Observer from oberverArray
 			}
+			
 			if(toUpdate.getDepartment()!=null) {
 				List<Patient> newDep = toUpdate.getDepartment().getPatients();
 				newDep.add((Patient) toUpdate);
+				
+			}
+		}
+			
+			
+	}
+		public void updateQueue(){{
+			if(this instanceof OutpatientDepartment) {
+				((OutpatientDepartment)this).getQueue().clear();
+				for (int i=0; i<this.admittedPatients.size();++i) {
+					((OutpatientDepartment)this).getQueue().add(admittedPatients.get(i));
+					admittedPatients.get(i).setQueueNumber(i+1);
+				}
 			}
 			
-			
 		}
 	}
-	public void updateQueue() {
-		for (Patient pat: this.admittedPatients) {
-			pat.setQueueNumber(0);
-		}
-			
-	}
-
-	
-
-	
 }
+	
+
+	
+
+	
+
 
 
 

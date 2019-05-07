@@ -1,6 +1,5 @@
 package gui.views;
 
-import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,19 +10,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableModel;
-
-import gui.controller.AddStaffController;
 import gui.controller.FilterStaffController;
-import gui.model.Session;
 import gui.utils.GridBagLayoutUtils;
-import hospital.Staff;
 
 public class FilterStaffView extends JFrame implements IError {
 	

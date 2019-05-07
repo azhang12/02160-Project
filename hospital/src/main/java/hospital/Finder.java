@@ -25,7 +25,6 @@ public class Finder {
 			if(pat.getPatientNumber()==PatientNumber)
 			{
 				return pat;
-				
 			}
 			
 		}
@@ -102,7 +101,7 @@ public class Finder {
 	}
 
 	public static int findQueueNumber(OutpatientDepartment dep) {
-		int output=1;
+		int output=0;
 		for (Patient pat: dep.getPatients()) {
 			if(pat.getQueueNumber()!=0) {
 				if (pat.getQueueNumber()>output) {output=pat.getQueueNumber();}

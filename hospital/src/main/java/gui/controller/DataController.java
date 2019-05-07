@@ -1,6 +1,5 @@
 package gui.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -10,6 +9,7 @@ import hospital.Department;
 import hospital.Finder;
 import hospital.InpatientDepartment;
 import hospital.OutpatientDepartment;
+import hospital.Patient;
 import hospital.Staff;
 import hospital.Patient;
 import hospital.System;
@@ -22,6 +22,7 @@ import gui.views.AddStaffView;
 import gui.views.FilterStaffView;
 import gui.views.FilterPatientView;
 import gui.views.DataView;
+import gui.views.EditPatientView;
 import gui.views.EditStaffView;
 import gui.views.EditPatientView;
 
@@ -53,9 +54,53 @@ public class DataController {
 		view.setVisible(true);
 	}
 	
-	public void AddPersonClicked(String s) {
+	public void AddClicked(String s) {
 		
 		if(s.equals("Department")) {
+			
+			String[] choices = new String[2];
+			choices[0]= "Inpatient Department";
+			choices[1]= "Outpatient Department";
+			
+		   	String newDep = (String)JOptionPane.showInputDialog(null, "Choose now...",
+		        "What kind of Department...", JOptionPane.QUESTION_MESSAGE, null,
+		        choices, // Array of choices
+		        choices[0]); // Initial choice
+		   	//Only if not closed
+		   	if (newDep!=null) {
+		   		String newDepName="";
+			   	while(Finder.findDepartment(newDepName, dataModel.getData().getDepartment())!=null||newDepName.equals("")) {
+		   			if(newDepName!=null) {
+		   				newDepName = (String) JOptionPane.showInputDialog("Please enter Department Name:");
+		   			}
+		   		}
+			   	if(newDep.equals(choices[0])){
+			   		String bedNo="";
+			   		int beds=0;
+			   		while (beds<=0) {
+			   			if(bedNo!=null){
+			   				bedNo = (String) JOptionPane.showInputDialog("Please enter Number of Beds:");
+				   			try {  
+					            beds = Integer.parseInt(bedNo);
+					         } catch (NumberFormatException e) {  
+					        	
+					         }  
+			   			}
+			   			
+			   		}	
+			   		//ADD INPATIENTDEPARTMENT
+			   		dataModel.addDepartment(newDepName, beds);
+			   		
+			   	}
+			   	else if(newDep.equals(choices[1])) {
+			   		//Add outpatient Department
+			   		dataModel.addDepartment(newDepName, 0);
+			   		
+			   	}
+		   	}
+		   	
+		   
+		   	
 			
 		}
 		
@@ -84,9 +129,7 @@ public class DataController {
 		else if (whatData.equals("Patient")) {
 			dataModel.addPatient(txtEntries);
 		}
-		else if (whatData.equals("Department")) {
-			dataModel.addDepartment(txtEntries);
-		}
+		
 		else {
 			view.showError();
 		}	
@@ -105,13 +148,6 @@ public class DataController {
 				dataModel.removePatient(patNo);
 				
 			}
-			else if(s.equals("Department")){
-				String depName = (dataModel.getValueAt(selectedRow, 0));
-				dataModel.removeDepartment(depName);
-				
-			}
-					
-			
 			
 		}
 		else {
@@ -147,7 +183,7 @@ public class DataController {
 	}
 
 	public void ShowData(String s) {
-		this.dataModel= new Data(dataModel.getData(),s);
+		this.dataModel= new Data(dataModel.getData(),s,sessionModel);
 		this.view.setTableModel(dataModel,s);
 		
 		
@@ -162,12 +198,11 @@ public class DataController {
 					
 			else if(s.equals("Patient")) {
 				Patient patient = Finder.findPatient(Integer.parseInt(dataModel.getValueAt(selectedRow, 0)), dataModel.getData().getPatient());
-			
+
 				EditPatientController c = new EditPatientController(sessionModel, this);
 				EditPatientView view = new EditPatientView(c, patient);
 				c.setView(view);
 				view.setVisible(true);
-				
 			}
 			
 			else if(s.equals("Staff")) {
@@ -221,6 +256,7 @@ public class DataController {
 	public void editPatientInfo(Patient patient, List<String> newValues) {
 		dataModel.editPatient(patient, newValues);
 	}
+
 
 	public void PrintPdf() {
 		if(System.printPDF(dataModel.getData())) {
@@ -285,7 +321,7 @@ public class DataController {
 		if(selectedRow>-1) {
 			int patNo = Integer.parseInt(dataModel.getValueAt(selectedRow, 0));
 			Department dep = Finder.findDepartment(Finder.findPatient(patNo, dataModel.getData().getPatient()).getDepartment().getName(), dataModel.getData().getDepartment());
-			if(dep instanceof InpatientDepartment) {
+			if(dep instanceof InpatientDepartment&&Finder.findPatient(patNo,dataModel.getData().getPatient()).getBed()==null) {
 				//Show Beds
 				String[] beds= new String[((InpatientDepartment) dep).getBed().size()];
 				for (int i=0; i<beds.length;++i) {
@@ -300,7 +336,15 @@ public class DataController {
 				dataModel.callPatient(selectedRow,newId);
 			}
 			else if(dep instanceof OutpatientDepartment) {
-				dataModel.callPatient(selectedRow,0);
+				if(Finder.findPatient(patNo,dataModel.getData().getPatient()).getQueueNumber()==1) {
+					dataModel.callPatient(selectedRow,0);
+				}
+				else {
+					view.showError("You are only allowed to call next Patient in Queue");
+				}
+			}
+			else {
+				view.showError("Patient already called!");
 			}
 			
 			
@@ -323,9 +367,8 @@ public class DataController {
 		CallPatientClicked(selectedRow);
 		
 	}
-
 	
-
-	
-
+	public Data getDataModel() {
+		return this.dataModel;
+	}
 }

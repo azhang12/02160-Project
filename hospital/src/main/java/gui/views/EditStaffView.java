@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 
 import gui.controller.EditStaffController;
 import gui.utils.GridBagLayoutUtils;
-import hospital.Finder;
 import hospital.Staff;
 
 public class EditStaffView extends JFrame implements IError {

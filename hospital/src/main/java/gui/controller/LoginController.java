@@ -4,7 +4,6 @@ import java.util.List;
 
 import gui.model.Session;
 import gui.model.Data;
-import gui.model.User;
 import gui.views.LoginView;
 import hospital.Finder;
 import hospital.Staff;

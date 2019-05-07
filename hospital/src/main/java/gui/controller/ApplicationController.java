@@ -15,7 +15,7 @@ public class ApplicationController {
 	
 	
 	public void manageData(Session session) {
-		Data d = new Data(System.loadData(departmentFile, staffFile, patFile),"Staff");
+		Data d = new Data(System.loadData(departmentFile, staffFile, patFile),"Staff",session);
 		DataController c = new DataController(this,d,session);
 		DataView view = new DataView(c);
 		c.setView(view,"Department");
@@ -26,7 +26,8 @@ public class ApplicationController {
 	
 	
 	public void login() {
-		Data d = new Data(System.loadData(departmentFile , staffFile, patFile),"Department");
+		Session sess = new Session();
+		Data d = new Data(System.loadData(departmentFile , staffFile, patFile),"Department",new Session ());
 		loginController = new LoginController(this,d);
 		loginController.display();
 	}

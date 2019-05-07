@@ -1,12 +1,8 @@
 package hospital;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.regex.Pattern;
 
 public class System {
-	
-	
 	
 	public static boolean registerPatient(Hospital data, String FirstName, String LastName, String dob, String address, String phone, boolean living, String national){
 		
@@ -25,37 +21,15 @@ public class System {
 		
 		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
 		Department dep = Finder.findDepartment(DepartmentName, data.getDepartment());
-		
-		pat.setDepartment(dep);
-		dep.admitPatient(pat);
-		
-				
+		pat.setDepartment(dep);	
 	}
 	
 	public static void dischargePatient(Hospital data, int PatientNumber) {
 		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
-		Department dep = Finder.findDepartment(pat.getDepartment().getName(), data.getDepartment());
 		pat.setDepartment(null);
-		dep.dischargePatient(pat);
 	}
 	
-	public static void movePatient(Hospital data, int PatientNumber, String newDepartment) {
-		
-		dischargePatient(data, PatientNumber);
-		admitPatient(data,PatientNumber,newDepartment);
-		
-	}
 	
-	public static boolean movePatient(Hospital data, int PatientNumber, int newBed) {
-		
-		Patient pat = Finder.findPatient(PatientNumber, data.getPatient());
-		if(pat.getDepartment() instanceof InpatientDepartment) {
-			InpatientDepartment ndep = (InpatientDepartment) pat.getDepartment();
-			pat.setBed(Finder.findBed(newBed, ndep.getBed()));
-			return true;
-		}
-		else return false;
-	}
 	
 	public static boolean registerStaff(Hospital data,String FirstName, String LastName, String jobRole, String depName ) {
 		Department  dep = Finder.findDepartment(depName, data.getDepartment());
@@ -93,14 +67,26 @@ public class System {
 		e.export(hosp.getPatient(), "src/test/data/patExport.csv");
 		
 	}
+	
+	public static void addDepartment(Hospital hosp, String DepartmentName, int bedNo) {
+		if(bedNo==0) {
+			OutpatientDepartment department = new OutpatientDepartment(DepartmentName);
+			hosp.getDepartment().add(department);
+		}
+		else {
+			InpatientDepartment department = new InpatientDepartment(DepartmentName,bedNo);
+			hosp.getDepartment().add(department);
+		}
+	}
+	
+	
 
 
 
 	public static boolean editStaff(Hospital hosp,Staff staff, String newFirstName, String newLastName, String newDepartment, String newJobRole) {
-		// TODO Auto-generated method stub
+	
 		Department currentDep = Finder.findDepartment(staff.getDepartment().getName(),hosp.getDepartment());
 		Department newDep = Finder.findDepartment(newDepartment,hosp.getDepartment());
-		JobRole currentRole = staff.getJobRole();
 		JobRole newRole = Finder.findJobRole(newJobRole);
 		
 		if(newRole!=null && newDep!=null) {
@@ -134,42 +120,99 @@ public class System {
 		return true;
 	}
 	
-	
+	public static boolean editPatient(Hospital hospital, Patient patient, String newFirstName, String newLastName, String newBirthday,
+			String newAddress, String newPhoneNumber, String newNationality, String newStatus) {
+		
+		if(newFirstName!=null) {
+			patient.setFirstName(newFirstName);
+		}
+		
+		if(newLastName!=null) {
+			patient.setLastName(newLastName);
+		}
+		
+		if(newBirthday!=null) {
+			patient.setBirthday(newBirthday);
+		}
+		
+		if(newAddress!=null) {
+			patient.setAddress(newAddress);
+		}
+		
+		if(newPhoneNumber!=null) {
+			patient.setPhoneNumber(newPhoneNumber);
+		}
+		
+		if(newNationality!=null) {
+			patient.setNationality(newNationality);
+		}
+		
+		if(newStatus!=null) {
+			if(newStatus == "Alive") {
+				patient.setAlive(true);
+			} else {
+				patient.setAlive(false);
+			}
+		}
+		
+		return false;
+	}
 	
 	public static boolean printPDF(Hospital hospital) {
 		PDFgenerator.printDepartments(hospital);
 		return true;
 		
 	}
-
-
-
 	public static boolean callPatient(Hospital hospital, Patient pat, int newId) {
 		if (pat.getDepartment() instanceof InpatientDepartment){
-			InpatientDepartment dep = (InpatientDepartment)pat.getDepartment();
-			Bed b = Finder.findBed(newId, dep.getBed());
-			if(b.isOccupied()) {return false;}
-			pat.setBed(b, true);
-			return true;
+			if(pat.getBed()==null) {
+				InpatientDepartment dep = (InpatientDepartment)pat.getDepartment();
+				Bed b = Finder.findBed(newId, dep.getBed());
+				if(b.isOccupied()) {return false;}
+				pat.setBed(b, true);
+				return true;
+			}
+			else {
+				return false;
+			}
+			
 		}
 		else if(pat.getDepartment() instanceof OutpatientDepartment) {
-			OutpatientDepartment dep = (OutpatientDepartment)pat.getDepartment();
-			int q = Finder.findQueueNumber(dep);
-			pat.setQueueNumber(q);
-			return true;
+			if(pat.getQueueNumber()==1) {
+				
+				OutpatientDepartment dep = (OutpatientDepartment)pat.getDepartment();
+				
+				dep.removeFromQueue(pat);
+				pat.setQueueNumber(0);
+				dep.admittedPatients.remove(dep.admittedPatients.indexOf(pat));
+				pat.setDepartment(null);
+				dep.updateQueue();
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		
-		else {
-			return false;
-		}
+		return false;
 		
 	}
 	
-	
-	
-	
-	
-	
-	
+	public static void removeStaff(Hospital hospital, int staffNo) {
+		Staff s = Finder.findStaff(hospital.getStaff(), staffNo);
+		int i = hospital.getStaff().indexOf(s);
+		int i2 = s.getDepartment().getStaff().indexOf(s);
+		hospital.getStaff().remove(i);
+		s.getDepartment().getStaff().remove(i2);
+		
+	}
+
+	public static void removePatient(Hospital hospital, int patNo) {
+		Patient s = Finder.findPatient(patNo, hospital.getPatient());
+		int i = hospital.getPatient().indexOf(s);
+		int i2 = s.getDepartment().getPatients().indexOf(s);
+		hospital.getPatient().remove(i);
+		s.getDepartment().getPatients().remove(i2);
+	}
 
 }

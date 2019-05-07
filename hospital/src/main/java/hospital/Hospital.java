@@ -1,18 +1,13 @@
 package hospital;
 // comment
 import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
-
-import java.util.ArrayList;
 
 public class Hospital {
 
 	// array lists
-	protected static ArrayList<Staff> staffList = new ArrayList<Staff>();
-	protected static ArrayList<Patient> patientList = new ArrayList<Patient>();
-	protected static ArrayList<Department> departmentList = new ArrayList<Department>();
+	protected ArrayList<Staff> staffList = new ArrayList<Staff>();
+	protected ArrayList<Patient> patientList = new ArrayList<Patient>();
+	protected ArrayList<Department> departmentList = new ArrayList<Department>();
 
 	// constructor
 	public Hospital() {
@@ -54,9 +49,7 @@ public class Hospital {
 		department.dischargePatient(rmPatient);
 	}
 
-	public void movePatient(Patient patient, Bed newBed) {
-		patient.setBed(newBed);
-	}
+	
 
 	// Department
 	public void addDepartment(Department newDepartment) {
@@ -76,7 +69,7 @@ public class Hospital {
 		return patientList;
 	}
 
-	public static ArrayList<Department> getDepartment() {
+	public ArrayList<Department> getDepartment() {
 		return departmentList;
 	}
 

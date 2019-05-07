@@ -21,6 +21,7 @@ public class Data extends AbstractTableModel {
 	private String whatData;
 	private List<String>  ColumnNames= new ArrayList<String>();
 	private List<List<String>>  DisplayedData = new ArrayList<List<String>>();
+	private Session user;
 	
 	
 	public Data() {
@@ -30,9 +31,10 @@ public class Data extends AbstractTableModel {
 		
 	}
 	
-	public Data(Hospital h, String d) {
+	public Data(Hospital h, String d,Session s) {
 		this.hospital=h;
 		this.whatData = d;
+		this.user = s;
 		readValue( whatData);
 	}
 	
@@ -107,7 +109,7 @@ public class Data extends AbstractTableModel {
 		for (int i=0; i<dep.size();++i) {
 			List<String> newList = new ArrayList<String>();
 			newList.add(dep.get(i).getName());
-			if(dep.get(i).getClass()==new InpatientDepartment("",0).getClass()) {
+			if(dep.get(i)instanceof InpatientDepartment) {
 				InpatientDepartment current = (InpatientDepartment)dep.get(i);
 				if(current.getBed()!=null) {
 					int bedsTotal= current.getBed().size();
@@ -156,7 +158,7 @@ public class Data extends AbstractTableModel {
 	
 
 	private void setTableToPatients(Hospital data) {
-		//FirstName,LastName,Department,Birthday,Address,phoneNumber,Alive,patientNumber,Nationality,bedNumber,queueNumber
+		
 		DisplayedData.clear();
 		ColumnNames.clear();
 		List<Patient> patients = data.getPatient();
@@ -198,11 +200,18 @@ public class Data extends AbstractTableModel {
 			}
 			else {d.add("");}
 		
-			
-			///ADD Further Info
-			
-			DisplayedData.add(d);
+			//Only Show the info the user is allowed to see
+			if(!user.getAccess().getOtherDepartmetnsAccess()) {
+				if(patients.get(i).getDepartment()!=null&&user.getDepartment().equals(patients.get(i).getDepartment().getName())) {
+					DisplayedData.add(d);
+				
 			}
+				
+			}
+			else if(user.getAccess().getOtherDepartmetnsAccess()) {
+				DisplayedData.add(d);
+			}
+		}
 		
 	}
 
@@ -219,6 +228,7 @@ public class Data extends AbstractTableModel {
 		this.ColumnNames.add("JobRole");
 		
 		for (int i=0; i<staff.size();++i) {
+			
 			List<String> d = new ArrayList<String>();
 			d.add(Integer.toString(staff.get(i).getStaffNumber()));
 			d.add(staff.get(i).getFirstName());
@@ -226,7 +236,13 @@ public class Data extends AbstractTableModel {
 			d.add(staff.get(i).getEmail());
 			d.add(staff.get(i).getDepartment().getName());
 			d.add(staff.get(i).getJobRole().toString());
-			DisplayedData.add(d);
+			//Only Show the info the user is allowed to see
+			if(!user.getAccess().getOtherDepartmetnsAccess()&&user.getDepartment().equals(staff.get(i).getDepartment().getName())) {
+				DisplayedData.add(d);
+			}
+			else if(user.getAccess().getOtherDepartmetnsAccess()) {
+				DisplayedData.add(d);
+			}
 		}
 		
 	}
@@ -266,9 +282,10 @@ public class Data extends AbstractTableModel {
 		
 	}
 
-	public void addDepartment(List<String> txtEntries) {
-		// TODO Auto-generated method stub
-		
+	public void addDepartment(String DepartmentName, int bedNo) {
+		System.addDepartment(this.hospital, DepartmentName, bedNo);
+		readValue(whatData);
+		fireTableDataChanged(); 
 	}
 
 	public void editStaff(Staff staff, List<String> newValues) {
@@ -282,6 +299,7 @@ public class Data extends AbstractTableModel {
 		
 	}
 	public void editPatient(Patient patient, List<String> newValues) {
+
 		if (System.editPatient(hospital,patient, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3),newValues.get(4),newValues.get(5))) {
 			
 		}
@@ -291,11 +309,21 @@ public class Data extends AbstractTableModel {
 	}
 	public void editDepartment(List<JTextField> txtEntries) {
 		// TODO Auto-generated method stub
-		
+
+		if (System.editPatient(hospital, patient, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3), newValues.get(4), newValues.get(5), newValues.get(6))) {
+			
+		}
+		readValue(whatData);
+		fireTableDataChanged();		
 	}
+	
 
 	public void removePatient(int patNo) {
-		//TO-DO Implement remove Patient
+		
+		System.removePatient(hospital,patNo);
+		readValue(whatData);
+		fireTableDataChanged();
+		
 	
 		
 		
@@ -304,7 +332,7 @@ public class Data extends AbstractTableModel {
 
 		int i = Finder.findStaffInt(hospital.getStaff(), staffNo);
 		if(i>-1) {
-			hospital.getStaff().remove(i);
+			System.removeStaff(hospital,staffNo);
 			readValue(whatData);
 			fireTableDataChanged();
 		}
@@ -312,16 +340,10 @@ public class Data extends AbstractTableModel {
 		
 	}
 
-	public void removeDepartment(String depName) {
-		// TODO Auto-generated method stub
-		
-		
-	}
+	
 
 	public void admitPatient(int patNum, String newDepartment) {
-		Patient pat = Finder.findPatient(patNum, this.hospital.getPatient());
-		Department dep = Finder.findDepartment(newDepartment, hospital.getDepartment());
-		pat.setDepartment(dep);
+		System.admitPatient(this.hospital, patNum, newDepartment);
 		readValue(whatData);
 		fireTableDataChanged();
 	}
@@ -335,7 +357,6 @@ public class Data extends AbstractTableModel {
 	public void callPatient(int selectedRow,int newId) {
 		int patNo = Integer.parseInt(getValueAt(selectedRow, 0));
 		Patient pat = Finder.findPatient(patNo, this.hospital.getPatient());
-		Department dep = Finder.findDepartment(pat.getDepartment().getName(),hospital.getDepartment());
 		if(!System.callPatient(hospital,pat,newId));
 		readValue(whatData);
 		fireTableDataChanged();

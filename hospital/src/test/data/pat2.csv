@@ -1,3 +1,17 @@
 First Name,Last Name,Department,Birthday,Address,phone,Alive,Patient Number,Nationality,Bed Number,Queue Number
 Mike,Vick,Department01,19911211,Copenhagen,12223124,yes,1,Germany,12,0
-Jamal,Peters,Department03,19530103,Cologne,+12124143,no,2,Germany,0,1
+Jamal,Peters,Department03,19530103,Cologne,12124143,no,2,Germany,0,1
+Cat,Biscuit,Department03,19960313,Aarhus,4512341234,yes,3,Italy,0,2
+Jane,Brown,Department04,19880112,Kgs.Lyngby,4500222200,yes,4,Australia,1,0
+Arianna,Fireder,Department01,19451204,Amsterdam,4500222201,yes,5,Denmark,1,0
+Michaela,Shiffrin,Department03,19451104,New York,4500422201,yes,6,Gabun,0,3
+Bryan,Bar,Department02,19911111,Copenhagen,4500222211,yes,7,USA,1,0
+Martin,Schmidt,,19930212,Munich,4503222211,yes,8,Netherlands,0,0
+Mike,Monday,,19928069,Kgs.Lyngby,4503222211,no,9,Poland,0,0
+Jamal,Tuesday,Department01,19925926,Kgs.Lyngby,4503222211,yes,10,USA,11,0
+Cat,Wednesday,Department01,19923783,Farum,4503222211,yes,11,USA,5,0
+Jane,Thursday,,19921640,Kgs.Lyngby,4503222211,no,12,Argentinia,0,0
+Arianna,Friday,Department03,19919497,Copenhagen,4503222211,yes,13,Denmark,0,4
+Michaela,Saturday,Department03,19917354,Copenhagen,4503222211,yes,14,Denmark,0,4
+Bryan,Sunday,Department04,19915211,Copenhagen,4503222211,yes,15,Denmark,4,0
+Martin,Funday,Department04,19913068,Copenhagen,4503222211,yes,16,Denmark,2,0

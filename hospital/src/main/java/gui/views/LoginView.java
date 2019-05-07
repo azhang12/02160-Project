@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import gui.controller.LoginController;
@@ -60,7 +59,7 @@ public class LoginView extends JFrame implements IError {
 
 	@Override
 	public void showError() {
-		showError("Error Occured")
+		showError("Error Occured");
 		
 	}
 	
