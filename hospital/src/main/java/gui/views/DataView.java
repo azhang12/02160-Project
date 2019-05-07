@@ -270,6 +270,8 @@ public class DataView extends JFrame{
 		if(!sessionModel.getAccess().getPatientRegistationDataAccess()){
 				btnAddPatient.setVisible(false);
 				btnDeletePatient.setVisible(false);
+				btnEditPatient.setVisible(false);
+				btnAdmitPatient.setVisible(false);
 				
 				btnAddStaff.setVisible(false);
 				btnDeleteStaff.setVisible(false);
