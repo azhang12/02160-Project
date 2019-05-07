@@ -216,8 +216,6 @@ public class Data extends AbstractTableModel {
 	}
 
 	public void setTableToStaff(Hospital data) {
-		boolean onlyDep = true;
-		
 		DisplayedData.clear();
 		ColumnNames.clear();
 		List<Staff> staff = data.getStaff();
@@ -345,7 +343,6 @@ public class Data extends AbstractTableModel {
 	public void callPatient(int selectedRow,int newId) {
 		int patNo = Integer.parseInt(getValueAt(selectedRow, 0));
 		Patient pat = Finder.findPatient(patNo, this.hospital.getPatient());
-		Department dep = Finder.findDepartment(pat.getDepartment().getName(),hospital.getDepartment());
 		if(!System.callPatient(hospital,pat,newId));
 		readValue(whatData);
 		fireTableDataChanged();

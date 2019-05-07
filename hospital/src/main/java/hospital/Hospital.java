@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Hospital {
 
 	// array lists
-	protected static ArrayList<Staff> staffList = new ArrayList<Staff>();
-	protected static ArrayList<Patient> patientList = new ArrayList<Patient>();
-	protected static ArrayList<Department> departmentList = new ArrayList<Department>();
+	protected ArrayList<Staff> staffList = new ArrayList<Staff>();
+	protected ArrayList<Patient> patientList = new ArrayList<Patient>();
+	protected ArrayList<Department> departmentList = new ArrayList<Department>();
 
 	// constructor
 	public Hospital() {

@@ -22,9 +22,6 @@ import javax.swing.table.TableModel;
 
 import gui.controller.DataController;
 import gui.model.Session;
-import hospital.Access;
-import hospital.Finder;
-
 
 public class DataView extends JFrame{
 	

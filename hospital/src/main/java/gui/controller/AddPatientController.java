@@ -1,13 +1,11 @@
 package gui.controller;
 
 import java.util.ArrayList;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JTextField;
 
-import gui.model.Session;
 import gui.views.AddPatientView;
 public class AddPatientController {
 	

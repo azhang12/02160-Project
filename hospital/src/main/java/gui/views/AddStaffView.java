@@ -15,7 +15,6 @@ import javax.swing.JComboBox;
 
 import gui.controller.AddStaffController;
 import gui.utils.GridBagLayoutUtils;
-import hospital.Hospital;
 import hospital.JobRole;
 
 public class AddStaffView extends JFrame implements IError {
@@ -32,11 +31,12 @@ private static final long serialVersionUID = 8981053836072595592L;
 	private JComboBox<String> jobComboBox;
 	private JComboBox<String> depComboBox;
 	
+	
 	public AddStaffView(AddStaffController controller) {
 		this.controller=controller;
 		this.txtEntries= new ArrayList<JTextField>();
 		this.txtNames = new ArrayList<String>();
-		this.depCombo = new String[Hospital.getDepartment().size() + 1];
+		this.depCombo = new String[controller.getController().getDataModel().getData().getDepartment().size() + 1];
 		this.jobCombo = new String[JobRole.values().length + 1];
 		this.inputValues = new ArrayList<String>();
 		
@@ -70,7 +70,7 @@ private static final long serialVersionUID = 8981053836072595592L;
 		// department combo box
 		this.depCombo[0] = "Make selection";
 		for (int i = 1; i < depCombo.length; i++) {
-			this.depCombo[i] = Hospital.getDepartment().get(i - 1).getName();
+			this.depCombo[i] = controller.getController().getDataModel().getData().getDepartment().get(i - 1).getName();
 		}
 		depComboBox = new JComboBox<>(depCombo);
 

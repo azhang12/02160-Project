@@ -66,6 +66,9 @@ public class AddStaffController {
 	
 	}
 	
+	public DataController getController() {
+		return this.controller;
+	}
 	
 	
 	

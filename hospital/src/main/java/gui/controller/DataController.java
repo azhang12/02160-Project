@@ -1,6 +1,5 @@
 package gui.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -330,8 +329,8 @@ public class DataController {
 		
 	}
 	
-	public void hideOthers() {
-		
+	public Data getDataModel() {
+		return this.dataModel;
 	}
 
 	
