@@ -186,5 +186,48 @@ public class SystemTest {
 		assertEquals("Patients also removed from Department List",dep1.getPatients().size(),1);
 		
 	}
+	
+	@Test
+	public void editPatientTest() {
+		Hospital hosp = add();
+		System.editPatient(hosp, pat1, pat2.getFirstName(), pat2.getLastName(), pat2.getBirthday(),pat2.getAddress(), pat2.getPhoneNumber(), pat2.getNationality());
+		assertEquals(pat1.getFirstName(),(pat2.getFirstName()));
+		assertEquals(pat1.getLastName(),pat2.getLastName());
+		assertEquals(pat1.getBirthday(),pat2.getBirthday());
+		assertEquals(pat1.getAddress(),pat2.getAddress());
+		assertEquals(pat1.getPhoneNumber(),pat2.getPhoneNumber());
+		assertEquals(pat1.getNationality(),pat2.getNationality());
+		
+		
+	}
+	@Test
+	public void editPatientTestNull() {
+		Hospital hosp = add();
+		
+		System.editPatient(hosp, pat1, null, null, null,null, null, null);
+		assertEquals(pat1.getFirstName(),"Victoria");
+		assertEquals(pat1.getLastName(),"Sirt");
+		assertEquals(pat1.getBirthday(),"19931222");
+		assertEquals(pat1.getAddress(),"copenhagen");
+		assertEquals(pat1.getPhoneNumber(),"+213123");
+		assertEquals(pat1.getNationality(),"Germany");
+		
+		
+	}
+	@Test 
+	public void exportTest(){
+		Hospital hosp = add();
+		System.exportData(hosp);
+		
+	}
+	
+	@Test
+	public void print() {
+		Hospital hosp = add();
+		System.printPDF(hosp);
+	}
+	
+	
+	
 
 }

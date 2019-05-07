@@ -199,6 +199,7 @@ public class DataController {
 				c.setView(view);
 				view.setVisible(true);
 			}
+			
 		}
 		else {
 			view.showError("Please choose " +s + "!");
@@ -244,7 +245,6 @@ public class DataController {
 		
 		dataModel.editPatient(patient, newValues);	
 	}
-
 
 
 	public void PrintPdf() {
