@@ -42,7 +42,7 @@ public class Reader implements IReader{
 			Access access = Finder.findAccess(job);
 			Staff newStaff = (new Staff(i.get(0), i.get(1), job, i.get(4), Integer.parseInt(i.get(5)),  access, currentDep));
 			staff.add(newStaff);
-			currentDep.getStaff().add(newStaff);
+			newStaff.setDepartment(currentDep); //To make sure observerPattern functions
 		}
 		
 		
@@ -92,7 +92,6 @@ public class Reader implements IReader{
 			if(!dep.equals("")) {
 				Department currentDep = Finder.findDepartment(dep, departmentList);
 				Patient pat = (new Patient(fName,lName,currentDep,birth,address,phone,alive,patientNumber,nation,null,0));
-				currentDep.getPatients().add(pat);
 				//Identify the bed or queue number
 				if (currentDep!=null) {
 					if(bedNumber!=0&&queueNumber==0) {
@@ -107,11 +106,12 @@ public class Reader implements IReader{
 					}
 				}
 				patients.add(pat);
+				pat.setDepartment(currentDep);
 			}
 			else{
 				Patient pat = (new Patient(fName,lName,null,birth,address,phone,alive,patientNumber,nation,null,0));
 				patients.add(pat);
-				
+				pat.setDepartment(null);
 			}
 			
 			

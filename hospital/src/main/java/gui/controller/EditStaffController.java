@@ -10,7 +10,6 @@ import gui.views.EditStaffView;
 import hospital.Staff;
 public class EditStaffController {
 	
-	
 	private Session sessionModel;
 	private EditStaffView view;
 	private DataController controller;

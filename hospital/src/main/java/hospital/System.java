@@ -128,11 +128,11 @@ public class System {
 			
 		}
 		else if(pat.getDepartment() instanceof OutpatientDepartment) {
-			if(pat.getQueueNumber()==0) {
+			if(pat.getQueueNumber()==1) {
 				OutpatientDepartment dep = (OutpatientDepartment)pat.getDepartment();
-				int q = Finder.findQueueNumber(dep);
-				pat.setQueueNumber(q);
-				dep.updateQueue();
+				dep.removeFromQueue(pat);
+				pat.setQueueNumber(0);
+				pat.setDepartment(null);
 				return true;
 			}
 			else {

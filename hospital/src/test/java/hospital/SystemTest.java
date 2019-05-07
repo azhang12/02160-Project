@@ -43,13 +43,24 @@ public class SystemTest {
 		
 	}
 	@Test
-	public void admitPatient() {
+	public void admitOutPatient() {
 		Hospital hosp = add();
+		assertEquals("Department Property has Changed",hosp.getDepartment().get(1).getPatients().size(),1);
 		System.registerPatient(hosp, "Max", "Ryan", "19927", "Reading", "+674645", true, "Denmark");
 		System.admitPatient(hosp, hosp.getPatient().get(3).getPatientNumber(), "D02");
-		assertEquals("Department Property has Changed",hosp.getDepartment().get(1),hosp.getPatient().get(3).getDepartment());
-		assertTrue("Department Property has Changed",hosp.getDepartment().get(1).getPatients().indexOf(hosp.getPatient().get(3))!=-1);
-		assertEquals(dep2.getPatients().size(),2);
+		assertEquals("Department Property has Changed",hosp.getDepartment().get(1).getPatients().size(),2);
+		
+		
+	}
+	
+	@Test
+	public void admitInPatient() {
+		Hospital hosp = add();
+		assertEquals("Department Property has Changed",hosp.getDepartment().get(0).getPatients().size(),2);
+		System.registerPatient(hosp, "Max", "Ryan", "19927", "Reading", "+674645", true, "Denmark");
+		System.admitPatient(hosp, hosp.getPatient().get(3).getPatientNumber(), "D01");
+		assertEquals("Department Property has Changed",hosp.getDepartment().get(0).getPatients().size(),3);
+		
 	}
 	
 	@Test

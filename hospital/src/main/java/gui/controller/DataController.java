@@ -301,8 +301,13 @@ public class DataController {
 				int newId = Integer.parseInt(newBedId);
 				dataModel.callPatient(selectedRow,newId);
 			}
-			else if(dep instanceof OutpatientDepartment&&Finder.findPatient(patNo,dataModel.getData().getPatient()).getQueueNumber()==0) {
-				dataModel.callPatient(selectedRow,0);
+			else if(dep instanceof OutpatientDepartment) {
+				if(Finder.findPatient(patNo,dataModel.getData().getPatient()).getQueueNumber()==1) {
+					dataModel.callPatient(selectedRow,0);
+				}
+				else {
+					view.showError("You are only allowed to call next Patient in Queue");
+				}
 			}
 			else {
 				view.showError("Patient already called!");

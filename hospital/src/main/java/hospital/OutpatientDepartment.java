@@ -1,11 +1,7 @@
 package hospital;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
+
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue; 
 
 public class OutpatientDepartment extends Department {
@@ -30,14 +26,5 @@ public class OutpatientDepartment extends Department {
 		return outPatientQueue;
 	}
 	
-	@Override
-	public void updateQueue(){
-		
-		for (int i=0; i<admittedPatients.size();++i) {
-			admittedPatients.get(i).setQueueNumber(i+1);
-			outPatientQueue.clear();
-			outPatientQueue.add(admittedPatients.get(i));
-		}
-			
-	}
+	
 }
