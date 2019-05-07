@@ -108,6 +108,39 @@ public class System {
 		
 	}
 	
+	
+	public static boolean editPatient(Hospital hospital, Patient patient, String newFirstName, String newLastName, String newBirthday,
+			String newAddress, String newPhoneNumber, String newNationality) {
+		
+		if(newFirstName!=null) {
+			patient.setFirstName(newFirstName);
+		}
+		
+		if(newLastName!=null) {
+			patient.setLastName(newLastName);
+		}
+		
+		if(newBirthday!=null) {
+			patient.setBirthday(newBirthday);
+		}
+		
+		if(newAddress!=null) {
+			patient.setAddress(newAddress);
+		}
+		
+		if(newPhoneNumber!=null) {
+			patient.setPhoneNumber(newPhoneNumber);
+		}
+		
+		if(newNationality!=null) {
+			patient.setNationality(newNationality);
+		}
+		
+		return false;
+	}
+	
+	
+	
 	public static boolean printPDF(Hospital hospital) {
 		PDFgenerator.printDepartments(hospital);
 		return true;
@@ -168,6 +201,10 @@ public class System {
 		hospital.getPatient().remove(i);
 		s.getDepartment().getPatients().remove(i2);
 	}
+
+
+
+
 	
 	
 	

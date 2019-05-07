@@ -298,8 +298,12 @@ public class Data extends AbstractTableModel {
 		
 		
 	}
-	public void editPatient(List<JTextField> txtEntries) {
-		// TODO Auto-generated method stub
+	public void editPatient(Patient patient, List<String> newValues) {
+		if (System.editPatient(hospital, patient, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3), newValues.get(4), newValues.get(5))) {
+			
+		}
+		readValue(whatData);
+		fireTableDataChanged();
 		
 	}
 	

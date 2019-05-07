@@ -9,6 +9,7 @@ import hospital.Department;
 import hospital.Finder;
 import hospital.InpatientDepartment;
 import hospital.OutpatientDepartment;
+import hospital.Patient;
 import hospital.Staff;
 import hospital.System;
 import gui.model.FilterStaffData;
@@ -18,6 +19,7 @@ import gui.views.AddPatientView;
 import gui.views.AddStaffView;
 import gui.views.FilterStaffView;
 import gui.views.DataView;
+import gui.views.EditPatientView;
 import gui.views.EditStaffView;
 
 public class DataController {
@@ -182,7 +184,11 @@ public class DataController {
 			}
 					
 			else if(s.equals("Patient")) {
-				
+				Patient patient = Finder.findPatient(Integer.parseInt(dataModel.getValueAt(selectedRow, 0)), dataModel.getData().getPatient());
+				EditPatientController c = new EditPatientController(sessionModel, this);
+				EditPatientView view = new EditPatientView(c, patient);
+				c.setView(view);
+				view.setVisible(true);
 			}
 			
 			else if(s.equals("Staff")) {
@@ -232,6 +238,14 @@ public class DataController {
 		
 		dataModel.editStaff(staff, newValues);	
 	}
+	
+	
+	public void editPatientInfo(Patient patient, List<String> newValues) {
+		
+		dataModel.editPatient(patient, newValues);	
+	}
+
+
 
 	public void PrintPdf() {
 		if(System.printPDF(dataModel.getData())) {
