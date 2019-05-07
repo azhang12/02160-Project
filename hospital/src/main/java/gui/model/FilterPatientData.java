@@ -132,7 +132,7 @@ public class FilterPatientData extends AbstractTableModel {
 		}	
 	}
 
-	public  void FilterStaff(List<JTextField> txtEntries) {
+	public  void FilterPatient(List<JTextField> txtEntries) {
 		
 		int s= patient.size();
 		for (int i = s-1; i>-1;i--) {
@@ -200,4 +200,5 @@ public class FilterPatientData extends AbstractTableModel {
 		}
 		fireTableDataChanged();	
 	}
+
 }

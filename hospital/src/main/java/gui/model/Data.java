@@ -311,12 +311,12 @@ public class Data extends AbstractTableModel {
 	public void editDepartment(List<JTextField> txtEntries) {
 		// TODO Auto-generated method stub
 
-		if (System.editPatient(hospital, patient, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3), newValues.get(4), newValues.get(5), newValues.get(6))) {
+		//if (System.editPatient(hospital, patient, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3), newValues.get(4), newValues.get(5), newValues.get(6))) {
 			
-		}
-		readValue(whatData);
+		//}
+		//readValue(whatData);
 
-		fireTableDataChanged();		
+		//fireTableDataChanged();		
 	}
 	
 
