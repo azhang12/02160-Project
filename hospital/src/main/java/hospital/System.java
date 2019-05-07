@@ -1,4 +1,3 @@
-
 package hospital;
 
 import java.util.ArrayList;

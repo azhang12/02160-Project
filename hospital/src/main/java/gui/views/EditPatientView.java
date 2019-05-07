@@ -1,4 +1,3 @@
-
 package gui.views;
 
 import java.awt.GridBagLayout;

@@ -1,4 +1,3 @@
-
 package gui.controller;
 
 import java.awt.EventQueue;
