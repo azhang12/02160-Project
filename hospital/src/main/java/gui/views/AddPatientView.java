@@ -57,7 +57,11 @@ private static final long serialVersionUID = 8981053836072595592L;
 		
 		// adding text fields
 		for ( int i=0; i < txtNames.size();++i) {
-			this.txtEntries.add(new JTextField(20));
+			JTextField a = new JTextField(20);
+			this.txtEntries.add(a);
+			if(i==5) {
+				a.setText("yes");
+			}
 		}
 		
 		// create radio buttons for alive/not alive
@@ -79,6 +83,7 @@ private static final long serialVersionUID = 8981053836072595592L;
 		for (int i = 0; i < txtEntries.size(); i++) { // text fields and associated exclamations
 			add(txtEntries.get(i), GridBagLayoutUtils.constraint(1, i, 5));
 		}
+
 		
 		//for (int i = 0; i < radio.length; i++) { // radio buttons
 			//add(radioPanel, GridBagLayoutUtils.constraint(1, radio[i], 5)); // alive (radio buttons)

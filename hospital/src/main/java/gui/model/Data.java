@@ -299,7 +299,7 @@ public class Data extends AbstractTableModel {
 		
 	}
 	public void editPatient(Patient patient, List<String> newValues) {
-		if (System.editPatient(hospital, patient, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3), newValues.get(4), newValues.get(5))) {
+		if (System.editPatient(hospital, patient, newValues.get(0),newValues.get(1),newValues.get(2),newValues.get(3), newValues.get(4), newValues.get(5), newValues.get(6))) {
 			
 		}
 		readValue(whatData);

@@ -73,6 +73,22 @@ public class EditPatientController {
 				newValues.add(txtEntries.get(5).getText());
 			}
 			
+			String status;
+			if(patient.getAlive()) {
+				status = "Alive";
+			} else {
+				status = "Dead";
+			}
+			
+			String newStatus = txtEntries.get(6).getText();
+			
+			if(txtEntries.get(6).getText().isEmpty()) {newValues.add(status);}
+			else if((newStatus.equals("Alive")) || newStatus.equals("Dead")){
+				newValues.add(newStatus);
+			} else {
+				newValues.add(status);
+			}
+			
 			controller.editPatientInfo(patient,newValues);
 			view.setVisible(false);
 		}
@@ -87,6 +103,14 @@ public class EditPatientController {
 			if(!f.getText().isEmpty()) {return true;}
 		}
 		return false;
+		
+	}
+
+
+
+
+	public void editPatientClose() {
+		view.setVisible(false);
 		
 	}
 }

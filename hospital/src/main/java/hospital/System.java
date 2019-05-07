@@ -110,7 +110,7 @@ public class System {
 	
 	
 	public static boolean editPatient(Hospital hospital, Patient patient, String newFirstName, String newLastName, String newBirthday,
-			String newAddress, String newPhoneNumber, String newNationality) {
+			String newAddress, String newPhoneNumber, String newNationality, String newStatus) {
 		
 		if(newFirstName!=null) {
 			patient.setFirstName(newFirstName);
@@ -134,6 +134,14 @@ public class System {
 		
 		if(newNationality!=null) {
 			patient.setNationality(newNationality);
+		}
+		
+		if(newStatus!=null) {
+			if(newStatus.equals("Alive")) {
+				patient.setAlive(true);
+			} else {
+				patient.setAlive(false);
+			}
 		}
 		
 		return false;

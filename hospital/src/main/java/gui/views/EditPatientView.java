@@ -42,6 +42,10 @@ public class EditPatientView extends JFrame {
 	private List<String> txtNames;
 	Patient patient;
 	private EditPatientController controller;
+	private JTextField displayStatus;
+	private JTextField textStatus;
+	private JLabel lblAliveDead;
+	private JButton btnCancle;
 	
 	
 	public EditPatientView(EditPatientController controller, Patient patientToChange) {
@@ -60,8 +64,7 @@ public class EditPatientView extends JFrame {
 	 */
 	private void initGUI() {
 		setTitle("Edit Patient");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 635, 353);
+		setBounds(100, 100, 635, 394);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -97,6 +100,11 @@ public class EditPatientView extends JFrame {
 		lblNationality.setFont(new Font("Arial", Font.PLAIN, 15));
 		lblNationality.setBounds(14, 220, 100, 18);
 		contentPane.add(lblNationality);
+		
+		JLabel lblStatus = new JLabel("Status");
+		lblStatus.setFont(new Font("Arial", Font.PLAIN, 15));
+		lblStatus.setBounds(14, 260, 100, 18);
+		contentPane.add(lblStatus);
 		
 		displayFirstName = new JTextField();
 		displayFirstName.setText(patient.getFirstName());
@@ -147,6 +155,21 @@ public class EditPatientView extends JFrame {
 		contentPane.add(displayNationality);
 		
 		
+		displayStatus = new JTextField();
+		String isAlive;
+		if(patient.getAlive()) {
+			isAlive = "Alive";
+		} else {
+			isAlive = "Dead";
+		}
+		displayStatus.setText(isAlive);
+		displayStatus.setFont(new Font("Arial", Font.PLAIN, 13));
+		displayStatus.setEditable(false);
+		displayStatus.setColumns(10);
+		displayStatus.setBounds(150, 260, 210, 24);
+		contentPane.add(displayStatus);
+		
+		
 		
 		
 		// inputs
@@ -187,6 +210,12 @@ public class EditPatientView extends JFrame {
 		textFirstName.setBounds(393, 20, 210, 24);
 		contentPane.add(textFirstName);
 		
+		textStatus = new JTextField();
+		textStatus.setFont(new Font("Arial", Font.PLAIN, 13));
+		textStatus.setColumns(10);
+		textStatus.setBounds(393, 260, 210, 24);
+		contentPane.add(textStatus);
+		
 		
 		// button
 		
@@ -201,13 +230,31 @@ public class EditPatientView extends JFrame {
 				txtEntries.add(textAddress);
 				txtEntries.add(textPhoneNumber);
 				txtEntries.add(textNationality);
+				txtEntries.add(textStatus);
 				controller.editPatientClicked(patient,txtEntries);
 			}
 		});
 		
 		btnSave.setFont(new Font("Arial", Font.PLAIN, 13));
-		btnSave.setBounds(526, 267, 77, 27);
+		btnSave.setBounds(431, 320, 77, 27);
 		contentPane.add(btnSave);
+		
+		lblAliveDead = new JLabel("* Alive / Dead");
+		lblAliveDead.setFont(new Font("Arial", Font.PLAIN, 13));
+		lblAliveDead.setBounds(393, 285, 146, 18);
+		contentPane.add(lblAliveDead);
+		
+		btnCancle = new JButton("Cancle");
+		btnCancle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controller.editPatientClose();
+			}
+		});
+		btnCancle.setFont(new Font("Arial", Font.PLAIN, 13));
+		btnCancle.setBounds(526, 320, 77, 27);
+		contentPane.add(btnCancle);
+		
+		
 		
 		
 	}
@@ -216,6 +263,4 @@ public class EditPatientView extends JFrame {
 		JOptionPane.showMessageDialog(this, errorText, "Not saved", JOptionPane.ERROR_MESSAGE);
 		
 	}
-	
-	
 }
