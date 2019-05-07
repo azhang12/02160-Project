@@ -64,7 +64,6 @@ public class EditPatientView extends JFrame {
 	 */
 	private void initGUI() {
 		setTitle("Edit Patient");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 635, 394);
 		setResizable(false);
 		contentPane = new JPanel();
