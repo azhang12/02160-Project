@@ -276,8 +276,7 @@ public class DataView extends JFrame{
 				btnAddStaff.setVisible(false);
 				btnDeleteStaff.setVisible(false);
 				
-				btnChangeDepartment.setVisible(false);
-				btnChangeBed.setVisible(false);
+				
 		}
 		
 		if(!sessionModel.getAccess().getPatientAdmissionDataAccess()) {
@@ -289,6 +288,8 @@ public class DataView extends JFrame{
 			btnFindPatients.setVisible(false);
 			btnEditPatient.setVisible(false);
 			btnPat.setVisible(false);
+			btnChangeDepartment.setVisible(false);
+			btnChangeBed.setVisible(false);
 			
 		}
 		if (!sessionModel.getAccess().getStaffDataAccess()) {
