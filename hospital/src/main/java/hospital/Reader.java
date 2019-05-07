@@ -66,7 +66,6 @@ public class Reader implements IReader{
 		
 		return departments;
 	}
-	
 	public ArrayList<Patient> readPatients (List<Department> departmentList, String fileName){
 		ArrayList<Patient>  patients = new ArrayList<Patient>();
 		List<List<String>> listOfLists = this.read(fileName);
@@ -88,39 +87,30 @@ public class Reader implements IReader{
 			String nation = i.get(8);
 			int bedNumber = Integer.parseInt(i.get(9));
 			int queueNumber = Integer.parseInt(i.get(10));
+			Department currentDep = Finder.findDepartment(dep, departmentList);
+			Patient p = new Patient(fName,lName,currentDep,birth,address,phone,alive,patientNumber,nation,null,0);
 			
-			if(!dep.equals("")) {
-				Department currentDep = Finder.findDepartment(dep, departmentList);
-				Patient pat = (new Patient(fName,lName,currentDep,birth,address,phone,alive,patientNumber,nation,null,0));
-				//Identify the bed or queue number
-				if (currentDep!=null) {
+			if(currentDep!=null) {
+
+				
 					if(bedNumber!=0&&queueNumber==0) {
 						Bed b = Finder.findBed(bedNumber, ((InpatientDepartment) currentDep).getBed());
-						b.setPatient(pat);
-						pat.setBed(b,true);
+						p.setBed(b,true);
 						
 					}
 					else if (bedNumber==0&&queueNumber!=0) {
-						pat.setQueueNumber(queueNumber);
-						((OutpatientDepartment)pat.getDepartment()).getQueue().add(pat);
+						p.setQueueNumber(queueNumber);
+						((OutpatientDepartment)p.getDepartment()).getQueue().add(p);
 					}
 				}
-				patients.add(pat);
-				pat.setDepartment(currentDep);
-			}
-			else{
-				Patient pat = (new Patient(fName,lName,null,birth,address,phone,alive,patientNumber,nation,null,0));
-				patients.add(pat);
-				pat.setDepartment(null);
-			}
+			
+			patients.add(p);
 			
 			
 				
 		}
 		return patients;
 	}
-	
-	
 
 }
 

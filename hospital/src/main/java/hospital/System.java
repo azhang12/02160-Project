@@ -129,10 +129,14 @@ public class System {
 		}
 		else if(pat.getDepartment() instanceof OutpatientDepartment) {
 			if(pat.getQueueNumber()==1) {
+				
 				OutpatientDepartment dep = (OutpatientDepartment)pat.getDepartment();
+				
 				dep.removeFromQueue(pat);
 				pat.setQueueNumber(0);
+				dep.admittedPatients.remove(dep.admittedPatients.indexOf(pat));
 				pat.setDepartment(null);
+				dep.updateQueue();
 				return true;
 			}
 			else {

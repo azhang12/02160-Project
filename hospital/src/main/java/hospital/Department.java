@@ -96,8 +96,9 @@ public abstract class Department implements IObserver {
 		public void updateQueue(){{
 			if(this instanceof OutpatientDepartment) {
 				((OutpatientDepartment)this).getQueue().clear();
-				for (Patient p : admittedPatients) {
-					((OutpatientDepartment)this).getQueue().add(p);
+				for (int i=0; i<this.admittedPatients.size();++i) {
+					((OutpatientDepartment)this).getQueue().add(admittedPatients.get(i));
+					admittedPatients.get(i).setQueueNumber(i+1);
 				}
 			}
 			
