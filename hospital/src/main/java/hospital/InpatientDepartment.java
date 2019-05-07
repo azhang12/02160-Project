@@ -44,7 +44,7 @@ public class InpatientDepartment extends Department{
 	
 	@Override
 	public boolean admitPatient(Patient newPatient) {
-		if (newPatient.getDepartment() == null) { // checking to see if patient is already admitted
+		if (!this.admittedPatients.contains(newPatient)) { // checking to see if patient is already admitted
 			if (admittedPatients.size() < getBed().size()) { // checking that there are available beds in the dept // this should be changed to allow for patients that are not admitted 
 				return this.admittedPatients.add(newPatient);
 			} else {
