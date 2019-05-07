@@ -107,4 +107,43 @@ public class ObserverPatternTest {
 			
 	}
 	
+	@Test 
+	public void bedNotEmptyTest() {
+		Hospital hosp = add();
+		//New Bed is occupied
+		assertTrue("pat3 is registered in D01",dep1.getPatients().indexOf(pat3)!=-1);
+		assertEquals("bed 3 in Dep01 is free", null, dep1.getBed().get(2).getPatient());
+		dep1.getBed().get(2).setPatient(pat2);
+		assertEquals("bed 3 in Dep01 is not free", pat2, dep1.getBed().get(2).getPatient());
+		pat3.setBed(dep1.getBed().get(2),true);
+		assertEquals("bed 3 in Dep01 is not free", pat3, dep1.getBed().get(2).getPatient());
+	}
+	
+	@Test 
+	public void getObservertest() {
+		ArrayList<IObserver> o1 = (ArrayList<IObserver>) staff1.getObservers();
+		assertEquals("Only the Department is a observer",o1.size(),1);
+		assertEquals("The only observer is the department",o1.get(0),staff1.getDepartment());
+	}
+	
+	@Test 
+	public void setObserversTest() {
+		ArrayList<IObserver> o1 = (ArrayList<IObserver>) staff1.getObservers();
+		staff2.setObservers(o1);
+		assertEquals("Only the Department is a observer",o1.size(),1);
+		assertEquals("The only observer is the department",o1.get(0),dep1);
+		
+	}
+	
+	@Test
+	public void unregisterObserverTest() {
+		ArrayList<IObserver> o1 = (ArrayList<IObserver>) staff1.getObservers();
+		staff1.unregisterObserver(staff2.getDepartment());
+		assertEquals("Observer not found, not deleted",o1.size(),1);
+		staff1.unregisterObserver(o1.get(0));
+		assertEquals("observer unregisteres",o1.size(),0);
+	}
+	
+	
+	
 }

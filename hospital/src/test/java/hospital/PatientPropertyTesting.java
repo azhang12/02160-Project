@@ -10,34 +10,35 @@ public class PatientPropertyTesting {
   Bed bed2 = new Bed();
 
   // note that birthday is stored as DD/MM/YYYY
-  Patient instance = new Patient("Bill", "Smith", dep1, "22/04/1998", "Elektrovej, Kongens Lyngby 2800, Denmark", "+45927564", true, 1, "Danish", bed1, 7);
+  Patient instance = new Patient("Bill", "Smith", dep1, "22/04/1998", "Elektrovej, Kongens Lyngby 2800, Denmark", "+45927564", true, 1, "Danish", null, 0);
 
   @Test
   public void getBirthdayTest(){
-    assertTrue(instance.getBirthday() == "22/04/1998");
+    assertTrue(instance.getBirthday().equals("22/04/1998"));
   }
   @Test
   public void setBirthdayTest(){
     instance.setBirthday("24/05/1999");
-    assertTrue(instance.getBirthday() == "24/05/1999");
+    assertTrue(instance.getBirthday().equals("24/05/1999"));
   }
   @Test
   public void getAddressTest(){
-    assertTrue(instance.getAddress() == "Elektrovej, Kongens Lyngby 2800, Denmark");
+    assertTrue(instance.getAddress().contentEquals("Elektrovej, Kongens Lyngby 2800, Denmark"));
   }
   @Test
   public void setAddressTest(){
     instance.setAddress("Akademivej, Kongens Lyngby 2800, Denmark");
-    assertTrue(instance.getAddress() == "Akademivej, Kongens Lyngby 2800, Denmark");
+    assertTrue(instance.getAddress().contentEquals("Akademivej, Kongens Lyngby 2800, Denmark"));
   }
+  
   @Test
   public void getPhoneNumberTest(){
-    assertTrue(instance.getPhoneNumber() == "+45927564");
+    assertTrue(instance.getPhoneNumber().equals("+45927564"));
   }
   @Test
   public void setPhoneNumberTest(){
     instance.setPhoneNumber("+45827394");
-    assertTrue(instance.getPhoneNumber() == "+45827394");
+    assertTrue(instance.getPhoneNumber().contentEquals("+45827394"));
   }
   @Test
   public void getAliveTest(){
@@ -54,29 +55,31 @@ public class PatientPropertyTesting {
   }
   @Test
   public void getNationalityTest(){
-    assertTrue(instance.getNationality() == "Danish");
+    assertTrue(instance.getNationality().contentEquals("Danish"));
   }
   @Test
   public void setNationalityTest(){
     instance.setNationality("Norwegian");
-    assertTrue(instance.getNationality() == "Norwegian");
+    assertTrue(instance.getNationality().contentEquals("Norwegian"));
   }
+  
+ 
+  
   @Test
-  public void getBedTest(){
-    assertTrue(instance.getBed() == bed1);
+  public void setGetBedTest(){
+	Bed bed3 = ((InpatientDepartment)dep1).getBed().get(0);
+	instance.setBed(bed3,true);
+    assertTrue(instance.getBed() == bed3);
   }
-  @Test
-  public void setBedTest(){
-    instance.setBed(bed2);
-    assertTrue(instance.getBed() == bed2);
-  }
+  
   @Test
   public void getQueueNumberTest(){
-    assertTrue(instance.getQueueNumber() == 7);
+    assertTrue(instance.getQueueNumber() == 0);
   }
   @Test
   public void setQueueNumberTest(){
     instance.setQueueNumber(4);
+    assertTrue(instance.getQueueNumber() == 4);
     assertTrue(instance.getQueueNumber() == 4);
   }
 

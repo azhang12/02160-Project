@@ -213,6 +213,7 @@ public class DataController {
 				c.setView(view);
 				view.setVisible(true);
 			}
+			
 		}
 		else {
 			view.showError("Please choose " +s + "!");

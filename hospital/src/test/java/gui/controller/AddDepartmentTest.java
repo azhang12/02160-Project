@@ -51,6 +51,7 @@ public class AddDepartmentTest {
 		Data d = new Data(add(),"Staff");
 		DataController controller = new DataController(app,d ,s);
 		controller.AddClicked("Department");
+		
 	}
 
 }

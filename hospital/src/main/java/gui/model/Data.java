@@ -3,7 +3,6 @@ package gui.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JTextField;
 import javax.swing.table.AbstractTableModel;
 
 import hospital.Department;
@@ -205,6 +204,7 @@ public class Data extends AbstractTableModel {
 				if(patients.get(i).getDepartment()!=null&&user.getDepartment().equals(patients.get(i).getDepartment().getName())) {
 					DisplayedData.add(d);
 			}
+				
 				
 			}
 			else if(user.getAccess().getOtherDepartmetnsAccess()) {

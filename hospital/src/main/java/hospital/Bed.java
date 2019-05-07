@@ -22,7 +22,7 @@ public class Bed implements IObserver{
 	public Patient getPatient() { 
 		return this.patient; 
 	}
-	private void setId(int id) { 
+	public void setId(int id) { 
 		this.id = id; 
 	}
 	public int getId() { 
