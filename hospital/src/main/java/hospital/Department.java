@@ -27,19 +27,32 @@ public abstract class Department implements IObserver {
 
 	// 
 	public boolean admitPatient(Patient newPatient) {
-		return this.admittedPatients.add(newPatient);	
+		if (!this.admittedPatients.contains(newPatient)){
+			return this.admittedPatients.add(newPatient);
+		}
+		return false;
+			
 	}
 
 	public boolean dischargePatient(Patient patient) {
-		return this.admittedPatients.remove(patient);
+		if(this.admittedPatients.contains(patient)){
+			return this.admittedPatients.remove(patient);
+		}
+		return false;
 	}
 
-	public void addStaff(Staff newStaff) {
-		this.staff.add(newStaff);
+	public boolean addStaff(Staff newStaff) {
+		if(!this.staff.contains(newStaff)) {
+			return this.staff.add(newStaff);
+		}
+		return false;
 	}
 
 	public boolean removeStaff(Staff staff) {
-		return this.staff.remove(staff);
+		if(this.staff.contains(staff)) {
+			return this.staff.remove(staff);
+		}
+		return false;
 	}
 
 	public ArrayList<Staff> getStaff() {
